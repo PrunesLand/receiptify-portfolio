@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:receipt_app/features/Home/Index.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,8 +13,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.camera_alt_sharp),
+        onPressed: () async {
+          final image = await pickImageFromGallery();
+
+          if (image != null) {
+            print("PRUNE IMAGE SELECTED: ${image.path}");
+          }
+        },
+        child: Icon(Icons.add),
       ),
       body: Padding(
         padding: EdgeInsets.all(8.0),
