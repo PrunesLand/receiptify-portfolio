@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:receipt_app/features/Home/Index.dart';
+import 'package:receipt_app/features/Home/presentation/widgets/FileSelectModal.dart';
+import 'package:receipt_app/main.dart';
+
+import '../utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,7 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
           final image = await pickImageFromGallery();
 
           if (image != null) {
-            print("PRUNE IMAGE SELECTED: ${image.path}");
+            showDialog(
+              context: context,
+              builder: (context) => FileSelectModal(),
+            );
+          } else {
+            showErrorSnackBar();
           }
         },
         child: Icon(Icons.add),
@@ -38,4 +46,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+void showErrorSnackBar() {
+  final snackbar = SnackBar(
+    content: Text('An error occurred while picking the image.'),
+    duration: Duration(seconds: 2),
+  );
+
+  messengerKey.currentState?.showSnackBar(snackbar);
 }

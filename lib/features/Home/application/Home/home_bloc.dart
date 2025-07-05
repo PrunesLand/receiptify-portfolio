@@ -7,8 +7,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
     on<HomeEvent>((event, emit) async {
       await event.when(
-        fetchData: () async {
-          emit(state.copyWith(isLoading: false));
+        isLoading: () async {
+          emit(state.copyWith(isLoading: true));
         },
       );
     });

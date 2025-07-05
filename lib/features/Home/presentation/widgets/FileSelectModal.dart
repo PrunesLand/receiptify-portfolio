@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class FileSelectModal extends StatefulWidget {
   const FileSelectModal({super.key});
@@ -10,6 +10,17 @@ class FileSelectModal extends StatefulWidget {
 class _FileSelectModalState extends State<FileSelectModal> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Column(children: [Text('Selected File')]));
+    return AlertDialog(
+      title: Text('Select File'),
+      content: Text('This is where you would implement file selection logic.'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(); // Close the dialog
+          },
+          child: Text('Close'),
+        ),
+      ],
+    );
   }
 }
