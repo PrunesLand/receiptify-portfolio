@@ -1,6 +1,35 @@
-# receipt_app
+# Receiptify
 
 A new Flutter project.
+
+## Tech Stack
+
+- **Flutter** (Dart) for cross-platform mobile development
+- **go_router** for declarative routing
+- **google_mlkit_text_recognition** for text recognition (OCR)
+- **camera** for camera integration
+- **image_picker** for image selection
+- **freezed** and **freezed_annotation** for immutable models and code generation
+- **flutter_bloc** for state management
+- **build_runner** for code generation
+
+## How to Run
+
+1. Install dependencies:
+   ```sh
+   flutter pub get
+   ```
+2. Run the app:
+   ```sh
+   flutter run
+   ```
+
+## Updating Models
+
+If you make changes to your model classes, rebuild the generated code with:
+```sh
+dart run build_runner build --delete-conflicting-outputs
+```
 
 ## Getting Started
 
