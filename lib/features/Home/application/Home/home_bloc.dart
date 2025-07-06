@@ -10,6 +10,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         isLoading: () async {
           emit(state.copyWith(isLoading: true));
         },
+        addImage: (String fileName, String filePath) {},
+        removeImage: (String fileName) {},
       );
     });
   }

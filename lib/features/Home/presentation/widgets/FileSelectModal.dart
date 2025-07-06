@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class FileSelectModal extends StatefulWidget {
-  const FileSelectModal({super.key});
+  final File? file;
+
+  const FileSelectModal({super.key, this.file});
 
   @override
   State<FileSelectModal> createState() => _FileSelectModalState();
@@ -12,7 +16,28 @@ class _FileSelectModalState extends State<FileSelectModal> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Select File'),
-      content: Text('This is where you would implement file selection logic.'),
+      content: SizedBox(
+        height: 250,
+        child: Column(
+          children: [
+            Text('Make sure the image is readable.'),
+            Padding(
+              padding: EdgeInsetsDirectional.symmetric(vertical: 8.0),
+              child: Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: FileImage(widget.file!),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       actions: [
         TextButton(
           onPressed: () {

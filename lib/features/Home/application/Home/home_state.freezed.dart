@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
+  List<ImageModel?> get list => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, List<ImageModel?> list});
 }
 
 /// @nodoc
@@ -48,7 +49,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isLoading = null}) {
+  $Res call({Object? isLoading = null, Object? list = null}) {
     return _then(
       _value.copyWith(
             isLoading:
@@ -56,6 +57,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                     ? _value.isLoading
                     : isLoading // ignore: cast_nullable_to_non_nullable
                         as bool,
+            list:
+                null == list
+                    ? _value.list
+                    : list // ignore: cast_nullable_to_non_nullable
+                        as List<ImageModel?>,
           )
           as $Val,
     );
@@ -71,7 +77,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   ) = __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, List<ImageModel?> list});
 }
 
 /// @nodoc
@@ -87,7 +93,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isLoading = null}) {
+  $Res call({Object? isLoading = null, Object? list = null}) {
     return _then(
       _$HomeStateImpl(
         isLoading:
@@ -95,6 +101,11 @@ class __$$HomeStateImplCopyWithImpl<$Res>
                 ? _value.isLoading
                 : isLoading // ignore: cast_nullable_to_non_nullable
                     as bool,
+        list:
+            null == list
+                ? _value._list
+                : list // ignore: cast_nullable_to_non_nullable
+                    as List<ImageModel?>,
       ),
     );
   }
@@ -103,15 +114,26 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl({this.isLoading = false});
+  const _$HomeStateImpl({
+    this.isLoading = false,
+    final List<ImageModel?> list = const [],
+  }) : _list = list;
 
   @override
   @JsonKey()
   final bool isLoading;
+  final List<ImageModel?> _list;
+  @override
+  @JsonKey()
+  List<ImageModel?> get list {
+    if (_list is EqualUnmodifiableListView) return _list;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_list);
+  }
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading)';
+    return 'HomeState(isLoading: $isLoading, list: $list)';
   }
 
   @override
@@ -120,11 +142,16 @@ class _$HomeStateImpl implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading);
+  int get hashCode => Object.hash(
+    runtimeType,
+    isLoading,
+    const DeepCollectionEquality().hash(_list),
+  );
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -136,10 +163,15 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({final bool isLoading}) = _$HomeStateImpl;
+  const factory _HomeState({
+    final bool isLoading,
+    final List<ImageModel?> list,
+  }) = _$HomeStateImpl;
 
   @override
   bool get isLoading;
+  @override
+  List<ImageModel?> get list;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

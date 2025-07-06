@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (image != null) {
             showDialog(
               context: context,
-              builder: (context) => FileSelectModal(),
+              builder: (context) => FileSelectModal(file: image),
             );
           } else {
             showErrorSnackBar();
