@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class FileSelectModal extends StatefulWidget {
   final File? file;
+  final Function? onFileSelected;
 
-  const FileSelectModal({super.key, this.file});
+  const FileSelectModal({super.key, this.file, this.onFileSelected});
 
   @override
   State<FileSelectModal> createState() => _FileSelectModalState();
@@ -41,9 +42,9 @@ class _FileSelectModalState extends State<FileSelectModal> {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).pop(); // Close the dialog
+            widget.onFileSelected!();
           },
-          child: Text('Close'),
+          child: Text('Scan'),
         ),
       ],
     );
