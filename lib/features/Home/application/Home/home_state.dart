@@ -9,5 +9,6 @@ class HomeState with _$HomeState {
   const factory HomeState({
     @Default(false) bool isLoading,
     @Default([]) List<ImageModel?> list,
+    @Default('') String textData,
   }) = _HomeState;
 }

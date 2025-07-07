@@ -19,6 +19,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
   List<ImageModel?> get list => throw _privateConstructorUsedError;
+  String get textData => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool isLoading, List<ImageModel?> list});
+  $Res call({bool isLoading, List<ImageModel?> list, String textData});
 }
 
 /// @nodoc
@@ -49,7 +50,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isLoading = null, Object? list = null}) {
+  $Res call({
+    Object? isLoading = null,
+    Object? list = null,
+    Object? textData = null,
+  }) {
     return _then(
       _value.copyWith(
             isLoading:
@@ -62,6 +67,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                     ? _value.list
                     : list // ignore: cast_nullable_to_non_nullable
                         as List<ImageModel?>,
+            textData:
+                null == textData
+                    ? _value.textData
+                    : textData // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -77,7 +87,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   ) = __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, List<ImageModel?> list});
+  $Res call({bool isLoading, List<ImageModel?> list, String textData});
 }
 
 /// @nodoc
@@ -93,7 +103,11 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isLoading = null, Object? list = null}) {
+  $Res call({
+    Object? isLoading = null,
+    Object? list = null,
+    Object? textData = null,
+  }) {
     return _then(
       _$HomeStateImpl(
         isLoading:
@@ -106,6 +120,11 @@ class __$$HomeStateImplCopyWithImpl<$Res>
                 ? _value._list
                 : list // ignore: cast_nullable_to_non_nullable
                     as List<ImageModel?>,
+        textData:
+            null == textData
+                ? _value.textData
+                : textData // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -117,6 +136,7 @@ class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl({
     this.isLoading = false,
     final List<ImageModel?> list = const [],
+    this.textData = '',
   }) : _list = list;
 
   @override
@@ -132,8 +152,12 @@ class _$HomeStateImpl implements _HomeState {
   }
 
   @override
+  @JsonKey()
+  final String textData;
+
+  @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, list: $list)';
+    return 'HomeState(isLoading: $isLoading, list: $list, textData: $textData)';
   }
 
   @override
@@ -143,7 +167,9 @@ class _$HomeStateImpl implements _HomeState {
             other is _$HomeStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            const DeepCollectionEquality().equals(other._list, _list));
+            const DeepCollectionEquality().equals(other._list, _list) &&
+            (identical(other.textData, textData) ||
+                other.textData == textData));
   }
 
   @override
@@ -151,6 +177,7 @@ class _$HomeStateImpl implements _HomeState {
     runtimeType,
     isLoading,
     const DeepCollectionEquality().hash(_list),
+    textData,
   );
 
   /// Create a copy of HomeState
@@ -166,12 +193,15 @@ abstract class _HomeState implements HomeState {
   const factory _HomeState({
     final bool isLoading,
     final List<ImageModel?> list,
+    final String textData,
   }) = _$HomeStateImpl;
 
   @override
   bool get isLoading;
   @override
   List<ImageModel?> get list;
+  @override
+  String get textData;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class FileSelectModal extends StatefulWidget {
   final File? file;
   final Function? onFileSelected;
-
   const FileSelectModal({super.key, this.file, this.onFileSelected});
 
   @override

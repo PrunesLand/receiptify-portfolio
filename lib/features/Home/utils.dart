@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 
 Future<File?> pickImageFromGallery() async {
@@ -8,4 +9,23 @@ Future<File?> pickImageFromGallery() async {
   final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
   return image != null ? File(image.path) : null;
+}
+
+Future<String> TextRecognitionEngine(File file) async {
+  final InputImage inputImage;
+
+  inputImage = InputImage.fromFile(file);
+
+  final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
+
+  final RecognizedText recognizedText = await textRecognizer.processImage(
+    inputImage,
+  );
+
+  String text = recognizedText.text;
+  print('Recognized text: $text');
+
+  textRecognizer.close();
+
+  return text;
 }

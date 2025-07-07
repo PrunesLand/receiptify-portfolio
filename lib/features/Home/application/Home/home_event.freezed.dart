@@ -19,40 +19,46 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() isLoading,
-    required TResult Function(String fileName, String filePath) addImage,
+    required TResult Function() loading,
+    required TResult Function(File file) addImage,
     required TResult Function(String id) removeImage,
+    required TResult Function() processImage,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? isLoading,
-    TResult? Function(String fileName, String filePath)? addImage,
+    TResult? Function()? loading,
+    TResult? Function(File file)? addImage,
     TResult? Function(String id)? removeImage,
+    TResult? Function()? processImage,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? isLoading,
-    TResult Function(String fileName, String filePath)? addImage,
+    TResult Function()? loading,
+    TResult Function(File file)? addImage,
     TResult Function(String id)? removeImage,
+    TResult Function()? processImage,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_AddImage value) addImage,
     required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_ProcessImage value) processImage,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_AddImage value)? addImage,
     TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_ProcessImage value)? processImage,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_AddImage value)? addImage,
     TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_ProcessImage value)? processImage,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -78,20 +84,20 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
 }
 
 /// @nodoc
-abstract class _$$IsLoadingImplCopyWith<$Res> {
-  factory _$$IsLoadingImplCopyWith(
-    _$IsLoadingImpl value,
-    $Res Function(_$IsLoadingImpl) then,
-  ) = __$$IsLoadingImplCopyWithImpl<$Res>;
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+    _$LoadingImpl value,
+    $Res Function(_$LoadingImpl) then,
+  ) = __$$LoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$IsLoadingImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$IsLoadingImpl>
-    implements _$$IsLoadingImplCopyWith<$Res> {
-  __$$IsLoadingImplCopyWithImpl(
-    _$IsLoadingImpl _value,
-    $Res Function(_$IsLoadingImpl) _then,
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+    _$LoadingImpl _value,
+    $Res Function(_$LoadingImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of HomeEvent
@@ -100,18 +106,18 @@ class __$$IsLoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$IsLoadingImpl implements _IsLoading {
-  const _$IsLoadingImpl();
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
 
   @override
   String toString() {
-    return 'HomeEvent.isLoading()';
+    return 'HomeEvent.loading()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$IsLoadingImpl);
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
   }
 
   @override
@@ -120,33 +126,36 @@ class _$IsLoadingImpl implements _IsLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() isLoading,
-    required TResult Function(String fileName, String filePath) addImage,
+    required TResult Function() loading,
+    required TResult Function(File file) addImage,
     required TResult Function(String id) removeImage,
+    required TResult Function() processImage,
   }) {
-    return isLoading();
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? isLoading,
-    TResult? Function(String fileName, String filePath)? addImage,
+    TResult? Function()? loading,
+    TResult? Function(File file)? addImage,
     TResult? Function(String id)? removeImage,
+    TResult? Function()? processImage,
   }) {
-    return isLoading?.call();
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? isLoading,
-    TResult Function(String fileName, String filePath)? addImage,
+    TResult Function()? loading,
+    TResult Function(File file)? addImage,
     TResult Function(String id)? removeImage,
+    TResult Function()? processImage,
     required TResult orElse(),
   }) {
-    if (isLoading != null) {
-      return isLoading();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -154,40 +163,43 @@ class _$IsLoadingImpl implements _IsLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_AddImage value) addImage,
     required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_ProcessImage value) processImage,
   }) {
-    return isLoading(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_AddImage value)? addImage,
     TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_ProcessImage value)? processImage,
   }) {
-    return isLoading?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_AddImage value)? addImage,
     TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_ProcessImage value)? processImage,
     required TResult orElse(),
   }) {
-    if (isLoading != null) {
-      return isLoading(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
 }
 
-abstract class _IsLoading implements HomeEvent {
-  const factory _IsLoading() = _$IsLoadingImpl;
+abstract class _Loading implements HomeEvent {
+  const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
@@ -197,7 +209,7 @@ abstract class _$$AddImageImplCopyWith<$Res> {
     $Res Function(_$AddImageImpl) then,
   ) = __$$AddImageImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String fileName, String filePath});
+  $Res call({File file});
 }
 
 /// @nodoc
@@ -213,19 +225,14 @@ class __$$AddImageImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? fileName = null, Object? filePath = null}) {
+  $Res call({Object? file = null}) {
     return _then(
       _$AddImageImpl(
-        fileName:
-            null == fileName
-                ? _value.fileName
-                : fileName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        filePath:
-            null == filePath
-                ? _value.filePath
-                : filePath // ignore: cast_nullable_to_non_nullable
-                    as String,
+        file:
+            null == file
+                ? _value.file
+                : file // ignore: cast_nullable_to_non_nullable
+                    as File,
       ),
     );
   }
@@ -234,16 +241,14 @@ class __$$AddImageImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddImageImpl implements _AddImage {
-  const _$AddImageImpl({required this.fileName, required this.filePath});
+  const _$AddImageImpl({required this.file});
 
   @override
-  final String fileName;
-  @override
-  final String filePath;
+  final File file;
 
   @override
   String toString() {
-    return 'HomeEvent.addImage(fileName: $fileName, filePath: $filePath)';
+    return 'HomeEvent.addImage(file: $file)';
   }
 
   @override
@@ -251,14 +256,11 @@ class _$AddImageImpl implements _AddImage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddImageImpl &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName) &&
-            (identical(other.filePath, filePath) ||
-                other.filePath == filePath));
+            (identical(other.file, file) || other.file == file));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, fileName, filePath);
+  int get hashCode => Object.hash(runtimeType, file);
 
   /// Create a copy of HomeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -271,33 +273,36 @@ class _$AddImageImpl implements _AddImage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() isLoading,
-    required TResult Function(String fileName, String filePath) addImage,
+    required TResult Function() loading,
+    required TResult Function(File file) addImage,
     required TResult Function(String id) removeImage,
+    required TResult Function() processImage,
   }) {
-    return addImage(fileName, filePath);
+    return addImage(file);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? isLoading,
-    TResult? Function(String fileName, String filePath)? addImage,
+    TResult? Function()? loading,
+    TResult? Function(File file)? addImage,
     TResult? Function(String id)? removeImage,
+    TResult? Function()? processImage,
   }) {
-    return addImage?.call(fileName, filePath);
+    return addImage?.call(file);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? isLoading,
-    TResult Function(String fileName, String filePath)? addImage,
+    TResult Function()? loading,
+    TResult Function(File file)? addImage,
     TResult Function(String id)? removeImage,
+    TResult Function()? processImage,
     required TResult orElse(),
   }) {
     if (addImage != null) {
-      return addImage(fileName, filePath);
+      return addImage(file);
     }
     return orElse();
   }
@@ -305,9 +310,10 @@ class _$AddImageImpl implements _AddImage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_AddImage value) addImage,
     required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_ProcessImage value) processImage,
   }) {
     return addImage(this);
   }
@@ -315,9 +321,10 @@ class _$AddImageImpl implements _AddImage {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_AddImage value)? addImage,
     TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_ProcessImage value)? processImage,
   }) {
     return addImage?.call(this);
   }
@@ -325,9 +332,10 @@ class _$AddImageImpl implements _AddImage {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_AddImage value)? addImage,
     TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_ProcessImage value)? processImage,
     required TResult orElse(),
   }) {
     if (addImage != null) {
@@ -338,13 +346,9 @@ class _$AddImageImpl implements _AddImage {
 }
 
 abstract class _AddImage implements HomeEvent {
-  const factory _AddImage({
-    required final String fileName,
-    required final String filePath,
-  }) = _$AddImageImpl;
+  const factory _AddImage({required final File file}) = _$AddImageImpl;
 
-  String get fileName;
-  String get filePath;
+  File get file;
 
   /// Create a copy of HomeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -424,9 +428,10 @@ class _$RemoveImageImpl implements _RemoveImage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() isLoading,
-    required TResult Function(String fileName, String filePath) addImage,
+    required TResult Function() loading,
+    required TResult Function(File file) addImage,
     required TResult Function(String id) removeImage,
+    required TResult Function() processImage,
   }) {
     return removeImage(id);
   }
@@ -434,9 +439,10 @@ class _$RemoveImageImpl implements _RemoveImage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? isLoading,
-    TResult? Function(String fileName, String filePath)? addImage,
+    TResult? Function()? loading,
+    TResult? Function(File file)? addImage,
     TResult? Function(String id)? removeImage,
+    TResult? Function()? processImage,
   }) {
     return removeImage?.call(id);
   }
@@ -444,9 +450,10 @@ class _$RemoveImageImpl implements _RemoveImage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? isLoading,
-    TResult Function(String fileName, String filePath)? addImage,
+    TResult Function()? loading,
+    TResult Function(File file)? addImage,
     TResult Function(String id)? removeImage,
+    TResult Function()? processImage,
     required TResult orElse(),
   }) {
     if (removeImage != null) {
@@ -458,9 +465,10 @@ class _$RemoveImageImpl implements _RemoveImage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_AddImage value) addImage,
     required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_ProcessImage value) processImage,
   }) {
     return removeImage(this);
   }
@@ -468,9 +476,10 @@ class _$RemoveImageImpl implements _RemoveImage {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_AddImage value)? addImage,
     TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_ProcessImage value)? processImage,
   }) {
     return removeImage?.call(this);
   }
@@ -478,9 +487,10 @@ class _$RemoveImageImpl implements _RemoveImage {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_AddImage value)? addImage,
     TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_ProcessImage value)? processImage,
     required TResult orElse(),
   }) {
     if (removeImage != null) {
@@ -500,4 +510,123 @@ abstract class _RemoveImage implements HomeEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoveImageImplCopyWith<_$RemoveImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ProcessImageImplCopyWith<$Res> {
+  factory _$$ProcessImageImplCopyWith(
+    _$ProcessImageImpl value,
+    $Res Function(_$ProcessImageImpl) then,
+  ) = __$$ProcessImageImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProcessImageImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$ProcessImageImpl>
+    implements _$$ProcessImageImplCopyWith<$Res> {
+  __$$ProcessImageImplCopyWithImpl(
+    _$ProcessImageImpl _value,
+    $Res Function(_$ProcessImageImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ProcessImageImpl implements _ProcessImage {
+  const _$ProcessImageImpl();
+
+  @override
+  String toString() {
+    return 'HomeEvent.processImage()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ProcessImageImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(File file) addImage,
+    required TResult Function(String id) removeImage,
+    required TResult Function() processImage,
+  }) {
+    return processImage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(File file)? addImage,
+    TResult? Function(String id)? removeImage,
+    TResult? Function()? processImage,
+  }) {
+    return processImage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(File file)? addImage,
+    TResult Function(String id)? removeImage,
+    TResult Function()? processImage,
+    required TResult orElse(),
+  }) {
+    if (processImage != null) {
+      return processImage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_AddImage value) addImage,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_ProcessImage value) processImage,
+  }) {
+    return processImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_AddImage value)? addImage,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_ProcessImage value)? processImage,
+  }) {
+    return processImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_AddImage value)? addImage,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_ProcessImage value)? processImage,
+    required TResult orElse(),
+  }) {
+    if (processImage != null) {
+      return processImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProcessImage implements HomeEvent {
+  const factory _ProcessImage() = _$ProcessImageImpl;
 }
