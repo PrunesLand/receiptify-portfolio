@@ -5,6 +5,8 @@ import 'package:receipt_app/features/Home/Index.dart';
 
 import 'core/service_locator.dart';
 import 'features/CameraOCR/presentation/CameraScreen.dart';
+import 'features/Onboarding/presentation/HeroScreen.dart';
+import 'features/Onboarding/presentation/LoginScreen.dart';
 
 void main() {
   setupServiceLocator();
@@ -14,6 +16,7 @@ void main() {
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
 final GoRouter router = GoRouter(
+  initialLocation: '/onboarding',
   routes: <RouteBase>[
     GoRoute(
       path: '/',
@@ -28,6 +31,18 @@ final GoRouter router = GoRouter(
       path: '/camera',
       builder: (BuildContext context, GoRouterState state) {
         return const CameraScreen();
+      },
+    ),
+    GoRoute(
+      path: '/onboarding',
+      builder: (BuildContext context, GoRouterState state) {
+        return const HeroScreen();
+      },
+    ),
+    GoRoute(
+      path: '/login',
+      builder: (BuildContext context, GoRouterState state) {
+        return const LoginScreen();
       },
     ),
   ],
