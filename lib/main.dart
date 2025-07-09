@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:receipt_app/features/Home/Index.dart';
+import 'package:receipt_app/features/Onboarding/presentation/RegisterScreen.dart';
 
 import 'core/service_locator.dart';
 import 'features/CameraOCR/presentation/CameraScreen.dart';
@@ -43,6 +44,12 @@ final GoRouter router = GoRouter(
       path: '/login',
       builder: (BuildContext context, GoRouterState state) {
         return const LoginScreen();
+      },
+    ),
+    GoRoute(
+      path: '/register',
+      builder: (BuildContext context, GoRouterState state) {
+        return const RegisterScreen();
       },
     ),
   ],

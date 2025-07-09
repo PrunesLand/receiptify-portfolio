@@ -30,7 +30,9 @@ class HeroScreen extends StatelessWidget {
                         ),
                         fixedSize: Size.fromWidth(200),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(context).go('/register');
+                      },
                       child: Text("Register Account"),
                     ),
                     SizedBox(height: 16.0),
