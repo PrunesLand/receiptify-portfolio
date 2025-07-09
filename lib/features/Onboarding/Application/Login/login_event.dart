@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:receipt_app/features/Onboarding/Domain/LoginUserModel.dart';
+import 'package:receipt_app/features/Onboarding/Domain/Models/LoginUserModel.dart';
 
 part 'login_event.freezed.dart';
 

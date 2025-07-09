@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:receipt_app/features/Onboarding/Domain/LoginUserModel.dart';
+import 'package:receipt_app/features/Onboarding/Domain/Models/LoginUserModel.dart';
 
 import 'login_event.dart';
 import 'login_state.dart';
