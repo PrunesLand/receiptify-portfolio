@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:receipt_app/features/Onboarding/Infrastructure/tools.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
 
 import '../../../../core/TokenStorageService.dart';
