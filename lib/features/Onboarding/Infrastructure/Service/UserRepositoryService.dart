@@ -14,4 +14,7 @@ abstract class UserRepositoryService {
 
   @POST("auth/login")
   Future<AuthTokenDTO> login(@Body() LoginUserDTO loginUser);
+
+  @POST("auth/register")
+  Future<void> registerUser(@Body() RegisterUserDTO registerUser);
 }

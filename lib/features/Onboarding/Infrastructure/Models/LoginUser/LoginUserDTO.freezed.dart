@@ -21,9 +21,7 @@ LoginUserDTO _$LoginUserDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginUserDTO {
-  @JsonKey(name: 'email')
   String get email => throw _privateConstructorUsedError;
-  @JsonKey(name: 'password')
   String get password => throw _privateConstructorUsedError;
 
   /// Serializes this LoginUserDTO to a JSON map.
@@ -43,10 +41,7 @@ abstract class $LoginUserDTOCopyWith<$Res> {
     $Res Function(LoginUserDTO) then,
   ) = _$LoginUserDTOCopyWithImpl<$Res, LoginUserDTO>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'email') String email,
-    @JsonKey(name: 'password') String password,
-  });
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -91,10 +86,7 @@ abstract class _$$LoginUserDTOImplCopyWith<$Res>
   ) = __$$LoginUserDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'email') String email,
-    @JsonKey(name: 'password') String password,
-  });
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -131,19 +123,14 @@ class __$$LoginUserDTOImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LoginUserDTOImpl implements _LoginUserDTO {
-  const _$LoginUserDTOImpl({
-    @JsonKey(name: 'email') required this.email,
-    @JsonKey(name: 'password') required this.password,
-  });
+  const _$LoginUserDTOImpl({required this.email, required this.password});
 
   factory _$LoginUserDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginUserDTOImplFromJson(json);
 
   @override
-  @JsonKey(name: 'email')
   final String email;
   @override
-  @JsonKey(name: 'password')
   final String password;
 
   @override
@@ -181,18 +168,16 @@ class _$LoginUserDTOImpl implements _LoginUserDTO {
 
 abstract class _LoginUserDTO implements LoginUserDTO {
   const factory _LoginUserDTO({
-    @JsonKey(name: 'email') required final String email,
-    @JsonKey(name: 'password') required final String password,
+    required final String email,
+    required final String password,
   }) = _$LoginUserDTOImpl;
 
   factory _LoginUserDTO.fromJson(Map<String, dynamic> json) =
       _$LoginUserDTOImpl.fromJson;
 
   @override
-  @JsonKey(name: 'email')
   String get email;
   @override
-  @JsonKey(name: 'password')
   String get password;
 
   /// Create a copy of LoginUserDTO
