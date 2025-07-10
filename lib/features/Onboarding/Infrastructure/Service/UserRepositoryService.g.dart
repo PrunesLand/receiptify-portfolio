@@ -20,25 +20,52 @@ class _UserRepositoryService implements UserRepositoryService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<UserModelDto> getUserById(String id) async {
+  Future<UserProfileDTO> getUserProfile() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<UserModelDto>(
+    final _options = _setStreamType<UserProfileDTO>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/users/${id}',
+            '/users/profile',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late UserModelDto _value;
+    late UserProfileDTO _value;
     try {
-      _value = UserModelDto.fromJson(_result.data!);
+      _value = UserProfileDTO.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<AuthTokenDTO> login(LoginUserDTO loginUser) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = loginUser;
+    final _options = _setStreamType<AuthTokenDTO>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'auth/login',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AuthTokenDTO _value;
+    try {
+      _value = AuthTokenDTO.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'UserModelDto.dart';
+part of 'UserProfileDTO.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-UserModelDto _$UserModelDtoFromJson(Map<String, dynamic> json) {
-  return _UserModelDto.fromJson(json);
+UserProfileDTO _$UserProfileDTOFromJson(Map<String, dynamic> json) {
+  return _UserProfileDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UserModelDto {
+mixin _$UserProfileDTO {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
   String get firstName => throw _privateConstructorUsedError;
@@ -31,22 +31,22 @@ mixin _$UserModelDto {
   @JsonKey(name: 'password')
   String get password => throw _privateConstructorUsedError;
 
-  /// Serializes this UserModelDto to a JSON map.
+  /// Serializes this UserProfileDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of UserModelDto
+  /// Create a copy of UserProfileDTO
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserModelDtoCopyWith<UserModelDto> get copyWith =>
+  $UserProfileDTOCopyWith<UserProfileDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserModelDtoCopyWith<$Res> {
-  factory $UserModelDtoCopyWith(
-    UserModelDto value,
-    $Res Function(UserModelDto) then,
-  ) = _$UserModelDtoCopyWithImpl<$Res, UserModelDto>;
+abstract class $UserProfileDTOCopyWith<$Res> {
+  factory $UserProfileDTOCopyWith(
+    UserProfileDTO value,
+    $Res Function(UserProfileDTO) then,
+  ) = _$UserProfileDTOCopyWithImpl<$Res, UserProfileDTO>;
   @useResult
   $Res call({
     String id,
@@ -58,16 +58,16 @@ abstract class $UserModelDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserModelDtoCopyWithImpl<$Res, $Val extends UserModelDto>
-    implements $UserModelDtoCopyWith<$Res> {
-  _$UserModelDtoCopyWithImpl(this._value, this._then);
+class _$UserProfileDTOCopyWithImpl<$Res, $Val extends UserProfileDTO>
+    implements $UserProfileDTOCopyWith<$Res> {
+  _$UserProfileDTOCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UserModelDto
+  /// Create a copy of UserProfileDTO
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -112,12 +112,12 @@ class _$UserModelDtoCopyWithImpl<$Res, $Val extends UserModelDto>
 }
 
 /// @nodoc
-abstract class _$$UserModelDtoImplCopyWith<$Res>
-    implements $UserModelDtoCopyWith<$Res> {
-  factory _$$UserModelDtoImplCopyWith(
-    _$UserModelDtoImpl value,
-    $Res Function(_$UserModelDtoImpl) then,
-  ) = __$$UserModelDtoImplCopyWithImpl<$Res>;
+abstract class _$$UserProfileDTOImplCopyWith<$Res>
+    implements $UserProfileDTOCopyWith<$Res> {
+  factory _$$UserProfileDTOImplCopyWith(
+    _$UserProfileDTOImpl value,
+    $Res Function(_$UserProfileDTOImpl) then,
+  ) = __$$UserProfileDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({
@@ -130,15 +130,15 @@ abstract class _$$UserModelDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UserModelDtoImplCopyWithImpl<$Res>
-    extends _$UserModelDtoCopyWithImpl<$Res, _$UserModelDtoImpl>
-    implements _$$UserModelDtoImplCopyWith<$Res> {
-  __$$UserModelDtoImplCopyWithImpl(
-    _$UserModelDtoImpl _value,
-    $Res Function(_$UserModelDtoImpl) _then,
+class __$$UserProfileDTOImplCopyWithImpl<$Res>
+    extends _$UserProfileDTOCopyWithImpl<$Res, _$UserProfileDTOImpl>
+    implements _$$UserProfileDTOImplCopyWith<$Res> {
+  __$$UserProfileDTOImplCopyWithImpl(
+    _$UserProfileDTOImpl _value,
+    $Res Function(_$UserProfileDTOImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of UserModelDto
+  /// Create a copy of UserProfileDTO
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -150,7 +150,7 @@ class __$$UserModelDtoImplCopyWithImpl<$Res>
     Object? password = null,
   }) {
     return _then(
-      _$UserModelDtoImpl(
+      _$UserProfileDTOImpl(
         id:
             null == id
                 ? _value.id
@@ -183,8 +183,8 @@ class __$$UserModelDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserModelDtoImpl implements _UserModelDto {
-  const _$UserModelDtoImpl({
+class _$UserProfileDTOImpl implements _UserProfileDTO {
+  const _$UserProfileDTOImpl({
     required this.id,
     @JsonKey(name: 'first_name') required this.firstName,
     @JsonKey(name: 'last_name') required this.lastName,
@@ -192,8 +192,8 @@ class _$UserModelDtoImpl implements _UserModelDto {
     @JsonKey(name: 'password') required this.password,
   });
 
-  factory _$UserModelDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserModelDtoImplFromJson(json);
+  factory _$UserProfileDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserProfileDTOImplFromJson(json);
 
   @override
   final String id;
@@ -212,14 +212,14 @@ class _$UserModelDtoImpl implements _UserModelDto {
 
   @override
   String toString() {
-    return 'UserModelDto(id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password)';
+    return 'UserProfileDTO(id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserModelDtoImpl &&
+            other is _$UserProfileDTOImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
@@ -235,31 +235,34 @@ class _$UserModelDtoImpl implements _UserModelDto {
   int get hashCode =>
       Object.hash(runtimeType, id, firstName, lastName, email, password);
 
-  /// Create a copy of UserModelDto
+  /// Create a copy of UserProfileDTO
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserModelDtoImplCopyWith<_$UserModelDtoImpl> get copyWith =>
-      __$$UserModelDtoImplCopyWithImpl<_$UserModelDtoImpl>(this, _$identity);
+  _$$UserProfileDTOImplCopyWith<_$UserProfileDTOImpl> get copyWith =>
+      __$$UserProfileDTOImplCopyWithImpl<_$UserProfileDTOImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserModelDtoImplToJson(this);
+    return _$$UserProfileDTOImplToJson(this);
   }
 }
 
-abstract class _UserModelDto implements UserModelDto {
-  const factory _UserModelDto({
+abstract class _UserProfileDTO implements UserProfileDTO {
+  const factory _UserProfileDTO({
     required final String id,
     @JsonKey(name: 'first_name') required final String firstName,
     @JsonKey(name: 'last_name') required final String lastName,
     @JsonKey(name: 'email') required final String email,
     @JsonKey(name: 'password') required final String password,
-  }) = _$UserModelDtoImpl;
+  }) = _$UserProfileDTOImpl;
 
-  factory _UserModelDto.fromJson(Map<String, dynamic> json) =
-      _$UserModelDtoImpl.fromJson;
+  factory _UserProfileDTO.fromJson(Map<String, dynamic> json) =
+      _$UserProfileDTOImpl.fromJson;
 
   @override
   String get id;
@@ -276,10 +279,10 @@ abstract class _UserModelDto implements UserModelDto {
   @JsonKey(name: 'password')
   String get password;
 
-  /// Create a copy of UserModelDto
+  /// Create a copy of UserProfileDTO
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserModelDtoImplCopyWith<_$UserModelDtoImpl> get copyWith =>
+  _$$UserProfileDTOImplCopyWith<_$UserProfileDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

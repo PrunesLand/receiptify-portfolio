@@ -9,6 +9,9 @@ abstract class UserRepositoryService {
   factory UserRepositoryService(Dio dio, {String baseUrl}) =
       _UserRepositoryService;
 
-  @GET('/users/{id}')
-  Future<UserModelDto> getUserById(@Path("id") String id);
+  @GET('/users/profile')
+  Future<UserProfileDTO> getUserProfile();
+
+  @POST("auth/login")
+  Future<AuthTokenDTO> login(@Body() LoginUserDTO loginUser);
 }
