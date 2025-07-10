@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:receipt_app/features/Home/Index.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../domain/image_model.dart';
+import '../../domain/Model/Image/image_model.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/image_model.dart';
+import '../../domain/Model/Image/image_model.dart';
 
 part 'home_state.freezed.dart';
 

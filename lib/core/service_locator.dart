@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:receipt_app/core/index.dart';
+import 'package:receipt_app/features/Onboarding/index.dart';
 
 import '../features/Home/application/Home/home_bloc.dart';
 
@@ -6,4 +9,22 @@ final getIt = GetIt.instance;
 
 void setupServiceLocator() {
   getIt.registerLazySingleton(() => HomeBloc());
+
+  getIt.registerLazySingleton(() => TokenStorageService());
+
+  getIt.registerLazySingleton<Dio>(() {
+    final dio = Dio();
+
+    dio.interceptors.add(AuthInterceptor(getIt<TokenStorageService>()));
+    return dio;
+  });
+
+  getIt.registerLazySingleton(() => UserRepositoryService(getIt<Dio>()));
+
+  getIt.registerLazySingleton(
+    () => UserRepository(
+      getIt<UserRepositoryService>(),
+      getIt<TokenStorageService>(),
+    ),
+  );
 }

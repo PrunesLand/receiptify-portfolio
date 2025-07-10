@@ -15,17 +15,10 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-LoginUserDTO _$LoginUserDTOFromJson(Map<String, dynamic> json) {
-  return _LoginUserDTO.fromJson(json);
-}
-
 /// @nodoc
 mixin _$LoginUserDTO {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-
-  /// Serializes this LoginUserDTO to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of LoginUserDTO
   /// with the given fields replaced by the non-null parameter values.
@@ -121,12 +114,9 @@ class __$$LoginUserDTOImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$LoginUserDTOImpl implements _LoginUserDTO {
   const _$LoginUserDTOImpl({required this.email, required this.password});
-
-  factory _$LoginUserDTOImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LoginUserDTOImplFromJson(json);
 
   @override
   final String email;
@@ -148,7 +138,6 @@ class _$LoginUserDTOImpl implements _LoginUserDTO {
                 other.password == password));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, email, password);
 
@@ -159,11 +148,6 @@ class _$LoginUserDTOImpl implements _LoginUserDTO {
   @pragma('vm:prefer-inline')
   _$$LoginUserDTOImplCopyWith<_$LoginUserDTOImpl> get copyWith =>
       __$$LoginUserDTOImplCopyWithImpl<_$LoginUserDTOImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoginUserDTOImplToJson(this);
-  }
 }
 
 abstract class _LoginUserDTO implements LoginUserDTO {
@@ -171,9 +155,6 @@ abstract class _LoginUserDTO implements LoginUserDTO {
     required final String email,
     required final String password,
   }) = _$LoginUserDTOImpl;
-
-  factory _LoginUserDTO.fromJson(Map<String, dynamic> json) =
-      _$LoginUserDTOImpl.fromJson;
 
   @override
   String get email;
