@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'home_event.dart';
+part of 'document_event.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$HomeEvent {
+mixin _$DocumentEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -64,22 +64,24 @@ mixin _$HomeEvent {
 }
 
 /// @nodoc
-abstract class $HomeEventCopyWith<$Res> {
-  factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
-      _$HomeEventCopyWithImpl<$Res, HomeEvent>;
+abstract class $DocumentEventCopyWith<$Res> {
+  factory $DocumentEventCopyWith(
+    DocumentEvent value,
+    $Res Function(DocumentEvent) then,
+  ) = _$DocumentEventCopyWithImpl<$Res, DocumentEvent>;
 }
 
 /// @nodoc
-class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
-    implements $HomeEventCopyWith<$Res> {
-  _$HomeEventCopyWithImpl(this._value, this._then);
+class _$DocumentEventCopyWithImpl<$Res, $Val extends DocumentEvent>
+    implements $DocumentEventCopyWith<$Res> {
+  _$DocumentEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -93,14 +95,14 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$DocumentEventCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
     _$LoadingImpl _value,
     $Res Function(_$LoadingImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -111,7 +113,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'HomeEvent.loading()';
+    return 'DocumentEvent.loading()';
   }
 
   @override
@@ -198,7 +200,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements HomeEvent {
+abstract class _Loading implements DocumentEvent {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -214,14 +216,14 @@ abstract class _$$AddImageImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$AddImageImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$AddImageImpl>
+    extends _$DocumentEventCopyWithImpl<$Res, _$AddImageImpl>
     implements _$$AddImageImplCopyWith<$Res> {
   __$$AddImageImplCopyWithImpl(
     _$AddImageImpl _value,
     $Res Function(_$AddImageImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -248,7 +250,7 @@ class _$AddImageImpl implements _AddImage {
 
   @override
   String toString() {
-    return 'HomeEvent.addImage(file: $file)';
+    return 'DocumentEvent.addImage(file: $file)';
   }
 
   @override
@@ -262,7 +264,7 @@ class _$AddImageImpl implements _AddImage {
   @override
   int get hashCode => Object.hash(runtimeType, file);
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -345,12 +347,12 @@ class _$AddImageImpl implements _AddImage {
   }
 }
 
-abstract class _AddImage implements HomeEvent {
+abstract class _AddImage implements DocumentEvent {
   const factory _AddImage({required final File file}) = _$AddImageImpl;
 
   File get file;
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddImageImplCopyWith<_$AddImageImpl> get copyWith =>
@@ -369,14 +371,14 @@ abstract class _$$RemoveImageImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$RemoveImageImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$RemoveImageImpl>
+    extends _$DocumentEventCopyWithImpl<$Res, _$RemoveImageImpl>
     implements _$$RemoveImageImplCopyWith<$Res> {
   __$$RemoveImageImplCopyWithImpl(
     _$RemoveImageImpl _value,
     $Res Function(_$RemoveImageImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -403,7 +405,7 @@ class _$RemoveImageImpl implements _RemoveImage {
 
   @override
   String toString() {
-    return 'HomeEvent.removeImage(id: $id)';
+    return 'DocumentEvent.removeImage(id: $id)';
   }
 
   @override
@@ -417,7 +419,7 @@ class _$RemoveImageImpl implements _RemoveImage {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -500,12 +502,12 @@ class _$RemoveImageImpl implements _RemoveImage {
   }
 }
 
-abstract class _RemoveImage implements HomeEvent {
+abstract class _RemoveImage implements DocumentEvent {
   const factory _RemoveImage({required final String id}) = _$RemoveImageImpl;
 
   String get id;
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoveImageImplCopyWith<_$RemoveImageImpl> get copyWith =>
@@ -522,14 +524,14 @@ abstract class _$$ProcessImageImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ProcessImageImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$ProcessImageImpl>
+    extends _$DocumentEventCopyWithImpl<$Res, _$ProcessImageImpl>
     implements _$$ProcessImageImplCopyWith<$Res> {
   __$$ProcessImageImplCopyWithImpl(
     _$ProcessImageImpl _value,
     $Res Function(_$ProcessImageImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of HomeEvent
+  /// Create a copy of DocumentEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -540,7 +542,7 @@ class _$ProcessImageImpl implements _ProcessImage {
 
   @override
   String toString() {
-    return 'HomeEvent.processImage()';
+    return 'DocumentEvent.processImage()';
   }
 
   @override
@@ -627,6 +629,6 @@ class _$ProcessImageImpl implements _ProcessImage {
   }
 }
 
-abstract class _ProcessImage implements HomeEvent {
+abstract class _ProcessImage implements DocumentEvent {
   const factory _ProcessImage() = _$ProcessImageImpl;
 }

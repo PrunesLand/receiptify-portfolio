@@ -2,14 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:receipt_app/features/Home/Index.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../domain/Model/Image/image_model.dart';
+import '../../utils.dart';
+import 'document_event.dart';
+import 'document_state.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(const HomeState()) {
-    on<HomeEvent>((event, emit) async {
+class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
+  DocumentBloc() : super(const DocumentState()) {
+    on<DocumentEvent>((event, emit) async {
       await event.when(
         loading: () async {
           emit(state.copyWith(isLoading: true));

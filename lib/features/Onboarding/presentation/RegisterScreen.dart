@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:receipt_app/features/Onboarding/presentation/Widgets/CustomTextField.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -16,6 +17,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return SafeArea(
       top: false,
       child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back),
+          ),
+        ),
         body: Column(
           children: [
             Flexible(
@@ -73,6 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Registering account...')),
                             );
+                            GoRouter.of(context).go('/document');
                           }
                         },
                         child: Text("Register Account"),

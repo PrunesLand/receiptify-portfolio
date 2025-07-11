@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'home_state.dart';
+part of 'document_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,37 +16,39 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$HomeState {
+mixin _$DocumentState {
   bool get isLoading => throw _privateConstructorUsedError;
   List<ImageModel?> get list => throw _privateConstructorUsedError;
   String get textData => throw _privateConstructorUsedError;
 
-  /// Create a copy of HomeState
+  /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $HomeStateCopyWith<HomeState> get copyWith =>
+  $DocumentStateCopyWith<DocumentState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeStateCopyWith<$Res> {
-  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
-      _$HomeStateCopyWithImpl<$Res, HomeState>;
+abstract class $DocumentStateCopyWith<$Res> {
+  factory $DocumentStateCopyWith(
+    DocumentState value,
+    $Res Function(DocumentState) then,
+  ) = _$DocumentStateCopyWithImpl<$Res, DocumentState>;
   @useResult
   $Res call({bool isLoading, List<ImageModel?> list, String textData});
 }
 
 /// @nodoc
-class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
-    implements $HomeStateCopyWith<$Res> {
-  _$HomeStateCopyWithImpl(this._value, this._then);
+class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
+    implements $DocumentStateCopyWith<$Res> {
+  _$DocumentStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of HomeState
+  /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -79,27 +81,27 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 }
 
 /// @nodoc
-abstract class _$$HomeStateImplCopyWith<$Res>
-    implements $HomeStateCopyWith<$Res> {
-  factory _$$HomeStateImplCopyWith(
-    _$HomeStateImpl value,
-    $Res Function(_$HomeStateImpl) then,
-  ) = __$$HomeStateImplCopyWithImpl<$Res>;
+abstract class _$$DocumentStateImplCopyWith<$Res>
+    implements $DocumentStateCopyWith<$Res> {
+  factory _$$DocumentStateImplCopyWith(
+    _$DocumentStateImpl value,
+    $Res Function(_$DocumentStateImpl) then,
+  ) = __$$DocumentStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isLoading, List<ImageModel?> list, String textData});
 }
 
 /// @nodoc
-class __$$HomeStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
-    implements _$$HomeStateImplCopyWith<$Res> {
-  __$$HomeStateImplCopyWithImpl(
-    _$HomeStateImpl _value,
-    $Res Function(_$HomeStateImpl) _then,
+class __$$DocumentStateImplCopyWithImpl<$Res>
+    extends _$DocumentStateCopyWithImpl<$Res, _$DocumentStateImpl>
+    implements _$$DocumentStateImplCopyWith<$Res> {
+  __$$DocumentStateImplCopyWithImpl(
+    _$DocumentStateImpl _value,
+    $Res Function(_$DocumentStateImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of HomeState
+  /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -109,7 +111,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? textData = null,
   }) {
     return _then(
-      _$HomeStateImpl(
+      _$DocumentStateImpl(
         isLoading:
             null == isLoading
                 ? _value.isLoading
@@ -132,8 +134,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl({
+class _$DocumentStateImpl implements _DocumentState {
+  const _$DocumentStateImpl({
     this.isLoading = false,
     final List<ImageModel?> list = const [],
     this.textData = '',
@@ -157,14 +159,14 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, list: $list, textData: $textData)';
+    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeStateImpl &&
+            other is _$DocumentStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._list, _list) &&
@@ -180,21 +182,21 @@ class _$HomeStateImpl implements _HomeState {
     textData,
   );
 
-  /// Create a copy of HomeState
+  /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
-      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
+  _$$DocumentStateImplCopyWith<_$DocumentStateImpl> get copyWith =>
+      __$$DocumentStateImplCopyWithImpl<_$DocumentStateImpl>(this, _$identity);
 }
 
-abstract class _HomeState implements HomeState {
-  const factory _HomeState({
+abstract class _DocumentState implements DocumentState {
+  const factory _DocumentState({
     final bool isLoading,
     final List<ImageModel?> list,
     final String textData,
-  }) = _$HomeStateImpl;
+  }) = _$DocumentStateImpl;
 
   @override
   bool get isLoading;
@@ -203,10 +205,10 @@ abstract class _HomeState implements HomeState {
   @override
   String get textData;
 
-  /// Create a copy of HomeState
+  /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+  _$$DocumentStateImplCopyWith<_$DocumentStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:receipt_app/features/Home/Index.dart';
+import 'package:receipt_app/features/Document/Index.dart';
 import 'package:receipt_app/features/Onboarding/presentation/RegisterScreen.dart';
+import 'package:receipt_app/features/Statistics/presentation/StatsBaseScreen.dart';
 
 import 'core/service_locator.dart';
 import 'features/CameraOCR/presentation/CameraScreen.dart';
+import 'features/Home/presentation/HomeLayout.dart';
 import 'features/Onboarding/presentation/HeroScreen.dart';
 import 'features/Onboarding/presentation/LoginScreen.dart';
 
@@ -19,14 +21,27 @@ final messengerKey = GlobalKey<ScaffoldMessengerState>();
 final GoRouter router = GoRouter(
   initialLocation: '/onboarding',
   routes: <RouteBase>[
-    GoRoute(
-      path: '/',
-      builder: (BuildContext context, GoRouterState state) {
-        return BlocProvider(
-          create: (context) => getIt<HomeBloc>(),
-          child: HomeScreen(),
-        );
+    ShellRoute(
+      builder: (BuildContext context, GoRouterState state, Widget child) {
+        return HomeLayout(child: child);
       },
+      routes: [
+        GoRoute(
+          path: '/statistics',
+          builder: (BuildContext, GoRouterState state) {
+            return const StatsBaseScreen();
+          },
+        ),
+        GoRoute(
+          path: '/document',
+          builder: (BuildContext context, GoRouterState state) {
+            return BlocProvider(
+              create: (context) => getIt<DocumentBloc>(),
+              child: DocumentScreen(),
+            );
+          },
+        ),
+      ],
     ),
     GoRoute(
       path: '/camera',

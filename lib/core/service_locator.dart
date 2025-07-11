@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:receipt_app/core/index.dart';
+import 'package:receipt_app/features/Home/application/index.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
 
-import '../features/Home/application/Home/home_bloc.dart';
+import '../features/Document/Index.dart';
 
 final getIt = GetIt.instance;
 
 void setupServiceLocator() {
-  getIt.registerLazySingleton(() => HomeBloc());
+  getIt.registerLazySingleton(() => DocumentBloc());
 
   getIt.registerLazySingleton(() => TokenStorageService());
 
@@ -27,4 +28,12 @@ void setupServiceLocator() {
       getIt<TokenStorageService>(),
     ),
   );
+
+  getIt.registerLazySingleton(() => DocumentRepositoryService(getIt<Dio>()));
+
+  getIt.registerLazySingleton(
+    () => DocumentRepository(getIt<DocumentRepositoryService>()),
+  );
+
+  getIt.registerLazySingleton(() => LayoutState());
 }

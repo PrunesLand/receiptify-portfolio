@@ -31,7 +31,7 @@ class HeroScreen extends StatelessWidget {
                         fixedSize: Size.fromWidth(200),
                       ),
                       onPressed: () {
-                        GoRouter.of(context).go('/register');
+                        GoRouter.of(context).push('/register');
                       },
                       child: Text("Register Account"),
                     ),
@@ -48,7 +48,7 @@ class HeroScreen extends StatelessWidget {
                         fixedSize: Size.fromWidth(200),
                       ),
                       onPressed: () {
-                        GoRouter.of(context).go('/login');
+                        GoRouter.of(context).push('/login');
                       },
                       child: Text("Login"),
                     ),

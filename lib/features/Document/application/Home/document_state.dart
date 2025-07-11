@@ -2,13 +2,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/Model/Image/image_model.dart';
 
-part 'home_state.freezed.dart';
+part 'document_state.freezed.dart';
 
 @freezed
-class HomeState with _$HomeState {
-  const factory HomeState({
+class DocumentState with _$DocumentState {
+  const factory DocumentState({
     @Default(false) bool isLoading,
     @Default([]) List<ImageModel?> list,
     @Default('') String textData,
-  }) = _HomeState;
+  }) = _DocumentState;
 }

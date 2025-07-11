@@ -1,15 +1,16 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:receipt_app/features/Home/domain/index.dart';
 
+import '../../domain/Model/Image/image_model.dart';
+import '../../domain/repository/IDocumentRepository.dart';
 import '../Models/Document/DocumentDTO.dart';
 import '../Service/DocumentRepositoryService.dart';
 
-class DocumentRepositoryImpl implements IDocumentRepository {
+class DocumentRepository implements IDocumentRepository {
   final DocumentRepositoryService _documentRepositoryService;
 
-  DocumentRepositoryImpl(this._documentRepositoryService);
+  DocumentRepository(this._documentRepositoryService);
 
   @override
   Future<void> uploadDocument(ImageModel imageModel) async {

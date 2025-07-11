@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:receipt_app/features/Home/Index.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../Models/Document/DocumentDTO.dart';
 
 part 'DocumentRepositoryService.g.dart';
 
