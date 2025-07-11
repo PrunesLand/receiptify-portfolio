@@ -1,0 +1,217 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'BasicStats.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
+
+/// @nodoc
+mixin _$BasicStats {
+  String get totalExpense => throw _privateConstructorUsedError;
+  String get dateOfLastExpense => throw _privateConstructorUsedError;
+  String get remainingBudget => throw _privateConstructorUsedError;
+
+  /// Create a copy of BasicStats
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $BasicStatsCopyWith<BasicStats> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BasicStatsCopyWith<$Res> {
+  factory $BasicStatsCopyWith(
+    BasicStats value,
+    $Res Function(BasicStats) then,
+  ) = _$BasicStatsCopyWithImpl<$Res, BasicStats>;
+  @useResult
+  $Res call({
+    String totalExpense,
+    String dateOfLastExpense,
+    String remainingBudget,
+  });
+}
+
+/// @nodoc
+class _$BasicStatsCopyWithImpl<$Res, $Val extends BasicStats>
+    implements $BasicStatsCopyWith<$Res> {
+  _$BasicStatsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of BasicStats
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalExpense = null,
+    Object? dateOfLastExpense = null,
+    Object? remainingBudget = null,
+  }) {
+    return _then(
+      _value.copyWith(
+            totalExpense:
+                null == totalExpense
+                    ? _value.totalExpense
+                    : totalExpense // ignore: cast_nullable_to_non_nullable
+                        as String,
+            dateOfLastExpense:
+                null == dateOfLastExpense
+                    ? _value.dateOfLastExpense
+                    : dateOfLastExpense // ignore: cast_nullable_to_non_nullable
+                        as String,
+            remainingBudget:
+                null == remainingBudget
+                    ? _value.remainingBudget
+                    : remainingBudget // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$BasicStatsImplCopyWith<$Res>
+    implements $BasicStatsCopyWith<$Res> {
+  factory _$$BasicStatsImplCopyWith(
+    _$BasicStatsImpl value,
+    $Res Function(_$BasicStatsImpl) then,
+  ) = __$$BasicStatsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    String totalExpense,
+    String dateOfLastExpense,
+    String remainingBudget,
+  });
+}
+
+/// @nodoc
+class __$$BasicStatsImplCopyWithImpl<$Res>
+    extends _$BasicStatsCopyWithImpl<$Res, _$BasicStatsImpl>
+    implements _$$BasicStatsImplCopyWith<$Res> {
+  __$$BasicStatsImplCopyWithImpl(
+    _$BasicStatsImpl _value,
+    $Res Function(_$BasicStatsImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of BasicStats
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalExpense = null,
+    Object? dateOfLastExpense = null,
+    Object? remainingBudget = null,
+  }) {
+    return _then(
+      _$BasicStatsImpl(
+        totalExpense:
+            null == totalExpense
+                ? _value.totalExpense
+                : totalExpense // ignore: cast_nullable_to_non_nullable
+                    as String,
+        dateOfLastExpense:
+            null == dateOfLastExpense
+                ? _value.dateOfLastExpense
+                : dateOfLastExpense // ignore: cast_nullable_to_non_nullable
+                    as String,
+        remainingBudget:
+            null == remainingBudget
+                ? _value.remainingBudget
+                : remainingBudget // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$BasicStatsImpl implements _BasicStats {
+  const _$BasicStatsImpl({
+    this.totalExpense = '',
+    this.dateOfLastExpense = '',
+    this.remainingBudget = '',
+  });
+
+  @override
+  @JsonKey()
+  final String totalExpense;
+  @override
+  @JsonKey()
+  final String dateOfLastExpense;
+  @override
+  @JsonKey()
+  final String remainingBudget;
+
+  @override
+  String toString() {
+    return 'BasicStats(totalExpense: $totalExpense, dateOfLastExpense: $dateOfLastExpense, remainingBudget: $remainingBudget)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BasicStatsImpl &&
+            (identical(other.totalExpense, totalExpense) ||
+                other.totalExpense == totalExpense) &&
+            (identical(other.dateOfLastExpense, dateOfLastExpense) ||
+                other.dateOfLastExpense == dateOfLastExpense) &&
+            (identical(other.remainingBudget, remainingBudget) ||
+                other.remainingBudget == remainingBudget));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    runtimeType,
+    totalExpense,
+    dateOfLastExpense,
+    remainingBudget,
+  );
+
+  /// Create a copy of BasicStats
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BasicStatsImplCopyWith<_$BasicStatsImpl> get copyWith =>
+      __$$BasicStatsImplCopyWithImpl<_$BasicStatsImpl>(this, _$identity);
+}
+
+abstract class _BasicStats implements BasicStats {
+  const factory _BasicStats({
+    final String totalExpense,
+    final String dateOfLastExpense,
+    final String remainingBudget,
+  }) = _$BasicStatsImpl;
+
+  @override
+  String get totalExpense;
+  @override
+  String get dateOfLastExpense;
+  @override
+  String get remainingBudget;
+
+  /// Create a copy of BasicStats
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BasicStatsImplCopyWith<_$BasicStatsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
