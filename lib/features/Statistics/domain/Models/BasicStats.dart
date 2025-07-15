@@ -5,8 +5,8 @@ part 'BasicStats.freezed.dart';
 @freezed
 class BasicStats with _$BasicStats {
   const factory BasicStats({
-    @Default('') String totalExpense,
-    @Default('') String dateOfLastExpense,
-    @Default('') String remainingBudget,
+    required String totalExpense,
+    required String dateOfLastExpense,
+    required String remainingBudget,
   }) = _BasicStats;
 }

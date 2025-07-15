@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:receipt_app/core/index.dart';
 import 'package:receipt_app/features/Home/application/index.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
+import 'package:receipt_app/features/PocketGroup/application/index.dart';
 
 import '../features/Document/Index.dart';
 
@@ -36,4 +37,6 @@ void setupServiceLocator() {
   );
 
   getIt.registerLazySingleton(() => LayoutState());
+
+  getIt.registerLazySingleton(() => PocketBloc());
 }

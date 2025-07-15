@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Registering account...')),
                             );
-                            GoRouter.of(context).go('/document');
+                            GoRouter.of(context).go('/selection');
                           }
                         },
                         child: Text("Register Account"),

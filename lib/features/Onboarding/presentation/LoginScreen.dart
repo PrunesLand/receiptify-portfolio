@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Logging in...')),
                           );
-                          GoRouter.of(context).go('/document');
+                          GoRouter.of(context).go('/selection');
                         }
                       },
                       child: Text("Login"),

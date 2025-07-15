@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:receipt_app/features/Document/Index.dart';
 import 'package:receipt_app/features/Onboarding/presentation/RegisterScreen.dart';
+import 'package:receipt_app/features/PocketGroup/application/index.dart';
+import 'package:receipt_app/features/PocketGroup/presentation/DataSelectionScreen.dart';
 import 'package:receipt_app/features/Statistics/presentation/StatsBaseScreen.dart';
 
 import 'core/service_locator.dart';
@@ -10,8 +13,11 @@ import 'features/CameraOCR/presentation/CameraScreen.dart';
 import 'features/Home/presentation/HomeLayout.dart';
 import 'features/Onboarding/presentation/HeroScreen.dart';
 import 'features/Onboarding/presentation/LoginScreen.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setupServiceLocator();
   runApp(const MyApp());
 }
@@ -27,21 +33,30 @@ final GoRouter router = GoRouter(
       },
       routes: [
         GoRoute(
-          path: '/statistics',
-          builder: (BuildContext, GoRouterState state) {
-            return const StatsBaseScreen();
-          },
-        ),
-        GoRoute(
-          path: '/document',
+          path: '/selection',
           builder: (BuildContext context, GoRouterState state) {
             return BlocProvider(
-              create: (context) => getIt<DocumentBloc>(),
-              child: DocumentScreen(),
+              create: (context) => getIt<PocketBloc>(),
+              child: DataSelectionScreen(),
             );
           },
         ),
       ],
+    ),
+    GoRoute(
+      path: '/statistics',
+      builder: (BuildContext, GoRouterState state) {
+        return const StatsBaseScreen();
+      },
+    ),
+    GoRoute(
+      path: '/document',
+      builder: (BuildContext context, GoRouterState state) {
+        return BlocProvider(
+          create: (context) => getIt<DocumentBloc>(),
+          child: DocumentScreen(),
+        );
+      },
     ),
     GoRoute(
       path: '/camera',

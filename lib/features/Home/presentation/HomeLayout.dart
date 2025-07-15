@@ -22,18 +22,12 @@ class HomeLayout extends StatelessWidget {
               title: Text('Profile'),
               onTap: () {},
             ),
+
             ListTile(
-              leading: Icon(Icons.data_thresholding_outlined),
-              title: Text('Statistics'),
+              leading: Icon(Icons.select_all),
+              title: Text('Selection'),
               onTap: () {
-                GoRouter.of(context).push('/statistics');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.book),
-              title: Text('Document'),
-              onTap: () {
-                GoRouter.of(context).push('/document');
+                GoRouter.of(context).push('/selection');
               },
             ),
             Spacer(),

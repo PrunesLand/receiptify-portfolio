@@ -144,19 +144,16 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
 
 class _$BasicStatsImpl implements _BasicStats {
   const _$BasicStatsImpl({
-    this.totalExpense = '',
-    this.dateOfLastExpense = '',
-    this.remainingBudget = '',
+    required this.totalExpense,
+    required this.dateOfLastExpense,
+    required this.remainingBudget,
   });
 
   @override
-  @JsonKey()
   final String totalExpense;
   @override
-  @JsonKey()
   final String dateOfLastExpense;
   @override
-  @JsonKey()
   final String remainingBudget;
 
   @override
@@ -196,9 +193,9 @@ class _$BasicStatsImpl implements _BasicStats {
 
 abstract class _BasicStats implements BasicStats {
   const factory _BasicStats({
-    final String totalExpense,
-    final String dateOfLastExpense,
-    final String remainingBudget,
+    required final String totalExpense,
+    required final String dateOfLastExpense,
+    required final String remainingBudget,
   }) = _$BasicStatsImpl;
 
   @override
