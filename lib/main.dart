@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,7 @@ import 'features/CameraOCR/presentation/CameraScreen.dart';
 import 'features/Home/presentation/HomeLayout.dart';
 import 'features/Onboarding/presentation/HeroScreen.dart';
 import 'features/Onboarding/presentation/LoginScreen.dart';
+import 'features/Statistics/domain/Models/BasicStats.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,7 +27,7 @@ void main() async {
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
 final GoRouter router = GoRouter(
-  initialLocation: '/onboarding',
+  initialLocation: kDebugMode ? '/selection' : '/onboarding',
   routes: <RouteBase>[
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -46,7 +48,11 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/statistics',
       builder: (BuildContext, GoRouterState state) {
-        return const StatsBaseScreen();
+        final args = state.extra as BasicStats;
+        return MultiBlocProvider(
+          providers: [BlocProvider(create: (context) => getIt<DocumentBloc>())],
+          child: StatsBaseScreen(args: args),
+        );
       },
     ),
     GoRoute(

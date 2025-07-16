@@ -17,9 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BasicStats {
+  String get title => throw _privateConstructorUsedError;
   String get totalExpense => throw _privateConstructorUsedError;
-  String get dateOfLastExpense => throw _privateConstructorUsedError;
   String get remainingBudget => throw _privateConstructorUsedError;
+  String get totalBudget => throw _privateConstructorUsedError;
 
   /// Create a copy of BasicStats
   /// with the given fields replaced by the non-null parameter values.
@@ -36,9 +37,10 @@ abstract class $BasicStatsCopyWith<$Res> {
   ) = _$BasicStatsCopyWithImpl<$Res, BasicStats>;
   @useResult
   $Res call({
+    String title,
     String totalExpense,
-    String dateOfLastExpense,
     String remainingBudget,
+    String totalBudget,
   });
 }
 
@@ -57,26 +59,32 @@ class _$BasicStatsCopyWithImpl<$Res, $Val extends BasicStats>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
     Object? totalExpense = null,
-    Object? dateOfLastExpense = null,
     Object? remainingBudget = null,
+    Object? totalBudget = null,
   }) {
     return _then(
       _value.copyWith(
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
             totalExpense:
                 null == totalExpense
                     ? _value.totalExpense
                     : totalExpense // ignore: cast_nullable_to_non_nullable
                         as String,
-            dateOfLastExpense:
-                null == dateOfLastExpense
-                    ? _value.dateOfLastExpense
-                    : dateOfLastExpense // ignore: cast_nullable_to_non_nullable
-                        as String,
             remainingBudget:
                 null == remainingBudget
                     ? _value.remainingBudget
                     : remainingBudget // ignore: cast_nullable_to_non_nullable
+                        as String,
+            totalBudget:
+                null == totalBudget
+                    ? _value.totalBudget
+                    : totalBudget // ignore: cast_nullable_to_non_nullable
                         as String,
           )
           as $Val,
@@ -94,9 +102,10 @@ abstract class _$$BasicStatsImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    String title,
     String totalExpense,
-    String dateOfLastExpense,
     String remainingBudget,
+    String totalBudget,
   });
 }
 
@@ -114,26 +123,32 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
     Object? totalExpense = null,
-    Object? dateOfLastExpense = null,
     Object? remainingBudget = null,
+    Object? totalBudget = null,
   }) {
     return _then(
       _$BasicStatsImpl(
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
         totalExpense:
             null == totalExpense
                 ? _value.totalExpense
                 : totalExpense // ignore: cast_nullable_to_non_nullable
                     as String,
-        dateOfLastExpense:
-            null == dateOfLastExpense
-                ? _value.dateOfLastExpense
-                : dateOfLastExpense // ignore: cast_nullable_to_non_nullable
-                    as String,
         remainingBudget:
             null == remainingBudget
                 ? _value.remainingBudget
                 : remainingBudget // ignore: cast_nullable_to_non_nullable
+                    as String,
+        totalBudget:
+            null == totalBudget
+                ? _value.totalBudget
+                : totalBudget // ignore: cast_nullable_to_non_nullable
                     as String,
       ),
     );
@@ -144,21 +159,24 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
 
 class _$BasicStatsImpl implements _BasicStats {
   const _$BasicStatsImpl({
+    required this.title,
     required this.totalExpense,
-    required this.dateOfLastExpense,
     required this.remainingBudget,
+    required this.totalBudget,
   });
 
   @override
+  final String title;
+  @override
   final String totalExpense;
   @override
-  final String dateOfLastExpense;
-  @override
   final String remainingBudget;
+  @override
+  final String totalBudget;
 
   @override
   String toString() {
-    return 'BasicStats(totalExpense: $totalExpense, dateOfLastExpense: $dateOfLastExpense, remainingBudget: $remainingBudget)';
+    return 'BasicStats(title: $title, totalExpense: $totalExpense, remainingBudget: $remainingBudget, totalBudget: $totalBudget)';
   }
 
   @override
@@ -166,20 +184,22 @@ class _$BasicStatsImpl implements _BasicStats {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BasicStatsImpl &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.totalExpense, totalExpense) ||
                 other.totalExpense == totalExpense) &&
-            (identical(other.dateOfLastExpense, dateOfLastExpense) ||
-                other.dateOfLastExpense == dateOfLastExpense) &&
             (identical(other.remainingBudget, remainingBudget) ||
-                other.remainingBudget == remainingBudget));
+                other.remainingBudget == remainingBudget) &&
+            (identical(other.totalBudget, totalBudget) ||
+                other.totalBudget == totalBudget));
   }
 
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    title,
     totalExpense,
-    dateOfLastExpense,
     remainingBudget,
+    totalBudget,
   );
 
   /// Create a copy of BasicStats
@@ -193,17 +213,20 @@ class _$BasicStatsImpl implements _BasicStats {
 
 abstract class _BasicStats implements BasicStats {
   const factory _BasicStats({
+    required final String title,
     required final String totalExpense,
-    required final String dateOfLastExpense,
     required final String remainingBudget,
+    required final String totalBudget,
   }) = _$BasicStatsImpl;
 
   @override
+  String get title;
+  @override
   String get totalExpense;
   @override
-  String get dateOfLastExpense;
-  @override
   String get remainingBudget;
+  @override
+  String get totalBudget;
 
   /// Create a copy of BasicStats
   /// with the given fields replaced by the non-null parameter values.

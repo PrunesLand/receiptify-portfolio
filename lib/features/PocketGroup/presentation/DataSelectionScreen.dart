@@ -5,6 +5,7 @@ import 'package:receipt_app/features/PocketGroup/domain/index.dart';
 import 'package:receipt_app/features/PocketGroup/presentation/widgets/Modal.dart';
 
 import '../../../core/service_locator.dart';
+import '../../Statistics/domain/Models/BasicStats.dart';
 import '../application/pocket_bloc.dart';
 import '../application/pocket_event.dart';
 import '../application/pocket_state.dart';
@@ -26,28 +27,63 @@ class _DataSelectionScreenState extends State<DataSelectionScreen> {
             context: context,
             builder: (context) => BudgetModal(),
           );
-          getIt<PocketBloc>().add(PocketEvent.addPocket(result!));
+          if (result != null) {
+            getIt<PocketBloc>().add(PocketEvent.addPocket(result));
+          }
         },
         child: Icon(Icons.add),
       ),
       body: Column(
         children: [
-          Center(child: Text('Select pocket')),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: Text('Select pocket', style: TextStyle(fontSize: 20)),
+            ),
+          ),
           Expanded(
             child: BlocBuilder<PocketBloc, PocketState>(
               builder:
                   (context, state) => GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
+                      crossAxisCount: 2,
                     ),
                     itemCount: state.pockets.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          GoRouter.of(context).push('/statistics');
+                          GoRouter.of(context).push(
+                            '/statistics',
+                            extra: BasicStats(
+                              title: state.pockets[index].title,
+                              totalExpense: state.pockets[index].totalExpense,
+                              totalBudget: state.pockets[index].totalBudget,
+                              remainingBudget: state.pockets[index].totalBudget,
+                            ),
+                          );
                         },
                         child: Card(
-                          child: Center(child: Text('Pocket $index')),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                state.pockets[index].title,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Balance: ${state.pockets[index].totalBudget}',
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    'Expense: ${state.pockets[index].totalExpense}',
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

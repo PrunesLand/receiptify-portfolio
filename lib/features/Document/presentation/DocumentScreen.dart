@@ -19,6 +19,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Documents')),
       floatingActionButton: documentFBA(context),
       body: BlocBuilder<DocumentBloc, DocumentState>(
         builder:

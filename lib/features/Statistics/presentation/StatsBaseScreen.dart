@@ -1,28 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:receipt_app/features/Statistics/domain/index.dart';
+import 'package:receipt_app/features/Statistics/presentation/widgets/index.dart';
+
+import '../../../core/service_locator.dart';
+import '../../Document/application/Home/document_bloc.dart';
+import '../../Document/application/Home/document_event.dart';
+import '../../Document/presentation/DocumentScreen.dart';
+import '../../Document/presentation/widgets/FileSelectModal.dart';
+import '../../Document/utils.dart';
 
 class StatsBaseScreen extends StatelessWidget {
-  const StatsBaseScreen({super.key});
+  final BasicStats args;
+  const StatsBaseScreen({super.key, required this.args});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text(args.title), centerTitle: true),
       body: Column(
         children: [
-          SizedBox(height: 300, child: Text('Main data')),
-          Center(
-            child: Row(
+          Flexible(
+            flex: 3,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    GoRouter.of(context).push('/document');
-                  },
-                  child: Text('Add Document'),
+                Center(
+                  child: Column(
+                    children: [
+                      Text('Your total budget'),
+                      Text(args.totalBudget, style: TextStyle(fontSize: 40)),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          Expanded(
+          Flexible(
+            flex: 1,
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final image = await pickImageFromGallery();
+
+                        if (image != null) {
+                          showDialog(
+                            context: context,
+                            builder:
+                                (context) => FileSelectModal(
+                                  file: image,
+                                  onFileSelected: () {
+                                    Navigator.pop(context);
+                                    getIt<DocumentBloc>().add(
+                                      DocumentEvent.addImage(file: image),
+                                    );
+                                    getIt<DocumentBloc>().add(
+                                      DocumentEvent.processImage(),
+                                    );
+                                  },
+                                ),
+                          );
+                        } else {
+                          showErrorSnackBar();
+                        }
+                      },
+                      child: Text('Add Document'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        GoRouter.of(context).push('/document');
+                      },
+                      child: Text('View Documents'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 6,
             child: GridView.builder(
               itemCount: 5,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -32,7 +96,7 @@ class StatsBaseScreen extends StatelessWidget {
                 childAspectRatio: 1.0,
               ),
               itemBuilder: (context, index) {
-                return Card(child: Center(child: Text('Statistic ${index}')));
+                return StatsWidget();
               },
             ),
           ),
