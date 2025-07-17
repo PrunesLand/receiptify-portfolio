@@ -33,64 +33,52 @@ class _DataSelectionScreenState extends State<DataSelectionScreen> {
         },
         child: Icon(Icons.add),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Text('Select pocket', style: TextStyle(fontSize: 20)),
-            ),
-          ),
-          Expanded(
-            child: BlocBuilder<PocketBloc, PocketState>(
-              builder:
-                  (context, state) => GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
-                    itemCount: state.pockets.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).push(
-                            '/statistics',
-                            extra: BasicStats(
-                              title: state.pockets[index].title,
-                              totalExpense: state.pockets[index].totalExpense,
-                              totalBudget: state.pockets[index].totalBudget,
-                              remainingBudget: state.pockets[index].totalBudget,
-                            ),
-                          );
-                        },
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                state.pockets[index].title,
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              Row(
+      body: Expanded(
+        child: BlocBuilder<PocketBloc, PocketState>(
+          builder:
+              (context, state) =>
+                  state.pockets.isEmpty
+                      ? Center(child: Text('No pockets found'))
+                      : GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                        itemCount: state.pockets.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              GoRouter.of(context).push(
+                                '/statistics',
+                                extra: BasicStats(pocket: state.pockets[index]),
+                              );
+                            },
+                            child: Card(
+                              child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Balance: ${state.pockets[index].totalBudget}',
+                                    state.pockets[index].title,
+                                    style: TextStyle(fontSize: 20),
                                   ),
-                                  Spacer(),
-                                  Text(
-                                    'Expense: ${state.pockets[index].totalExpense}',
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Balance: ${state.pockets[index].totalBudget}',
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        'Expense: ${state.pockets[index].totalExpense}',
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-            ),
-          ),
-        ],
+                            ),
+                          );
+                        },
+                      ),
+        ),
       ),
     );
   }

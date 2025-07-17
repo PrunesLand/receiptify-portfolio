@@ -17,7 +17,7 @@ class StatsBaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(args.title), centerTitle: true),
+      appBar: AppBar(title: Text(args.pocket.title), centerTitle: true),
       body: Column(
         children: [
           Flexible(
@@ -29,7 +29,10 @@ class StatsBaseScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text('Your total budget'),
-                      Text(args.totalBudget, style: TextStyle(fontSize: 40)),
+                      Text(
+                        args.pocket.totalBudget,
+                        style: TextStyle(fontSize: 40),
+                      ),
                     ],
                   ),
                 ),
@@ -70,15 +73,6 @@ class StatsBaseScreen extends StatelessWidget {
                         }
                       },
                       child: Text('Add Document'),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        GoRouter.of(context).push('/document');
-                      },
-                      child: Text('View Documents'),
                     ),
                   ),
                 ],

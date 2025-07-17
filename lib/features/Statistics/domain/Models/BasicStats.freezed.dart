@@ -17,10 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BasicStats {
-  String get title => throw _privateConstructorUsedError;
-  String get totalExpense => throw _privateConstructorUsedError;
-  String get remainingBudget => throw _privateConstructorUsedError;
-  String get totalBudget => throw _privateConstructorUsedError;
+  PocketModel get pocket => throw _privateConstructorUsedError;
 
   /// Create a copy of BasicStats
   /// with the given fields replaced by the non-null parameter values.
@@ -36,12 +33,9 @@ abstract class $BasicStatsCopyWith<$Res> {
     $Res Function(BasicStats) then,
   ) = _$BasicStatsCopyWithImpl<$Res, BasicStats>;
   @useResult
-  $Res call({
-    String title,
-    String totalExpense,
-    String remainingBudget,
-    String totalBudget,
-  });
+  $Res call({PocketModel pocket});
+
+  $PocketModelCopyWith<$Res> get pocket;
 }
 
 /// @nodoc
@@ -58,37 +52,27 @@ class _$BasicStatsCopyWithImpl<$Res, $Val extends BasicStats>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? title = null,
-    Object? totalExpense = null,
-    Object? remainingBudget = null,
-    Object? totalBudget = null,
-  }) {
+  $Res call({Object? pocket = null}) {
     return _then(
       _value.copyWith(
-            title:
-                null == title
-                    ? _value.title
-                    : title // ignore: cast_nullable_to_non_nullable
-                        as String,
-            totalExpense:
-                null == totalExpense
-                    ? _value.totalExpense
-                    : totalExpense // ignore: cast_nullable_to_non_nullable
-                        as String,
-            remainingBudget:
-                null == remainingBudget
-                    ? _value.remainingBudget
-                    : remainingBudget // ignore: cast_nullable_to_non_nullable
-                        as String,
-            totalBudget:
-                null == totalBudget
-                    ? _value.totalBudget
-                    : totalBudget // ignore: cast_nullable_to_non_nullable
-                        as String,
+            pocket:
+                null == pocket
+                    ? _value.pocket
+                    : pocket // ignore: cast_nullable_to_non_nullable
+                        as PocketModel,
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of BasicStats
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PocketModelCopyWith<$Res> get pocket {
+    return $PocketModelCopyWith<$Res>(_value.pocket, (value) {
+      return _then(_value.copyWith(pocket: value) as $Val);
+    });
   }
 }
 
@@ -101,12 +85,10 @@ abstract class _$$BasicStatsImplCopyWith<$Res>
   ) = __$$BasicStatsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String title,
-    String totalExpense,
-    String remainingBudget,
-    String totalBudget,
-  });
+  $Res call({PocketModel pocket});
+
+  @override
+  $PocketModelCopyWith<$Res> get pocket;
 }
 
 /// @nodoc
@@ -122,34 +104,14 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? title = null,
-    Object? totalExpense = null,
-    Object? remainingBudget = null,
-    Object? totalBudget = null,
-  }) {
+  $Res call({Object? pocket = null}) {
     return _then(
       _$BasicStatsImpl(
-        title:
-            null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                    as String,
-        totalExpense:
-            null == totalExpense
-                ? _value.totalExpense
-                : totalExpense // ignore: cast_nullable_to_non_nullable
-                    as String,
-        remainingBudget:
-            null == remainingBudget
-                ? _value.remainingBudget
-                : remainingBudget // ignore: cast_nullable_to_non_nullable
-                    as String,
-        totalBudget:
-            null == totalBudget
-                ? _value.totalBudget
-                : totalBudget // ignore: cast_nullable_to_non_nullable
-                    as String,
+        pocket:
+            null == pocket
+                ? _value.pocket
+                : pocket // ignore: cast_nullable_to_non_nullable
+                    as PocketModel,
       ),
     );
   }
@@ -158,25 +120,14 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BasicStatsImpl implements _BasicStats {
-  const _$BasicStatsImpl({
-    required this.title,
-    required this.totalExpense,
-    required this.remainingBudget,
-    required this.totalBudget,
-  });
+  const _$BasicStatsImpl({required this.pocket});
 
   @override
-  final String title;
-  @override
-  final String totalExpense;
-  @override
-  final String remainingBudget;
-  @override
-  final String totalBudget;
+  final PocketModel pocket;
 
   @override
   String toString() {
-    return 'BasicStats(title: $title, totalExpense: $totalExpense, remainingBudget: $remainingBudget, totalBudget: $totalBudget)';
+    return 'BasicStats(pocket: $pocket)';
   }
 
   @override
@@ -184,23 +135,11 @@ class _$BasicStatsImpl implements _BasicStats {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BasicStatsImpl &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.totalExpense, totalExpense) ||
-                other.totalExpense == totalExpense) &&
-            (identical(other.remainingBudget, remainingBudget) ||
-                other.remainingBudget == remainingBudget) &&
-            (identical(other.totalBudget, totalBudget) ||
-                other.totalBudget == totalBudget));
+            (identical(other.pocket, pocket) || other.pocket == pocket));
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    title,
-    totalExpense,
-    remainingBudget,
-    totalBudget,
-  );
+  int get hashCode => Object.hash(runtimeType, pocket);
 
   /// Create a copy of BasicStats
   /// with the given fields replaced by the non-null parameter values.
@@ -212,21 +151,11 @@ class _$BasicStatsImpl implements _BasicStats {
 }
 
 abstract class _BasicStats implements BasicStats {
-  const factory _BasicStats({
-    required final String title,
-    required final String totalExpense,
-    required final String remainingBudget,
-    required final String totalBudget,
-  }) = _$BasicStatsImpl;
+  const factory _BasicStats({required final PocketModel pocket}) =
+      _$BasicStatsImpl;
 
   @override
-  String get title;
-  @override
-  String get totalExpense;
-  @override
-  String get remainingBudget;
-  @override
-  String get totalBudget;
+  PocketModel get pocket;
 
   /// Create a copy of BasicStats
   /// with the given fields replaced by the non-null parameter values.

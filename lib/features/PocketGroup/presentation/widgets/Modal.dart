@@ -33,19 +33,19 @@ class _BudgetModalState extends State<BudgetModal> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Budget'),
+                decoration: InputDecoration(labelText: 'Your budget goal'),
                 keyboardType: TextInputType.number,
                 onSaved: (value) {
                   _totalBudget = value ?? '';
                 },
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Max Expense'),
-                keyboardType: TextInputType.number,
-                onSaved: (value) {
-                  _totalExpense = value ?? '';
-                },
-              ),
+              // TextFormField(
+              //   decoration: InputDecoration(labelText: 'Max Expense'),
+              //   keyboardType: TextInputType.number,
+              //   onSaved: (value) {
+              //     _totalExpense = value ?? '';
+              //   },
+              // ),
             ],
           ),
         ),
