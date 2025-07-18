@@ -6,7 +6,7 @@ import 'package:receipt_app/features/Statistics/presentation/widgets/index.dart'
 import '../../../core/service_locator.dart';
 import '../../Document/application/Home/document_bloc.dart';
 import '../../Document/application/Home/document_event.dart';
-import '../../Document/presentation/DocumentScreen.dart';
+import '../../Document/presentation/widgets/DocumentWidget.dart';
 import '../../Document/presentation/widgets/FileSelectModal.dart';
 import '../../Document/utils.dart';
 
@@ -79,21 +79,7 @@ class StatsBaseScreen extends StatelessWidget {
               ),
             ),
           ),
-          Flexible(
-            flex: 6,
-            child: GridView.builder(
-              itemCount: 5,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 8.0,
-                crossAxisSpacing: 8.0,
-                childAspectRatio: 1.0,
-              ),
-              itemBuilder: (context, index) {
-                return StatsWidget();
-              },
-            ),
-          ),
+          Flexible(flex: 6, child: DocumentWidget()),
         ],
       ),
     );

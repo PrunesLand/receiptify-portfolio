@@ -7,6 +7,7 @@ import 'package:receipt_app/features/Document/Index.dart';
 import 'package:receipt_app/features/Onboarding/presentation/RegisterScreen.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
 import 'package:receipt_app/features/PocketGroup/presentation/DataSelectionScreen.dart';
+import 'package:receipt_app/features/Settings/index.dart';
 import 'package:receipt_app/features/Statistics/presentation/StatsBaseScreen.dart';
 
 import 'core/service_locator.dart';
@@ -27,13 +28,22 @@ void main() async {
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
 final GoRouter router = GoRouter(
-  initialLocation: kDebugMode ? '/selection' : '/onboarding',
+  initialLocation: kDebugMode ? '/settings' : '/onboarding',
   routes: <RouteBase>[
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
-        return HomeLayout(child: child);
+        return MultiBlocProvider(
+          providers: [BlocProvider(create: (context) => getIt<PocketBloc>())],
+          child: HomeLayout(child: child, state: state),
+        );
       },
       routes: [
+        GoRoute(
+          path: '/settings',
+          builder: (BuildContext context, GoRouterState state) {
+            return SettingsScreen();
+          },
+        ),
         GoRoute(
           path: '/selection',
           builder: (BuildContext context, GoRouterState state) {
@@ -45,6 +55,7 @@ final GoRouter router = GoRouter(
         ),
       ],
     ),
+
     GoRoute(
       path: '/statistics',
       builder: (BuildContext, GoRouterState state) {
@@ -60,7 +71,7 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return BlocProvider(
           create: (context) => getIt<DocumentBloc>(),
-          child: DocumentScreen(),
+          child: DocumentWidget(),
         );
       },
     ),

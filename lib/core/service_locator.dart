@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:receipt_app/core/index.dart';
-import 'package:receipt_app/features/Home/application/index.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
 
@@ -35,8 +34,6 @@ void setupServiceLocator() {
   getIt.registerLazySingleton(
     () => DocumentRepository(getIt<DocumentRepositoryService>()),
   );
-
-  getIt.registerLazySingleton(() => LayoutState());
 
   getIt.registerLazySingleton(() => PocketBloc());
 }

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:receipt_app/features/PocketGroup/domain/index.dart';
-import 'package:receipt_app/features/PocketGroup/presentation/widgets/Modal.dart';
 
-import '../../../core/service_locator.dart';
 import '../../Statistics/domain/Models/BasicStats.dart';
 import '../application/pocket_bloc.dart';
-import '../application/pocket_event.dart';
 import '../application/pocket_state.dart';
 
 class DataSelectionScreen extends StatefulWidget {
@@ -21,31 +17,36 @@ class _DataSelectionScreenState extends State<DataSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final result = await showDialog<PocketModel>(
-            context: context,
-            builder: (context) => BudgetModal(),
-          );
-          if (result != null) {
-            getIt<PocketBloc>().add(PocketEvent.addPocket(result));
-          }
-        },
-        child: Icon(Icons.add),
-      ),
-      body: Expanded(
-        child: BlocBuilder<PocketBloc, PocketState>(
-          builder:
-              (context, state) =>
-                  state.pockets.isEmpty
-                      ? Center(child: Text('No pockets found'))
-                      : GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                        ),
-                        itemCount: state.pockets.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
+      // appBar: AppBar(
+      // actions: [
+      //   IconButton(
+      //     icon: const Icon(Icons.add),
+      //     onPressed: () async {
+      //       final result = await showDialog<PocketModel>(
+      //         context: context,
+      //         builder: (context) => BudgetModal(),
+      //       );
+      //       if (result != null) {
+      //         getIt<PocketBloc>().add(PocketEvent.addPocket(result));
+      //       }
+      //     },
+      //   ),
+      // ],
+      // ),
+      body: BlocBuilder<PocketBloc, PocketState>(
+        builder:
+            (context, state) =>
+                state.pockets.isEmpty
+                    ? Center(child: Text('No pockets found'))
+                    : GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      itemCount: state.pockets.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
                             onTap: () {
                               GoRouter.of(context).push(
                                 '/statistics',
@@ -66,19 +67,15 @@ class _DataSelectionScreenState extends State<DataSelectionScreen> {
                                       Text(
                                         'Balance: ${state.pockets[index].totalBudget}',
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        'Expense: ${state.pockets[index].totalExpense}',
-                                      ),
                                     ],
                                   ),
                                 ],
                               ),
                             ),
-                          );
-                        },
-                      ),
-        ),
+                          ),
+                        );
+                      },
+                    ),
       ),
     );
   }

@@ -1,1 +1,1 @@
-export 'DocumentScreen.dart';
+export 'widgets/DocumentWidget.dart';
