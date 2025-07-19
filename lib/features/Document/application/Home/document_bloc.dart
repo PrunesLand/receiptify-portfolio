@@ -41,7 +41,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               state.list.first!.file!,
             );
           } catch (e) {
-            print('Error processing image: ${e}');
+            print('Error processing image: ${e.toString()}');
             return;
           }
 

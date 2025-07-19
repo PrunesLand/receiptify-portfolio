@@ -12,23 +12,31 @@ Future<File?> pickImageFromGallery() async {
 }
 
 Future<String> TextRecognitionEngine(File file) async {
-
     final generationConfig = GenerationConfig(
       responseMimeType: 'text/plain',
     );
-
-    final model = FirebaseAI.googleAI().generativeModel(
-      model: 'gemini-2.5-flash',
-      generationConfig: generationConfig,
-    );
+    final GenerativeModel model;
+    try {
+      model = FirebaseAI.googleAI().generativeModel(
+        model: 'gemini-2.5-flash',
+        generationConfig: generationConfig,
+      );
+    } catch (e){
+      throw Exception("PRUNE MODEL ${e.toString()}");
+    }
     // Provide a text prompt to include with the image
     final prompt = TextPart("What's in the picture?");
 // Prepare images for input
     final imagePart = InlineDataPart('image/jpeg', file.readAsBytesSync());
 
 // To generate text output, call generateContent with the text and image
+  try {
     final response = await model.generateContent([
-      Content.multi([prompt,imagePart])
+      Content.multi([prompt, imagePart])
     ]);
     return response.text ?? 'There was an issue with the analysis';
+  }catch (e){
+    print("PRUNE TEXT ${e.toString()}");
+  }
+    return 'Error';
 }
