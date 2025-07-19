@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:receipt_app/features/Document/presentation/widgets/FileSelectModal.dart';
-import 'package:receipt_app/features/Document/presentation/widgets/Image_thumbnail.dart';
 import 'package:receipt_app/main.dart';
 
 import '../../../../core/service_locator.dart';
 import '../../index.dart';
-import 'DocumentCard.dart';
+import 'index.dart';
 
 class DocumentWidget extends StatefulWidget {
   const DocumentWidget({super.key});
@@ -53,26 +51,11 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return AlertDialog(
-                        title: Text('Delete Image'),
-                        content: Text(
-                          'Are you sure you want to delete this image?',
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text('Cancel'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              getIt<DocumentBloc>().add(
-                                DocumentEvent.removeImage(id: itemId),
-                              );
-                              Navigator.pop(context);
-                            },
-                            child: Text('Delete'),
-                          ),
-                        ],
+                      return DocumentDeleteDialog(
+                        onFileSelected:
+                            () => getIt<DocumentBloc>().add(
+                              DocumentEvent.removeImage(id: itemId),
+                            ),
                       );
                     },
                   );

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_ai/firebase_ai.dart';
 
 Future<File?> pickImageFromGallery() async {
   final ImagePicker picker = ImagePicker();
@@ -11,20 +12,23 @@ Future<File?> pickImageFromGallery() async {
 }
 
 Future<String> TextRecognitionEngine(File file) async {
-  // final InputImage inputImage;
-  //
-  // inputImage = InputImage.fromFile(file);
-  //
-  // final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
-  //
-  // final RecognizedText recognizedText = await textRecognizer.processImage(
-  //   inputImage,
-  // );
-  //
-  // String text = recognizedText.text;
-  // print('Recognized text: $text');
-  //
-  // textRecognizer.close();
 
-  return 'sample text from image'; // Placeholder for actual text recognition logic
+    final generationConfig = GenerationConfig(
+      responseMimeType: 'text/plain',
+    );
+
+    final model = FirebaseAI.googleAI().generativeModel(
+      model: 'gemini-2.5-flash',
+      generationConfig: generationConfig,
+    );
+    // Provide a text prompt to include with the image
+    final prompt = TextPart("What's in the picture?");
+// Prepare images for input
+    final imagePart = InlineDataPart('image/jpeg', file.readAsBytesSync());
+
+// To generate text output, call generateContent with the text and image
+    final response = await model.generateContent([
+      Content.multi([prompt,imagePart])
+    ]);
+    return response.text ?? 'There was an issue with the analysis';
 }

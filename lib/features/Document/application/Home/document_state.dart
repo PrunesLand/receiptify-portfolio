@@ -10,5 +10,6 @@ class DocumentState with _$DocumentState {
     @Default(false) bool isLoading,
     @Default([]) List<ImageModel?> list,
     @Default('') String textData,
+    @Default(false) bool AddDocModalOpen,
   }) = _DocumentState;
 }

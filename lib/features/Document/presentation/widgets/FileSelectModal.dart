@@ -43,7 +43,7 @@ class _FileSelectModalState extends State<FileSelectModal> {
           onPressed: () {
             widget.onFileSelected!();
           },
-          child: Text('Scan'),
+          child: Text('Upload image'),
         ),
       ],
     );

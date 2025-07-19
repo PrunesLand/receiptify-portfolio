@@ -45,8 +45,11 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             return;
           }
 
-          emit(state.copyWith(textData: OcrResult));
+          emit(state.copyWith(textData: OcrResult, AddDocModalOpen: false,));
         },
+        toggleAddDocModal: () {
+          emit(state.copyWith(AddDocModalOpen: true));
+      },
       );
     });
   }

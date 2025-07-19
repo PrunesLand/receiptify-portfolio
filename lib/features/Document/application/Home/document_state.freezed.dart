@@ -20,6 +20,7 @@ mixin _$DocumentState {
   bool get isLoading => throw _privateConstructorUsedError;
   List<ImageModel?> get list => throw _privateConstructorUsedError;
   String get textData => throw _privateConstructorUsedError;
+  bool get AddDocModalOpen => throw _privateConstructorUsedError;
 
   /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
@@ -35,7 +36,12 @@ abstract class $DocumentStateCopyWith<$Res> {
     $Res Function(DocumentState) then,
   ) = _$DocumentStateCopyWithImpl<$Res, DocumentState>;
   @useResult
-  $Res call({bool isLoading, List<ImageModel?> list, String textData});
+  $Res call({
+    bool isLoading,
+    List<ImageModel?> list,
+    String textData,
+    bool AddDocModalOpen,
+  });
 }
 
 /// @nodoc
@@ -56,6 +62,7 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
     Object? isLoading = null,
     Object? list = null,
     Object? textData = null,
+    Object? AddDocModalOpen = null,
   }) {
     return _then(
       _value.copyWith(
@@ -74,6 +81,11 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
                     ? _value.textData
                     : textData // ignore: cast_nullable_to_non_nullable
                         as String,
+            AddDocModalOpen:
+                null == AddDocModalOpen
+                    ? _value.AddDocModalOpen
+                    : AddDocModalOpen // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -89,7 +101,12 @@ abstract class _$$DocumentStateImplCopyWith<$Res>
   ) = __$$DocumentStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, List<ImageModel?> list, String textData});
+  $Res call({
+    bool isLoading,
+    List<ImageModel?> list,
+    String textData,
+    bool AddDocModalOpen,
+  });
 }
 
 /// @nodoc
@@ -109,6 +126,7 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? list = null,
     Object? textData = null,
+    Object? AddDocModalOpen = null,
   }) {
     return _then(
       _$DocumentStateImpl(
@@ -127,6 +145,11 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
                 ? _value.textData
                 : textData // ignore: cast_nullable_to_non_nullable
                     as String,
+        AddDocModalOpen:
+            null == AddDocModalOpen
+                ? _value.AddDocModalOpen
+                : AddDocModalOpen // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -139,6 +162,7 @@ class _$DocumentStateImpl implements _DocumentState {
     this.isLoading = false,
     final List<ImageModel?> list = const [],
     this.textData = '',
+    this.AddDocModalOpen = false,
   }) : _list = list;
 
   @override
@@ -156,10 +180,13 @@ class _$DocumentStateImpl implements _DocumentState {
   @override
   @JsonKey()
   final String textData;
+  @override
+  @JsonKey()
+  final bool AddDocModalOpen;
 
   @override
   String toString() {
-    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData)';
+    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen)';
   }
 
   @override
@@ -171,7 +198,9 @@ class _$DocumentStateImpl implements _DocumentState {
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._list, _list) &&
             (identical(other.textData, textData) ||
-                other.textData == textData));
+                other.textData == textData) &&
+            (identical(other.AddDocModalOpen, AddDocModalOpen) ||
+                other.AddDocModalOpen == AddDocModalOpen));
   }
 
   @override
@@ -180,6 +209,7 @@ class _$DocumentStateImpl implements _DocumentState {
     isLoading,
     const DeepCollectionEquality().hash(_list),
     textData,
+    AddDocModalOpen,
   );
 
   /// Create a copy of DocumentState
@@ -196,6 +226,7 @@ abstract class _DocumentState implements DocumentState {
     final bool isLoading,
     final List<ImageModel?> list,
     final String textData,
+    final bool AddDocModalOpen,
   }) = _$DocumentStateImpl;
 
   @override
@@ -204,6 +235,8 @@ abstract class _DocumentState implements DocumentState {
   List<ImageModel?> get list;
   @override
   String get textData;
+  @override
+  bool get AddDocModalOpen;
 
   /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
