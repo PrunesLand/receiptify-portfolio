@@ -1,3 +1,4 @@
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,27 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    print('Main: Firebase.initializeApp completed.');
+
+    signalFirebaseReady(); // Signal from service_locator.dart
+  } catch (e) {
+    print('Main: Firebase initialization failed: $e');
+    signalFirebaseFailed(e); // Signal failure
+    // You might want to show an error UI and not proceed
+  }
+  try {
+    await FirebaseAppCheck.instance.activate(
+      androidProvider: AndroidProvider.debug,
+    );
+  } catch (e) {
+    print('Error activating Firebase App Check: $e');
+    // Handle activation error - your app might not work with backend services
+  }
   setupServiceLocator();
   runApp(const MyApp());
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:receipt_app/features/Statistics/domain/index.dart';
-import 'package:receipt_app/features/Statistics/presentation/widgets/index.dart';
 
 import '../../../core/service_locator.dart';
 import '../../Document/application/Home/document_bloc.dart';
@@ -58,7 +56,7 @@ class StatsBaseScreen extends StatelessWidget {
                                 (context) => FileSelectModal(
                                   file: image,
                                   onFileSelected: () {
-                                    Navigator.pop(context);
+                                    // Navigator.pop(context);
                                     getIt<DocumentBloc>().add(
                                       DocumentEvent.addImage(file: image),
                                     );
