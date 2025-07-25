@@ -8,7 +8,7 @@ part 'DocumentDTO.freezed.dart';
 class DocumentDTO with _$DocumentDTO {
   const factory DocumentDTO({
     required String id,
-    required String fileName,
+    required String content,
     required File file,
   }) = _DocumentDTO;
 }

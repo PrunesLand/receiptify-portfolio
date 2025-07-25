@@ -17,7 +17,7 @@ class DocumentRepository implements IDocumentRepository {
     try {
       final documentDTO = DocumentDTO(
         id: imageModel.id,
-        fileName: imageModel.fileName,
+        content: imageModel.content,
         file: imageModel.file ?? File(''),
       );
       await _documentRepositoryService.uploadDocument(documentDTO);

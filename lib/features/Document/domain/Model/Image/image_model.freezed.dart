@@ -19,7 +19,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ImageModel {
   String get id => throw _privateConstructorUsedError;
   File? get file => throw _privateConstructorUsedError;
-  String get fileName => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
 
   /// Create a copy of ImageModel
   /// with the given fields replaced by the non-null parameter values.
@@ -35,7 +35,7 @@ abstract class $ImageModelCopyWith<$Res> {
     $Res Function(ImageModel) then,
   ) = _$ImageModelCopyWithImpl<$Res, ImageModel>;
   @useResult
-  $Res call({String id, File? file, String fileName});
+  $Res call({String id, File? file, String content});
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
   $Res call({
     Object? id = null,
     Object? file = freezed,
-    Object? fileName = null,
+    Object? content = null,
   }) {
     return _then(
       _value.copyWith(
@@ -69,10 +69,10 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
                     ? _value.file
                     : file // ignore: cast_nullable_to_non_nullable
                         as File?,
-            fileName:
-                null == fileName
-                    ? _value.fileName
-                    : fileName // ignore: cast_nullable_to_non_nullable
+            content:
+                null == content
+                    ? _value.content
+                    : content // ignore: cast_nullable_to_non_nullable
                         as String,
           )
           as $Val,
@@ -89,7 +89,7 @@ abstract class _$$ImageModelImplCopyWith<$Res>
   ) = __$$ImageModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, File? file, String fileName});
+  $Res call({String id, File? file, String content});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ class __$$ImageModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? file = freezed,
-    Object? fileName = null,
+    Object? content = null,
   }) {
     return _then(
       _$ImageModelImpl(
@@ -122,10 +122,10 @@ class __$$ImageModelImplCopyWithImpl<$Res>
                 ? _value.file
                 : file // ignore: cast_nullable_to_non_nullable
                     as File?,
-        fileName:
-            null == fileName
-                ? _value.fileName
-                : fileName // ignore: cast_nullable_to_non_nullable
+        content:
+            null == content
+                ? _value.content
+                : content // ignore: cast_nullable_to_non_nullable
                     as String,
       ),
     );
@@ -135,7 +135,7 @@ class __$$ImageModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ImageModelImpl implements _ImageModel {
-  const _$ImageModelImpl({this.id = '', this.file, this.fileName = ''});
+  const _$ImageModelImpl({this.id = '', this.file, this.content = ''});
 
   @override
   @JsonKey()
@@ -144,11 +144,11 @@ class _$ImageModelImpl implements _ImageModel {
   final File? file;
   @override
   @JsonKey()
-  final String fileName;
+  final String content;
 
   @override
   String toString() {
-    return 'ImageModel(id: $id, file: $file, fileName: $fileName)';
+    return 'ImageModel(id: $id, file: $file, content: $content)';
   }
 
   @override
@@ -158,12 +158,11 @@ class _$ImageModelImpl implements _ImageModel {
             other is _$ImageModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.file, file) || other.file == file) &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName));
+            (identical(other.content, content) || other.content == content));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, file, fileName);
+  int get hashCode => Object.hash(runtimeType, id, file, content);
 
   /// Create a copy of ImageModel
   /// with the given fields replaced by the non-null parameter values.
@@ -178,7 +177,7 @@ abstract class _ImageModel implements ImageModel {
   const factory _ImageModel({
     final String id,
     final File? file,
-    final String fileName,
+    final String content,
   }) = _$ImageModelImpl;
 
   @override
@@ -186,7 +185,7 @@ abstract class _ImageModel implements ImageModel {
   @override
   File? get file;
   @override
-  String get fileName;
+  String get content;
 
   /// Create a copy of ImageModel
   /// with the given fields replaced by the non-null parameter values.

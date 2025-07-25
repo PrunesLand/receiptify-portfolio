@@ -56,7 +56,7 @@ class StatsBaseScreen extends StatelessWidget {
                                 (context) => FileSelectModal(
                                   file: image,
                                   onFileSelected: () {
-                                    // Navigator.pop(context);
+                                    Navigator.pop(context);
                                     getIt<DocumentBloc>().add(
                                       DocumentEvent.addImage(file: image),
                                     );

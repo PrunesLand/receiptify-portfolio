@@ -11,5 +11,6 @@ class DocumentState with _$DocumentState {
     @Default([]) List<ImageModel?> list,
     @Default('') String textData,
     @Default(false) bool AddDocModalOpen,
+    @Default(true) bool OcrLoading,
   }) = _DocumentState;
 }

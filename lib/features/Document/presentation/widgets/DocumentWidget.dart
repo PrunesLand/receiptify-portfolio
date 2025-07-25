@@ -31,36 +31,50 @@ class _DocumentWidgetState extends State<DocumentWidget> {
               final itemId = state.list[index]!.id;
               return GestureDetector(
                 onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text('Receipt Summary'),
-                        content: SizedBox(
-                          height: 350,
-                          child: SingleChildScrollView(
-                            child: Text(state.textData),
+                  // Allow click if it's not the first item while loading,
+                  // or if it's any item and not loading.
+                  if (!(index == 0 && state.OcrLoading)) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Receipt Summary'),
+                          content: SizedBox(
+                            height: 350,
+                            child: SingleChildScrollView(
+                              child: Text(state.list[index]!.content),
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  );
+                        );
+                      },
+                    );
+                  }
                 },
                 onLongPress: () {
-                  HapticFeedback.heavyImpact();
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return DocumentDeleteDialog(
-                        onFileSelected:
-                            () => getIt<DocumentBloc>().add(
-                              DocumentEvent.removeImage(id: itemId),
-                            ),
-                      );
-                    },
-                  );
+                  // Allow long press if it's not the first item while loading,
+                  // or if it's any item and not loading.
+                  if (!(index == 0 && state.OcrLoading)) {
+                    HapticFeedback.heavyImpact();
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return DocumentDeleteDialog(
+                          onFileSelected:
+                              () => getIt<DocumentBloc>().add(
+                                DocumentEvent.removeImage(id: itemId),
+                              ),
+                        );
+                      },
+                    );
+                  }
                 },
-                child: DocumentCard(),
+                child:
+                    index == 0
+                        ? DocumentCard(
+                          isLoading: state.OcrLoading,
+                          text: index.toString(),
+                        )
+                        : DocumentCard(text: index.toString()),
               );
             },
           ),

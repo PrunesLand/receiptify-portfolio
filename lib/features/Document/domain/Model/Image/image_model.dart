@@ -9,6 +9,6 @@ class ImageModel with _$ImageModel {
   const factory ImageModel({
     @Default('') String id,
     File? file,
-    @Default('') String fileName,
+    @Default('') String content,
   }) = _ImageModel;
 }

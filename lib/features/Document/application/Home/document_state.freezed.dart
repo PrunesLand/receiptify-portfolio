@@ -21,6 +21,7 @@ mixin _$DocumentState {
   List<ImageModel?> get list => throw _privateConstructorUsedError;
   String get textData => throw _privateConstructorUsedError;
   bool get AddDocModalOpen => throw _privateConstructorUsedError;
+  bool get OcrLoading => throw _privateConstructorUsedError;
 
   /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,6 +42,7 @@ abstract class $DocumentStateCopyWith<$Res> {
     List<ImageModel?> list,
     String textData,
     bool AddDocModalOpen,
+    bool OcrLoading,
   });
 }
 
@@ -63,6 +65,7 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
     Object? list = null,
     Object? textData = null,
     Object? AddDocModalOpen = null,
+    Object? OcrLoading = null,
   }) {
     return _then(
       _value.copyWith(
@@ -86,6 +89,11 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
                     ? _value.AddDocModalOpen
                     : AddDocModalOpen // ignore: cast_nullable_to_non_nullable
                         as bool,
+            OcrLoading:
+                null == OcrLoading
+                    ? _value.OcrLoading
+                    : OcrLoading // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -106,6 +114,7 @@ abstract class _$$DocumentStateImplCopyWith<$Res>
     List<ImageModel?> list,
     String textData,
     bool AddDocModalOpen,
+    bool OcrLoading,
   });
 }
 
@@ -127,6 +136,7 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
     Object? list = null,
     Object? textData = null,
     Object? AddDocModalOpen = null,
+    Object? OcrLoading = null,
   }) {
     return _then(
       _$DocumentStateImpl(
@@ -150,6 +160,11 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
                 ? _value.AddDocModalOpen
                 : AddDocModalOpen // ignore: cast_nullable_to_non_nullable
                     as bool,
+        OcrLoading:
+            null == OcrLoading
+                ? _value.OcrLoading
+                : OcrLoading // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -163,6 +178,7 @@ class _$DocumentStateImpl implements _DocumentState {
     final List<ImageModel?> list = const [],
     this.textData = '',
     this.AddDocModalOpen = false,
+    this.OcrLoading = true,
   }) : _list = list;
 
   @override
@@ -183,10 +199,13 @@ class _$DocumentStateImpl implements _DocumentState {
   @override
   @JsonKey()
   final bool AddDocModalOpen;
+  @override
+  @JsonKey()
+  final bool OcrLoading;
 
   @override
   String toString() {
-    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen)';
+    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen, OcrLoading: $OcrLoading)';
   }
 
   @override
@@ -200,7 +219,9 @@ class _$DocumentStateImpl implements _DocumentState {
             (identical(other.textData, textData) ||
                 other.textData == textData) &&
             (identical(other.AddDocModalOpen, AddDocModalOpen) ||
-                other.AddDocModalOpen == AddDocModalOpen));
+                other.AddDocModalOpen == AddDocModalOpen) &&
+            (identical(other.OcrLoading, OcrLoading) ||
+                other.OcrLoading == OcrLoading));
   }
 
   @override
@@ -210,6 +231,7 @@ class _$DocumentStateImpl implements _DocumentState {
     const DeepCollectionEquality().hash(_list),
     textData,
     AddDocModalOpen,
+    OcrLoading,
   );
 
   /// Create a copy of DocumentState
@@ -227,6 +249,7 @@ abstract class _DocumentState implements DocumentState {
     final List<ImageModel?> list,
     final String textData,
     final bool AddDocModalOpen,
+    final bool OcrLoading,
   }) = _$DocumentStateImpl;
 
   @override
@@ -237,6 +260,8 @@ abstract class _DocumentState implements DocumentState {
   String get textData;
   @override
   bool get AddDocModalOpen;
+  @override
+  bool get OcrLoading;
 
   /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.

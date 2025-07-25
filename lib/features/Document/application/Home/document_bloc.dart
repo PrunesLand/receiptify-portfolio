@@ -20,20 +20,22 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
 
           final addedImage = ImageModel(
             id: uuid,
-            fileName: '',
+            content: '',
             file: File(file.path),
           );
 
           final newList = [addedImage, ...state.list];
 
-          emit(state.copyWith(list: newList));
+          emit(state.copyWith(list: newList, OcrLoading: true));
         },
         removeImage: (String id) {
           final tempList = state.list.where((item) => item!.id != id).toList();
           emit(state.copyWith(list: tempList));
         },
         processImage: () async {
-          final String OcrResult;
+          final ImageModel item = state.list.first!;
+          final oldList = state.list;
+
           try {
             final generationConfig = GenerationConfig(
               responseMimeType: 'text/plain',
@@ -47,20 +49,32 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             final prompt = TextPart("What's in the picture?");
             final imagePart = InlineDataPart(
               'image/jpeg',
-              state.list.first!.file!.readAsBytesSync(),
+              item.file!.readAsBytesSync(),
             );
 
             final response = await model.generateContent([
               Content.multi([prompt, imagePart]),
             ]);
             print('PRUNE GEMINI RESPONSE');
-            OcrResult = response.text ?? 'There was an issue with the analysis';
+            final newItem = item.copyWith(content: response.text ?? 'No data.');
+
+            final newList =
+                oldList.map((itemInTheList) {
+                  // Check if the current item is the one we want to replace
+                  if (itemInTheList!.id == newItem.id) {
+                    // If it is, return the updated version
+                    return newItem;
+                  } else {
+                    // Otherwise, return the original item unchanged
+                    return itemInTheList;
+                  }
+                }).toList();
+
+            emit(state.copyWith(OcrLoading: false, list: newList));
           } catch (e) {
             print('Error processing image: ${e.toString()}');
             return;
           }
-
-          emit(state.copyWith(textData: OcrResult, AddDocModalOpen: false));
         },
         toggleAddDocModal: () {
           emit(state.copyWith(AddDocModalOpen: true));
