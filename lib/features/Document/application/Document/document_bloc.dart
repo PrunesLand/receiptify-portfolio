@@ -37,7 +37,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
         processImage: () async {
           if (state.list.isEmpty || state.list.first?.file == null) {
             print('No image file to process.');
-            emit(state.copyWith(OcrLoading: false)); // Stop loading if no image
+            emit(state.copyWith(OcrLoading: false));
             return;
           }
 
@@ -98,9 +98,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               generationConfig: generationConfig,
             );
 
-            final prompt = TextPart(
-              "Return total expense. Answer in just Decimals.",
-            );
+            final prompt = TextPart("Return total expense. Answer in Decimals");
 
             final imagePart = InlineDataPart('image/jpeg', imageBytesToSend);
 
@@ -113,6 +111,16 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             print(
               'Time to get response from Gemini: ${geminiStopwatch.elapsedMilliseconds} ms',
             );
+
+            // Log token usage
+            final usageMetadata = response.usageMetadata;
+            if (usageMetadata != null) {
+              print('Tokens prompt used: ${usageMetadata.promptTokenCount}');
+              print(
+                'Tokens candidates used: ${usageMetadata.candidatesTokenCount}',
+              );
+              print('Tokens in total used: ${usageMetadata.totalTokenCount}');
+            }
 
             totalStopwatch.stop();
             final newItem = itemToProcess.copyWith(

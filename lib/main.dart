@@ -28,11 +28,10 @@ void main() async {
     );
     print('Main: Firebase.initializeApp completed.');
 
-    signalFirebaseReady(); // Signal from service_locator.dart
+    signalFirebaseReady();
   } catch (e) {
     print('Main: Firebase initialization failed: $e');
-    signalFirebaseFailed(e); // Signal failure
-    // You might want to show an error UI and not proceed
+    signalFirebaseFailed(e);
   }
   // try {
   //   await FirebaseAppCheck.instance.activate(

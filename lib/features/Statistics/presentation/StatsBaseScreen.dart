@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:receipt_app/features/Statistics/domain/index.dart';
 
 import '../../../core/service_locator.dart';
-import '../../Document/application/Home/document_bloc.dart';
-import '../../Document/application/Home/document_event.dart';
+import '../../Document/application/Document/index.dart';
 import '../../Document/presentation/widgets/DocumentWidget.dart';
 import '../../Document/presentation/widgets/FileSelectModal.dart';
 import '../../Document/utils.dart';
