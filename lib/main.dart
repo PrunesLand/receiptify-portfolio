@@ -1,4 +1,3 @@
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +6,14 @@ import 'package:go_router/go_router.dart';
 import 'package:receipt_app/features/Document/Index.dart';
 import 'package:receipt_app/features/Onboarding/presentation/RegisterScreen.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
+import 'package:receipt_app/features/PocketGroup/domain/index.dart';
 import 'package:receipt_app/features/PocketGroup/presentation/DataSelectionScreen.dart';
 import 'package:receipt_app/features/Settings/index.dart';
 import 'package:receipt_app/features/Statistics/presentation/StatsBaseScreen.dart';
 
 import 'core/service_locator.dart';
+import 'features/AppDrawer/presentation/AppDrawer.dart';
 import 'features/CameraOCR/presentation/CameraScreen.dart';
-import 'features/Home/presentation/HomeLayout.dart';
 import 'features/Onboarding/presentation/HeroScreen.dart';
 import 'features/Onboarding/presentation/LoginScreen.dart';
 import 'features/Statistics/domain/Models/BasicStats.dart';
@@ -34,14 +34,14 @@ void main() async {
     signalFirebaseFailed(e); // Signal failure
     // You might want to show an error UI and not proceed
   }
-  try {
-    await FirebaseAppCheck.instance.activate(
-      androidProvider: AndroidProvider.debug,
-    );
-  } catch (e) {
-    print('Error activating Firebase App Check: $e');
-    // Handle activation error - your app might not work with backend services
-  }
+  // try {
+  //   await FirebaseAppCheck.instance.activate(
+  //     androidProvider: AndroidProvider.debug,
+  //   );
+  // } catch (e) {
+  //   print('Error activating Firebase App Check: $e');
+  //   // Handle activation error - your app might not work with backend services
+  // }
   setupServiceLocator();
   runApp(const MyApp());
 }
@@ -55,7 +55,7 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state, Widget child) {
         return MultiBlocProvider(
           providers: [BlocProvider(create: (context) => getIt<PocketBloc>())],
-          child: HomeLayout(child: child, state: state),
+          child: AppDrawer(child: child, state: state),
         );
       },
       routes: [
@@ -71,6 +71,25 @@ final GoRouter router = GoRouter(
             return BlocProvider(
               create: (context) => getIt<PocketBloc>(),
               child: DataSelectionScreen(),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/home',
+          builder: (BuildContext, GoRouterState state) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => getIt<DocumentBloc>()),
+              ],
+              child: StatsBaseScreen(
+                args: BasicStats(
+                  pocket: PocketModel(
+                    title: 'Main',
+                    totalExpense: '5000',
+                    totalBudget: '5000',
+                  ),
+                ),
+              ),
             );
           },
         ),

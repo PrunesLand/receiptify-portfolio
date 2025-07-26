@@ -6,14 +6,13 @@ import '../../PocketGroup/application/index.dart';
 import '../../PocketGroup/domain/index.dart';
 import '../../PocketGroup/presentation/widgets/Modal.dart';
 
-class HomeLayout extends StatelessWidget {
+class AppDrawer extends StatelessWidget {
   final Widget child;
   final GoRouterState state;
-  const HomeLayout({super.key, required this.child, required this.state});
+  const AppDrawer({super.key, required this.child, required this.state});
 
   @override
   Widget build(BuildContext context) {
-    print("PRUNE ${state.topRoute?.path}");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -43,19 +42,34 @@ class HomeLayout extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.blue),
               child: Text('Receipt App'),
             ),
-
+            ListTile(
+              leading: Icon(Icons.select_all),
+              title: Text('Home'),
+              onTap: () {
+                GoRouter.of(context).pushReplacement('/home');
+                Future.delayed(const Duration(milliseconds: 150), () {
+                  Navigator.pop(context);
+                });
+              },
+            ),
             ListTile(
               leading: Icon(Icons.select_all),
               title: Text('Selection'),
               onTap: () {
-                GoRouter.of(context).push('/selection');
+                GoRouter.of(context).pushReplacement('/selection');
+                Future.delayed(const Duration(milliseconds: 150), () {
+                  Navigator.pop(context);
+                });
               },
             ),
             ListTile(
               leading: Icon(Icons.select_all),
               title: Text('Settings'),
               onTap: () {
-                GoRouter.of(context).push('/settings');
+                GoRouter.of(context).pushReplacement('/settings');
+                Future.delayed(const Duration(milliseconds: 150), () {
+                  Navigator.pop(context);
+                });
               },
             ),
             Spacer(),
@@ -64,6 +78,7 @@ class HomeLayout extends StatelessWidget {
               title: Text('Log out'),
               onTap: () {
                 GoRouter.of(context).go('/onboarding');
+                Navigator.pop(context);
               },
             ),
           ],
