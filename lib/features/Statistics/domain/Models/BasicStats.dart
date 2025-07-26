@@ -6,5 +6,8 @@ part 'BasicStats.freezed.dart';
 
 @freezed
 class BasicStats with _$BasicStats {
-  const factory BasicStats({required PocketModel pocket}) = _BasicStats;
+  const factory BasicStats({
+    required PocketModel pocket,
+    required String summaryExpense,
+  }) = _BasicStats;
 }

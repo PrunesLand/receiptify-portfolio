@@ -26,10 +26,7 @@ class StatsBaseScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text('Your total budget'),
-                      Text(
-                        args.pocket.totalBudget,
-                        style: TextStyle(fontSize: 40),
-                      ),
+                      Text(args.summaryExpense, style: TextStyle(fontSize: 40)),
                     ],
                   ),
                 ),

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BasicStats {
   PocketModel get pocket => throw _privateConstructorUsedError;
+  String get summaryExpense => throw _privateConstructorUsedError;
 
   /// Create a copy of BasicStats
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,7 @@ abstract class $BasicStatsCopyWith<$Res> {
     $Res Function(BasicStats) then,
   ) = _$BasicStatsCopyWithImpl<$Res, BasicStats>;
   @useResult
-  $Res call({PocketModel pocket});
+  $Res call({PocketModel pocket, String summaryExpense});
 
   $PocketModelCopyWith<$Res> get pocket;
 }
@@ -52,7 +53,7 @@ class _$BasicStatsCopyWithImpl<$Res, $Val extends BasicStats>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? pocket = null}) {
+  $Res call({Object? pocket = null, Object? summaryExpense = null}) {
     return _then(
       _value.copyWith(
             pocket:
@@ -60,6 +61,11 @@ class _$BasicStatsCopyWithImpl<$Res, $Val extends BasicStats>
                     ? _value.pocket
                     : pocket // ignore: cast_nullable_to_non_nullable
                         as PocketModel,
+            summaryExpense:
+                null == summaryExpense
+                    ? _value.summaryExpense
+                    : summaryExpense // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -85,7 +91,7 @@ abstract class _$$BasicStatsImplCopyWith<$Res>
   ) = __$$BasicStatsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PocketModel pocket});
+  $Res call({PocketModel pocket, String summaryExpense});
 
   @override
   $PocketModelCopyWith<$Res> get pocket;
@@ -104,7 +110,7 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? pocket = null}) {
+  $Res call({Object? pocket = null, Object? summaryExpense = null}) {
     return _then(
       _$BasicStatsImpl(
         pocket:
@@ -112,6 +118,11 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
                 ? _value.pocket
                 : pocket // ignore: cast_nullable_to_non_nullable
                     as PocketModel,
+        summaryExpense:
+            null == summaryExpense
+                ? _value.summaryExpense
+                : summaryExpense // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -120,14 +131,16 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BasicStatsImpl implements _BasicStats {
-  const _$BasicStatsImpl({required this.pocket});
+  const _$BasicStatsImpl({required this.pocket, required this.summaryExpense});
 
   @override
   final PocketModel pocket;
+  @override
+  final String summaryExpense;
 
   @override
   String toString() {
-    return 'BasicStats(pocket: $pocket)';
+    return 'BasicStats(pocket: $pocket, summaryExpense: $summaryExpense)';
   }
 
   @override
@@ -135,11 +148,13 @@ class _$BasicStatsImpl implements _BasicStats {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BasicStatsImpl &&
-            (identical(other.pocket, pocket) || other.pocket == pocket));
+            (identical(other.pocket, pocket) || other.pocket == pocket) &&
+            (identical(other.summaryExpense, summaryExpense) ||
+                other.summaryExpense == summaryExpense));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pocket);
+  int get hashCode => Object.hash(runtimeType, pocket, summaryExpense);
 
   /// Create a copy of BasicStats
   /// with the given fields replaced by the non-null parameter values.
@@ -151,11 +166,15 @@ class _$BasicStatsImpl implements _BasicStats {
 }
 
 abstract class _BasicStats implements BasicStats {
-  const factory _BasicStats({required final PocketModel pocket}) =
-      _$BasicStatsImpl;
+  const factory _BasicStats({
+    required final PocketModel pocket,
+    required final String summaryExpense,
+  }) = _$BasicStatsImpl;
 
   @override
   PocketModel get pocket;
+  @override
+  String get summaryExpense;
 
   /// Create a copy of BasicStats
   /// with the given fields replaced by the non-null parameter values.

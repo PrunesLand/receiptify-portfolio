@@ -82,6 +82,7 @@ final GoRouter router = GoRouter(
               ],
               child: StatsBaseScreen(
                 args: BasicStats(
+                  summaryExpense: '6000',
                   pocket: PocketModel(
                     title: 'Main',
                     totalExpense: '5000',

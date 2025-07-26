@@ -6,33 +6,12 @@ import '../../Statistics/domain/Models/BasicStats.dart';
 import '../application/pocket_bloc.dart';
 import '../application/pocket_state.dart';
 
-class DataSelectionScreen extends StatefulWidget {
+class DataSelectionScreen extends StatelessWidget {
   const DataSelectionScreen({super.key});
 
   @override
-  State<DataSelectionScreen> createState() => _DataSelectionScreenState();
-}
-
-class _DataSelectionScreenState extends State<DataSelectionScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      // actions: [
-      //   IconButton(
-      //     icon: const Icon(Icons.add),
-      //     onPressed: () async {
-      //       final result = await showDialog<PocketModel>(
-      //         context: context,
-      //         builder: (context) => BudgetModal(),
-      //       );
-      //       if (result != null) {
-      //         getIt<PocketBloc>().add(PocketEvent.addPocket(result));
-      //       }
-      //     },
-      //   ),
-      // ],
-      // ),
       body: BlocBuilder<PocketBloc, PocketState>(
         builder:
             (context, state) =>
@@ -50,7 +29,10 @@ class _DataSelectionScreenState extends State<DataSelectionScreen> {
                             onTap: () {
                               GoRouter.of(context).push(
                                 '/statistics',
-                                extra: BasicStats(pocket: state.pockets[index]),
+                                extra: BasicStats(
+                                  pocket: state.pockets[index],
+                                  summaryExpense: '5999',
+                                ),
                               );
                             },
                             child: Card(
