@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'image_model.freezed.dart';
+part 'ImageModel.freezed.dart';
 
 @freezed
 class ImageModel with _$ImageModel {

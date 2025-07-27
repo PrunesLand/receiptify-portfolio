@@ -10,5 +10,5 @@ class DocumentEvent with _$DocumentEvent {
   const factory DocumentEvent.addImage({required File file}) = _AddImage;
   const factory DocumentEvent.removeImage({required String id}) = _RemoveImage;
   const factory DocumentEvent.processImage() = _ProcessImage;
-  const factory DocumentEvent.toggleAddDocModal() = _ToggleAddDocModal;
+  const factory DocumentEvent.updateTotalExpense() = _UpdateTotalExpense;
 }

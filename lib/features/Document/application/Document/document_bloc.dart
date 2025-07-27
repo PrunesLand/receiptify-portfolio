@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../domain/Model/Image/image_model.dart';
+import '../../domain/models/Image/ImageModel.dart';
 import 'document_event.dart';
 import 'document_state.dart';
 
@@ -108,6 +108,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               Content.multi([prompt, imagePart]),
             ]);
             geminiStopwatch.stop();
+            print('GEMINI RESPONSE ${response.text}');
             print(
               'Time to get response from Gemini: ${geminiStopwatch.elapsedMilliseconds} ms',
             );
@@ -135,7 +136,19 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
                   return itemInTheList;
                 }).toList();
 
-            emit(state.copyWith(OcrLoading: false, list: updatedList));
+            final list = updatedList; // Use the updatedList for calculation
+            double total = 0.0;
+            for (final item in list) {
+              total += double.tryParse(item.content ?? '0.0') ?? 0.0;
+            }
+
+            emit(
+              state.copyWith(
+                OcrLoading: false,
+                list: updatedList,
+                totalExpenseMain: total.toStringAsFixed(2).toString(),
+              ),
+            ); // totalExpense is now a double, convert to string
             print(
               'Total time for the entire process: ${totalStopwatch.elapsedMilliseconds} ms',
             );
@@ -145,8 +158,15 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             return;
           }
         },
-        toggleAddDocModal: () {
-          emit(state.copyWith(AddDocModalOpen: true));
+        updateTotalExpense: () {
+          final list = state.list;
+          double total = 0.0;
+          for (final item in list) {
+            // Use tryParse to handle potential formatting issues gracefully
+            total += double.tryParse(item?.content ?? '0.0') ?? 0.0;
+          }
+
+          emit(state.copyWith(totalExpenseMain: total.toString()));
         },
       );
     });

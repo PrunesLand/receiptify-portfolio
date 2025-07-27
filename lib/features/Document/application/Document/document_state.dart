@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/Model/Image/image_model.dart';
+import '../../domain/models/Image/ImageModel.dart';
 
 part 'document_state.freezed.dart';
 
@@ -12,5 +12,6 @@ class DocumentState with _$DocumentState {
     @Default('') String textData,
     @Default(false) bool AddDocModalOpen,
     @Default(true) bool OcrLoading,
+    @Default('0') String totalExpenseMain,
   }) = _DocumentState;
 }

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import '../../domain/Model/Image/image_model.dart';
+import '../../domain/models/Image/ImageModel.dart';
 import '../../domain/repository/IDocumentRepository.dart';
 import '../Models/Document/DocumentDTO.dart';
 import '../Service/DocumentRepositoryService.dart';

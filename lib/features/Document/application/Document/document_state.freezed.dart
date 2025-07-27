@@ -22,6 +22,7 @@ mixin _$DocumentState {
   String get textData => throw _privateConstructorUsedError;
   bool get AddDocModalOpen => throw _privateConstructorUsedError;
   bool get OcrLoading => throw _privateConstructorUsedError;
+  String get totalExpenseMain => throw _privateConstructorUsedError;
 
   /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
@@ -43,6 +44,7 @@ abstract class $DocumentStateCopyWith<$Res> {
     String textData,
     bool AddDocModalOpen,
     bool OcrLoading,
+    String totalExpenseMain,
   });
 }
 
@@ -66,6 +68,7 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
     Object? textData = null,
     Object? AddDocModalOpen = null,
     Object? OcrLoading = null,
+    Object? totalExpenseMain = null,
   }) {
     return _then(
       _value.copyWith(
@@ -94,6 +97,11 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
                     ? _value.OcrLoading
                     : OcrLoading // ignore: cast_nullable_to_non_nullable
                         as bool,
+            totalExpenseMain:
+                null == totalExpenseMain
+                    ? _value.totalExpenseMain
+                    : totalExpenseMain // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -115,6 +123,7 @@ abstract class _$$DocumentStateImplCopyWith<$Res>
     String textData,
     bool AddDocModalOpen,
     bool OcrLoading,
+    String totalExpenseMain,
   });
 }
 
@@ -137,6 +146,7 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
     Object? textData = null,
     Object? AddDocModalOpen = null,
     Object? OcrLoading = null,
+    Object? totalExpenseMain = null,
   }) {
     return _then(
       _$DocumentStateImpl(
@@ -165,6 +175,11 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
                 ? _value.OcrLoading
                 : OcrLoading // ignore: cast_nullable_to_non_nullable
                     as bool,
+        totalExpenseMain:
+            null == totalExpenseMain
+                ? _value.totalExpenseMain
+                : totalExpenseMain // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -179,6 +194,7 @@ class _$DocumentStateImpl implements _DocumentState {
     this.textData = '',
     this.AddDocModalOpen = false,
     this.OcrLoading = true,
+    this.totalExpenseMain = '0',
   }) : _list = list;
 
   @override
@@ -202,10 +218,13 @@ class _$DocumentStateImpl implements _DocumentState {
   @override
   @JsonKey()
   final bool OcrLoading;
+  @override
+  @JsonKey()
+  final String totalExpenseMain;
 
   @override
   String toString() {
-    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen, OcrLoading: $OcrLoading)';
+    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen, OcrLoading: $OcrLoading, totalExpenseMain: $totalExpenseMain)';
   }
 
   @override
@@ -221,7 +240,9 @@ class _$DocumentStateImpl implements _DocumentState {
             (identical(other.AddDocModalOpen, AddDocModalOpen) ||
                 other.AddDocModalOpen == AddDocModalOpen) &&
             (identical(other.OcrLoading, OcrLoading) ||
-                other.OcrLoading == OcrLoading));
+                other.OcrLoading == OcrLoading) &&
+            (identical(other.totalExpenseMain, totalExpenseMain) ||
+                other.totalExpenseMain == totalExpenseMain));
   }
 
   @override
@@ -232,6 +253,7 @@ class _$DocumentStateImpl implements _DocumentState {
     textData,
     AddDocModalOpen,
     OcrLoading,
+    totalExpenseMain,
   );
 
   /// Create a copy of DocumentState
@@ -250,6 +272,7 @@ abstract class _DocumentState implements DocumentState {
     final String textData,
     final bool AddDocModalOpen,
     final bool OcrLoading,
+    final String totalExpenseMain,
   }) = _$DocumentStateImpl;
 
   @override
@@ -262,6 +285,8 @@ abstract class _DocumentState implements DocumentState {
   bool get AddDocModalOpen;
   @override
   bool get OcrLoading;
+  @override
+  String get totalExpenseMain;
 
   /// Create a copy of DocumentState
   /// with the given fields replaced by the non-null parameter values.
