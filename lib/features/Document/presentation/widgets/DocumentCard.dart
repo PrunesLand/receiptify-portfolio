@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DocumentCard extends StatelessWidget {
   final bool isLoading;
@@ -10,18 +11,26 @@ class DocumentCard extends StatelessWidget {
     final date = DateTime.now();
 
     return isLoading
-        ? const Center(child: CircularProgressIndicator())
+        ? Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: Container(
+                height: 100, // Adjust height as needed
+                width: double.infinity,
+              ),
+            ),
+          ),
+        )
         : GestureDetector(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(text ?? 'No Text'),
-                  // Text('\$XXX'),
-                  // Text(DateFormat('d/M/y').format(date)),
-                ],
+                children: [Text(text ?? 'No Text')],
               ),
             ),
           ),

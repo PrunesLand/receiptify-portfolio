@@ -31,28 +31,18 @@ class _DocumentWidgetState extends State<DocumentWidget> {
               final itemId = state.list[index]!.id;
               return GestureDetector(
                 onTap: () {
-                  // Allow click if it's not the first item while loading,
-                  // or if it's any item and not loading.
                   if (!(index == 0 && state.OcrLoading)) {
-                    showDialog(
+                    showModalBottomSheet<void>(
                       context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text('Receipt Summary'),
-                          content: SizedBox(
-                            height: 350,
-                            child: SingleChildScrollView(
-                              child: Text(state.list[index]!.content),
-                            ),
+                      builder:
+                          (context) => ItemSelectSheet(
+                            title: 'Receipt Summary',
+                            description: state.list[index]!.content,
                           ),
-                        );
-                      },
                     );
                   }
                 },
                 onLongPress: () {
-                  // Allow long press if it's not the first item while loading,
-                  // or if it's any item and not loading.
                   if (!(index == 0 && state.OcrLoading)) {
                     HapticFeedback.heavyImpact();
                     showDialog(

@@ -28,9 +28,9 @@ class StatsBaseScreen extends StatelessWidget {
                       Center(
                         child: Column(
                           children: [
-                            Text('Your total budget'),
+                            Text('Your total expense'),
                             Text(
-                              state.totalExpenseMain,
+                              "\$${state.totalExpenseMain}",
                               style: TextStyle(fontSize: 40),
                             ),
                           ],

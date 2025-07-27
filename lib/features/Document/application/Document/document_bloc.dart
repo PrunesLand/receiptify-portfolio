@@ -136,7 +136,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
                   return itemInTheList;
                 }).toList();
 
-            final list = updatedList; // Use the updatedList for calculation
+            final list = updatedList;
             double total = 0.0;
             for (final item in list) {
               total += double.tryParse(item.content ?? '0.0') ?? 0.0;
@@ -148,7 +148,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
                 list: updatedList,
                 totalExpenseMain: total.toStringAsFixed(2).toString(),
               ),
-            ); // totalExpense is now a double, convert to string
+            );
             print(
               'Total time for the entire process: ${totalStopwatch.elapsedMilliseconds} ms',
             );
