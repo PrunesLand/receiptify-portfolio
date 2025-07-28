@@ -37,7 +37,11 @@ If you make changes to your model classes, rebuild the generated code with:
 ```sh
 dart run build_runner build --delete-conflicting-outputs -v
 ```
+## Deploy to firebase
 
+```sh
+firebase deploy --only hosting
+```
 ## Getting Started
 
 This project is a starting point for a Flutter application.
