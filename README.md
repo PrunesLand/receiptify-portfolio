@@ -1,16 +1,23 @@
 # Receiptify
 
-A new Flutter project.
+Receiptify is a Flutter application designed to simplify expense tracking by extracting information from receipts.
+Users can capture images of their receipts using the device camera or select images from their gallery.
+The app utilizes Optical Character Recognition (OCR) to extract text from the images.
+
+The core functionality revolves around identifying key details such as the merchant name, date, total amount, and individual items from the receipt.
+This information can then be used for personal finance management, budgeting, or expense reporting.
 
 ## Tech Stack
 
 - **Flutter** (Dart) for cross-platform mobile development
 - **go_router** for declarative routing
 - **google_mlkit_text_recognition** for text recognition (OCR)
+- **google_generative_ai** for interacting with Google's generative AI models (e.g., Gemini) for receipt data extraction.
 - **camera** for camera integration
 - **image_picker** for image selection
 - **freezed** and **freezed_annotation** for immutable models and code generation
 - **flutter_bloc** for state management
+- **equatable** for simplifying equality comparisons in BLoC states and events.
 - **build_runner** for code generation
 
 ## How to Run
