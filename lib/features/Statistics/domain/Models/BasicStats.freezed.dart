@@ -12,17 +12,14 @@ part of 'BasicStats.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BasicStats {
   PocketModel get pocket => throw _privateConstructorUsedError;
   String get summaryExpense => throw _privateConstructorUsedError;
 
-  /// Create a copy of BasicStats
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BasicStatsCopyWith<BasicStats> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -30,9 +27,8 @@ mixin _$BasicStats {
 /// @nodoc
 abstract class $BasicStatsCopyWith<$Res> {
   factory $BasicStatsCopyWith(
-    BasicStats value,
-    $Res Function(BasicStats) then,
-  ) = _$BasicStatsCopyWithImpl<$Res, BasicStats>;
+          BasicStats value, $Res Function(BasicStats) then) =
+      _$BasicStatsCopyWithImpl<$Res, BasicStats>;
   @useResult
   $Res call({PocketModel pocket, String summaryExpense});
 
@@ -49,30 +45,24 @@ class _$BasicStatsCopyWithImpl<$Res, $Val extends BasicStats>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BasicStats
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? pocket = null, Object? summaryExpense = null}) {
-    return _then(
-      _value.copyWith(
-            pocket:
-                null == pocket
-                    ? _value.pocket
-                    : pocket // ignore: cast_nullable_to_non_nullable
-                        as PocketModel,
-            summaryExpense:
-                null == summaryExpense
-                    ? _value.summaryExpense
-                    : summaryExpense // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? pocket = null,
+    Object? summaryExpense = null,
+  }) {
+    return _then(_value.copyWith(
+      pocket: null == pocket
+          ? _value.pocket
+          : pocket // ignore: cast_nullable_to_non_nullable
+              as PocketModel,
+      summaryExpense: null == summaryExpense
+          ? _value.summaryExpense
+          : summaryExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 
-  /// Create a copy of BasicStats
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PocketModelCopyWith<$Res> get pocket {
@@ -86,9 +76,8 @@ class _$BasicStatsCopyWithImpl<$Res, $Val extends BasicStats>
 abstract class _$$BasicStatsImplCopyWith<$Res>
     implements $BasicStatsCopyWith<$Res> {
   factory _$$BasicStatsImplCopyWith(
-    _$BasicStatsImpl value,
-    $Res Function(_$BasicStatsImpl) then,
-  ) = __$$BasicStatsImplCopyWithImpl<$Res>;
+          _$BasicStatsImpl value, $Res Function(_$BasicStatsImpl) then) =
+      __$$BasicStatsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PocketModel pocket, String summaryExpense});
@@ -102,29 +91,25 @@ class __$$BasicStatsImplCopyWithImpl<$Res>
     extends _$BasicStatsCopyWithImpl<$Res, _$BasicStatsImpl>
     implements _$$BasicStatsImplCopyWith<$Res> {
   __$$BasicStatsImplCopyWithImpl(
-    _$BasicStatsImpl _value,
-    $Res Function(_$BasicStatsImpl) _then,
-  ) : super(_value, _then);
+      _$BasicStatsImpl _value, $Res Function(_$BasicStatsImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of BasicStats
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? pocket = null, Object? summaryExpense = null}) {
-    return _then(
-      _$BasicStatsImpl(
-        pocket:
-            null == pocket
-                ? _value.pocket
-                : pocket // ignore: cast_nullable_to_non_nullable
-                    as PocketModel,
-        summaryExpense:
-            null == summaryExpense
-                ? _value.summaryExpense
-                : summaryExpense // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+  $Res call({
+    Object? pocket = null,
+    Object? summaryExpense = null,
+  }) {
+    return _then(_$BasicStatsImpl(
+      pocket: null == pocket
+          ? _value.pocket
+          : pocket // ignore: cast_nullable_to_non_nullable
+              as PocketModel,
+      summaryExpense: null == summaryExpense
+          ? _value.summaryExpense
+          : summaryExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -156,9 +141,7 @@ class _$BasicStatsImpl implements _BasicStats {
   @override
   int get hashCode => Object.hash(runtimeType, pocket, summaryExpense);
 
-  /// Create a copy of BasicStats
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BasicStatsImplCopyWith<_$BasicStatsImpl> get copyWith =>
@@ -166,20 +149,16 @@ class _$BasicStatsImpl implements _BasicStats {
 }
 
 abstract class _BasicStats implements BasicStats {
-  const factory _BasicStats({
-    required final PocketModel pocket,
-    required final String summaryExpense,
-  }) = _$BasicStatsImpl;
+  const factory _BasicStats(
+      {required final PocketModel pocket,
+      required final String summaryExpense}) = _$BasicStatsImpl;
 
   @override
   PocketModel get pocket;
   @override
   String get summaryExpense;
-
-  /// Create a copy of BasicStats
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BasicStatsImplCopyWith<_$BasicStatsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

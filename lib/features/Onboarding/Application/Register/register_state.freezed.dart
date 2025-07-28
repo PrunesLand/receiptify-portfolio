@@ -12,17 +12,14 @@ part of 'register_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RegisterState {
   bool get isLoading => throw _privateConstructorUsedError;
   RegisterUserModel? get user => throw _privateConstructorUsedError;
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -30,9 +27,8 @@ mixin _$RegisterState {
 /// @nodoc
 abstract class $RegisterStateCopyWith<$Res> {
   factory $RegisterStateCopyWith(
-    RegisterState value,
-    $Res Function(RegisterState) then,
-  ) = _$RegisterStateCopyWithImpl<$Res, RegisterState>;
+          RegisterState value, $Res Function(RegisterState) then) =
+      _$RegisterStateCopyWithImpl<$Res, RegisterState>;
   @useResult
   $Res call({bool isLoading, RegisterUserModel? user});
 
@@ -49,30 +45,24 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isLoading = null, Object? user = freezed}) {
-    return _then(
-      _value.copyWith(
-            isLoading:
-                null == isLoading
-                    ? _value.isLoading
-                    : isLoading // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            user:
-                freezed == user
-                    ? _value.user
-                    : user // ignore: cast_nullable_to_non_nullable
-                        as RegisterUserModel?,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? isLoading = null,
+    Object? user = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as RegisterUserModel?,
+    ) as $Val);
   }
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RegisterUserModelCopyWith<$Res>? get user {
@@ -90,9 +80,8 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
 abstract class _$$RegisterStateImplCopyWith<$Res>
     implements $RegisterStateCopyWith<$Res> {
   factory _$$RegisterStateImplCopyWith(
-    _$RegisterStateImpl value,
-    $Res Function(_$RegisterStateImpl) then,
-  ) = __$$RegisterStateImplCopyWithImpl<$Res>;
+          _$RegisterStateImpl value, $Res Function(_$RegisterStateImpl) then) =
+      __$$RegisterStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isLoading, RegisterUserModel? user});
@@ -106,29 +95,25 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
     extends _$RegisterStateCopyWithImpl<$Res, _$RegisterStateImpl>
     implements _$$RegisterStateImplCopyWith<$Res> {
   __$$RegisterStateImplCopyWithImpl(
-    _$RegisterStateImpl _value,
-    $Res Function(_$RegisterStateImpl) _then,
-  ) : super(_value, _then);
+      _$RegisterStateImpl _value, $Res Function(_$RegisterStateImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isLoading = null, Object? user = freezed}) {
-    return _then(
-      _$RegisterStateImpl(
-        isLoading:
-            null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        user:
-            freezed == user
-                ? _value.user
-                : user // ignore: cast_nullable_to_non_nullable
-                    as RegisterUserModel?,
-      ),
-    );
+  $Res call({
+    Object? isLoading = null,
+    Object? user = freezed,
+  }) {
+    return _then(_$RegisterStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as RegisterUserModel?,
+    ));
   }
 }
 
@@ -161,9 +146,7 @@ class _$RegisterStateImpl implements _RegisterState {
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, user);
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterStateImplCopyWith<_$RegisterStateImpl> get copyWith =>
@@ -171,20 +154,16 @@ class _$RegisterStateImpl implements _RegisterState {
 }
 
 abstract class _RegisterState implements RegisterState {
-  const factory _RegisterState({
-    final bool isLoading,
-    final RegisterUserModel? user,
-  }) = _$RegisterStateImpl;
+  const factory _RegisterState(
+      {final bool isLoading,
+      final RegisterUserModel? user}) = _$RegisterStateImpl;
 
   @override
   bool get isLoading;
   @override
   RegisterUserModel? get user;
-
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RegisterStateImplCopyWith<_$RegisterStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

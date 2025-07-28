@@ -15,14 +15,19 @@ Future<File?> pickImageFromGallery() async {
   return image != null ? File(image.path) : null;
 }
 
-Future<File> saveImageToMainPocketDirectory(File file, String fileName) async {
-  File fileToStore;
+Future<Directory> getMainPocketDirectory() async {
   final appDocDir = await getApplicationDocumentsDirectory();
-  // Ensure the MainPocket directory exists
   final mainPocketDir = Directory('${appDocDir.path}/MainPocket');
   if (!await mainPocketDir.exists()) {
     await mainPocketDir.create(recursive: true);
   }
+  return mainPocketDir;
+}
+
+Future<File> saveImageToMainPocketDirectory(File file, String fileName) async {
+  File fileToStore;
+  // Ensure the MainPocket directory exists
+  final mainPocketDir = await getMainPocketDirectory();
 
   final newFilePath = '${mainPocketDir.path}/$fileName';
 

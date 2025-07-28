@@ -42,6 +42,7 @@ void main() async {
   //   // Handle activation error - your app might not work with backend services
   // }
   setupServiceLocator();
+
   runApp(const MyApp());
 }
 

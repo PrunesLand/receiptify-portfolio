@@ -12,8 +12,7 @@ part of 'document_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DocumentState {
@@ -24,9 +23,7 @@ mixin _$DocumentState {
   bool get OcrLoading => throw _privateConstructorUsedError;
   String get totalExpenseMain => throw _privateConstructorUsedError;
 
-  /// Create a copy of DocumentState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DocumentStateCopyWith<DocumentState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -34,18 +31,16 @@ mixin _$DocumentState {
 /// @nodoc
 abstract class $DocumentStateCopyWith<$Res> {
   factory $DocumentStateCopyWith(
-    DocumentState value,
-    $Res Function(DocumentState) then,
-  ) = _$DocumentStateCopyWithImpl<$Res, DocumentState>;
+          DocumentState value, $Res Function(DocumentState) then) =
+      _$DocumentStateCopyWithImpl<$Res, DocumentState>;
   @useResult
-  $Res call({
-    bool isLoading,
-    List<ImageModel?> list,
-    String textData,
-    bool AddDocModalOpen,
-    bool OcrLoading,
-    String totalExpenseMain,
-  });
+  $Res call(
+      {bool isLoading,
+      List<ImageModel?> list,
+      String textData,
+      bool AddDocModalOpen,
+      bool OcrLoading,
+      String totalExpenseMain});
 }
 
 /// @nodoc
@@ -58,8 +53,6 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DocumentState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -70,41 +63,32 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
     Object? OcrLoading = null,
     Object? totalExpenseMain = null,
   }) {
-    return _then(
-      _value.copyWith(
-            isLoading:
-                null == isLoading
-                    ? _value.isLoading
-                    : isLoading // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            list:
-                null == list
-                    ? _value.list
-                    : list // ignore: cast_nullable_to_non_nullable
-                        as List<ImageModel?>,
-            textData:
-                null == textData
-                    ? _value.textData
-                    : textData // ignore: cast_nullable_to_non_nullable
-                        as String,
-            AddDocModalOpen:
-                null == AddDocModalOpen
-                    ? _value.AddDocModalOpen
-                    : AddDocModalOpen // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            OcrLoading:
-                null == OcrLoading
-                    ? _value.OcrLoading
-                    : OcrLoading // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            totalExpenseMain:
-                null == totalExpenseMain
-                    ? _value.totalExpenseMain
-                    : totalExpenseMain // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      list: null == list
+          ? _value.list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<ImageModel?>,
+      textData: null == textData
+          ? _value.textData
+          : textData // ignore: cast_nullable_to_non_nullable
+              as String,
+      AddDocModalOpen: null == AddDocModalOpen
+          ? _value.AddDocModalOpen
+          : AddDocModalOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      OcrLoading: null == OcrLoading
+          ? _value.OcrLoading
+          : OcrLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      totalExpenseMain: null == totalExpenseMain
+          ? _value.totalExpenseMain
+          : totalExpenseMain // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -112,19 +96,17 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
 abstract class _$$DocumentStateImplCopyWith<$Res>
     implements $DocumentStateCopyWith<$Res> {
   factory _$$DocumentStateImplCopyWith(
-    _$DocumentStateImpl value,
-    $Res Function(_$DocumentStateImpl) then,
-  ) = __$$DocumentStateImplCopyWithImpl<$Res>;
+          _$DocumentStateImpl value, $Res Function(_$DocumentStateImpl) then) =
+      __$$DocumentStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    bool isLoading,
-    List<ImageModel?> list,
-    String textData,
-    bool AddDocModalOpen,
-    bool OcrLoading,
-    String totalExpenseMain,
-  });
+  $Res call(
+      {bool isLoading,
+      List<ImageModel?> list,
+      String textData,
+      bool AddDocModalOpen,
+      bool OcrLoading,
+      String totalExpenseMain});
 }
 
 /// @nodoc
@@ -132,12 +114,9 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
     extends _$DocumentStateCopyWithImpl<$Res, _$DocumentStateImpl>
     implements _$$DocumentStateImplCopyWith<$Res> {
   __$$DocumentStateImplCopyWithImpl(
-    _$DocumentStateImpl _value,
-    $Res Function(_$DocumentStateImpl) _then,
-  ) : super(_value, _then);
+      _$DocumentStateImpl _value, $Res Function(_$DocumentStateImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of DocumentState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,54 +127,46 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
     Object? OcrLoading = null,
     Object? totalExpenseMain = null,
   }) {
-    return _then(
-      _$DocumentStateImpl(
-        isLoading:
-            null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        list:
-            null == list
-                ? _value._list
-                : list // ignore: cast_nullable_to_non_nullable
-                    as List<ImageModel?>,
-        textData:
-            null == textData
-                ? _value.textData
-                : textData // ignore: cast_nullable_to_non_nullable
-                    as String,
-        AddDocModalOpen:
-            null == AddDocModalOpen
-                ? _value.AddDocModalOpen
-                : AddDocModalOpen // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        OcrLoading:
-            null == OcrLoading
-                ? _value.OcrLoading
-                : OcrLoading // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        totalExpenseMain:
-            null == totalExpenseMain
-                ? _value.totalExpenseMain
-                : totalExpenseMain // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+    return _then(_$DocumentStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      list: null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<ImageModel?>,
+      textData: null == textData
+          ? _value.textData
+          : textData // ignore: cast_nullable_to_non_nullable
+              as String,
+      AddDocModalOpen: null == AddDocModalOpen
+          ? _value.AddDocModalOpen
+          : AddDocModalOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      OcrLoading: null == OcrLoading
+          ? _value.OcrLoading
+          : OcrLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      totalExpenseMain: null == totalExpenseMain
+          ? _value.totalExpenseMain
+          : totalExpenseMain // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$DocumentStateImpl implements _DocumentState {
-  const _$DocumentStateImpl({
-    this.isLoading = false,
-    final List<ImageModel?> list = const [],
-    this.textData = '',
-    this.AddDocModalOpen = false,
-    this.OcrLoading = true,
-    this.totalExpenseMain = '0',
-  }) : _list = list;
+  const _$DocumentStateImpl(
+      {this.isLoading = false,
+      final List<ImageModel?> list = const [],
+      this.textData = '',
+      this.AddDocModalOpen = false,
+      this.OcrLoading = true,
+      this.totalExpenseMain = '0'})
+      : _list = list;
 
   @override
   @JsonKey()
@@ -247,18 +218,15 @@ class _$DocumentStateImpl implements _DocumentState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    const DeepCollectionEquality().hash(_list),
-    textData,
-    AddDocModalOpen,
-    OcrLoading,
-    totalExpenseMain,
-  );
+      runtimeType,
+      isLoading,
+      const DeepCollectionEquality().hash(_list),
+      textData,
+      AddDocModalOpen,
+      OcrLoading,
+      totalExpenseMain);
 
-  /// Create a copy of DocumentState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentStateImplCopyWith<_$DocumentStateImpl> get copyWith =>
@@ -266,14 +234,13 @@ class _$DocumentStateImpl implements _DocumentState {
 }
 
 abstract class _DocumentState implements DocumentState {
-  const factory _DocumentState({
-    final bool isLoading,
-    final List<ImageModel?> list,
-    final String textData,
-    final bool AddDocModalOpen,
-    final bool OcrLoading,
-    final String totalExpenseMain,
-  }) = _$DocumentStateImpl;
+  const factory _DocumentState(
+      {final bool isLoading,
+      final List<ImageModel?> list,
+      final String textData,
+      final bool AddDocModalOpen,
+      final bool OcrLoading,
+      final String totalExpenseMain}) = _$DocumentStateImpl;
 
   @override
   bool get isLoading;
@@ -287,11 +254,8 @@ abstract class _DocumentState implements DocumentState {
   bool get OcrLoading;
   @override
   String get totalExpenseMain;
-
-  /// Create a copy of DocumentState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DocumentStateImplCopyWith<_$DocumentStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

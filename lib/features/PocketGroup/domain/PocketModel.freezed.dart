@@ -12,8 +12,7 @@ part of 'PocketModel.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PocketModel {
@@ -22,9 +21,7 @@ mixin _$PocketModel {
   String get totalExpense => throw _privateConstructorUsedError;
   String get totalBudget => throw _privateConstructorUsedError;
 
-  /// Create a copy of PocketModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PocketModelCopyWith<PocketModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -32,16 +29,11 @@ mixin _$PocketModel {
 /// @nodoc
 abstract class $PocketModelCopyWith<$Res> {
   factory $PocketModelCopyWith(
-    PocketModel value,
-    $Res Function(PocketModel) then,
-  ) = _$PocketModelCopyWithImpl<$Res, PocketModel>;
+          PocketModel value, $Res Function(PocketModel) then) =
+      _$PocketModelCopyWithImpl<$Res, PocketModel>;
   @useResult
-  $Res call({
-    String? id,
-    String title,
-    String totalExpense,
-    String totalBudget,
-  });
+  $Res call(
+      {String? id, String title, String totalExpense, String totalBudget});
 }
 
 /// @nodoc
@@ -54,8 +46,6 @@ class _$PocketModelCopyWithImpl<$Res, $Val extends PocketModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PocketModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -64,31 +54,24 @@ class _$PocketModelCopyWithImpl<$Res, $Val extends PocketModel>
     Object? totalExpense = null,
     Object? totalBudget = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id:
-                freezed == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            title:
-                null == title
-                    ? _value.title
-                    : title // ignore: cast_nullable_to_non_nullable
-                        as String,
-            totalExpense:
-                null == totalExpense
-                    ? _value.totalExpense
-                    : totalExpense // ignore: cast_nullable_to_non_nullable
-                        as String,
-            totalBudget:
-                null == totalBudget
-                    ? _value.totalBudget
-                    : totalBudget // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalExpense: null == totalExpense
+          ? _value.totalExpense
+          : totalExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalBudget: null == totalBudget
+          ? _value.totalBudget
+          : totalBudget // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -96,17 +79,12 @@ class _$PocketModelCopyWithImpl<$Res, $Val extends PocketModel>
 abstract class _$$PocketModelImplCopyWith<$Res>
     implements $PocketModelCopyWith<$Res> {
   factory _$$PocketModelImplCopyWith(
-    _$PocketModelImpl value,
-    $Res Function(_$PocketModelImpl) then,
-  ) = __$$PocketModelImplCopyWithImpl<$Res>;
+          _$PocketModelImpl value, $Res Function(_$PocketModelImpl) then) =
+      __$$PocketModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String? id,
-    String title,
-    String totalExpense,
-    String totalBudget,
-  });
+  $Res call(
+      {String? id, String title, String totalExpense, String totalBudget});
 }
 
 /// @nodoc
@@ -114,12 +92,9 @@ class __$$PocketModelImplCopyWithImpl<$Res>
     extends _$PocketModelCopyWithImpl<$Res, _$PocketModelImpl>
     implements _$$PocketModelImplCopyWith<$Res> {
   __$$PocketModelImplCopyWithImpl(
-    _$PocketModelImpl _value,
-    $Res Function(_$PocketModelImpl) _then,
-  ) : super(_value, _then);
+      _$PocketModelImpl _value, $Res Function(_$PocketModelImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of PocketModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,42 +103,35 @@ class __$$PocketModelImplCopyWithImpl<$Res>
     Object? totalExpense = null,
     Object? totalBudget = null,
   }) {
-    return _then(
-      _$PocketModelImpl(
-        id:
-            freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        title:
-            null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                    as String,
-        totalExpense:
-            null == totalExpense
-                ? _value.totalExpense
-                : totalExpense // ignore: cast_nullable_to_non_nullable
-                    as String,
-        totalBudget:
-            null == totalBudget
-                ? _value.totalBudget
-                : totalBudget // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+    return _then(_$PocketModelImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalExpense: null == totalExpense
+          ? _value.totalExpense
+          : totalExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalBudget: null == totalBudget
+          ? _value.totalBudget
+          : totalBudget // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$PocketModelImpl implements _PocketModel {
-  const _$PocketModelImpl({
-    this.id,
-    required this.title,
-    required this.totalExpense,
-    required this.totalBudget,
-  });
+  const _$PocketModelImpl(
+      {this.id,
+      required this.title,
+      required this.totalExpense,
+      required this.totalBudget});
 
   @override
   final String? id;
@@ -196,9 +164,7 @@ class _$PocketModelImpl implements _PocketModel {
   int get hashCode =>
       Object.hash(runtimeType, id, title, totalExpense, totalBudget);
 
-  /// Create a copy of PocketModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PocketModelImplCopyWith<_$PocketModelImpl> get copyWith =>
@@ -206,12 +172,11 @@ class _$PocketModelImpl implements _PocketModel {
 }
 
 abstract class _PocketModel implements PocketModel {
-  const factory _PocketModel({
-    final String? id,
-    required final String title,
-    required final String totalExpense,
-    required final String totalBudget,
-  }) = _$PocketModelImpl;
+  const factory _PocketModel(
+      {final String? id,
+      required final String title,
+      required final String totalExpense,
+      required final String totalBudget}) = _$PocketModelImpl;
 
   @override
   String? get id;
@@ -221,11 +186,8 @@ abstract class _PocketModel implements PocketModel {
   String get totalExpense;
   @override
   String get totalBudget;
-
-  /// Create a copy of PocketModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PocketModelImplCopyWith<_$PocketModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

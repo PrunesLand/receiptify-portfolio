@@ -9,17 +9,17 @@ class DocumentDeleteDialog extends StatelessWidget {
     return AlertDialog(
       title: Text('Delete document'),
       content: SizedBox(
-        height: 250,
+        height: 50,
         child: Column(
           children: [
-            Text('Are you sure you want to delete this image?'),
+            Center(child: Text('Are you sure you want to delete this item?')),
           ],
         ),
       ),
       actions: [
         TextButton(
           onPressed: () {
-           onFileSelected!();
+            onFileSelected!();
           },
           child: Text('Delete'),
         ),

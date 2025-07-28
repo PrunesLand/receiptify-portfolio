@@ -53,10 +53,10 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                       builder: (context) {
                         return DocumentDeleteDialog(
                           onFileSelected: () {
+                            Navigator.of(context).pop();
                             getIt<DocumentBloc>().add(
                               DocumentEvent.removeImage(id: itemId),
                             );
-                            Navigator.of(context).pop();
                           },
                         );
                       },

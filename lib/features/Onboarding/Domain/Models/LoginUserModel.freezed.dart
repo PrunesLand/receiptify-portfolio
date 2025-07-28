@@ -12,17 +12,14 @@ part of 'LoginUserModel.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LoginUserModel {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginUserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LoginUserModelCopyWith<LoginUserModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -30,9 +27,8 @@ mixin _$LoginUserModel {
 /// @nodoc
 abstract class $LoginUserModelCopyWith<$Res> {
   factory $LoginUserModelCopyWith(
-    LoginUserModel value,
-    $Res Function(LoginUserModel) then,
-  ) = _$LoginUserModelCopyWithImpl<$Res, LoginUserModel>;
+          LoginUserModel value, $Res Function(LoginUserModel) then) =
+      _$LoginUserModelCopyWithImpl<$Res, LoginUserModel>;
   @useResult
   $Res call({String email, String password});
 }
@@ -47,36 +43,31 @@ class _$LoginUserModelCopyWithImpl<$Res, $Val extends LoginUserModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginUserModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? email = null, Object? password = null}) {
-    return _then(
-      _value.copyWith(
-            email:
-                null == email
-                    ? _value.email
-                    : email // ignore: cast_nullable_to_non_nullable
-                        as String,
-            password:
-                null == password
-                    ? _value.password
-                    : password // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LoginUserModelImplCopyWith<$Res>
     implements $LoginUserModelCopyWith<$Res> {
-  factory _$$LoginUserModelImplCopyWith(
-    _$LoginUserModelImpl value,
-    $Res Function(_$LoginUserModelImpl) then,
-  ) = __$$LoginUserModelImplCopyWithImpl<$Res>;
+  factory _$$LoginUserModelImplCopyWith(_$LoginUserModelImpl value,
+          $Res Function(_$LoginUserModelImpl) then) =
+      __$$LoginUserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String email, String password});
@@ -87,29 +78,25 @@ class __$$LoginUserModelImplCopyWithImpl<$Res>
     extends _$LoginUserModelCopyWithImpl<$Res, _$LoginUserModelImpl>
     implements _$$LoginUserModelImplCopyWith<$Res> {
   __$$LoginUserModelImplCopyWithImpl(
-    _$LoginUserModelImpl _value,
-    $Res Function(_$LoginUserModelImpl) _then,
-  ) : super(_value, _then);
+      _$LoginUserModelImpl _value, $Res Function(_$LoginUserModelImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of LoginUserModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? email = null, Object? password = null}) {
-    return _then(
-      _$LoginUserModelImpl(
-        email:
-            null == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                    as String,
-        password:
-            null == password
-                ? _value.password
-                : password // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$LoginUserModelImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -143,16 +130,12 @@ class _$LoginUserModelImpl implements _LoginUserModel {
   @override
   int get hashCode => Object.hash(runtimeType, email, password);
 
-  /// Create a copy of LoginUserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginUserModelImplCopyWith<_$LoginUserModelImpl> get copyWith =>
       __$$LoginUserModelImplCopyWithImpl<_$LoginUserModelImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 }
 
 abstract class _LoginUserModel implements LoginUserModel {
@@ -163,11 +146,8 @@ abstract class _LoginUserModel implements LoginUserModel {
   String get email;
   @override
   String get password;
-
-  /// Create a copy of LoginUserModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoginUserModelImplCopyWith<_$LoginUserModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

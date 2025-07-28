@@ -16,11 +16,11 @@ _$UserProfileDTOImpl _$$UserProfileDTOImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$UserProfileDTOImplToJson(
-  _$UserProfileDTOImpl instance,
-) => <String, dynamic>{
-  'id': instance.id,
-  'first_name': instance.firstName,
-  'last_name': instance.lastName,
-  'email': instance.email,
-  'password': instance.password,
-};
+        _$UserProfileDTOImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'first_name': instance.firstName,
+      'last_name': instance.lastName,
+      'email': instance.email,
+      'password': instance.password,
+    };

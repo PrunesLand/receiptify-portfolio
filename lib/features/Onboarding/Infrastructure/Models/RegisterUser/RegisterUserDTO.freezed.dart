@@ -12,8 +12,7 @@ part of 'RegisterUserDTO.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RegisterUserDTO {
@@ -23,9 +22,7 @@ mixin _$RegisterUserDTO {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
-  /// Create a copy of RegisterUserDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RegisterUserDTOCopyWith<RegisterUserDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -33,17 +30,15 @@ mixin _$RegisterUserDTO {
 /// @nodoc
 abstract class $RegisterUserDTOCopyWith<$Res> {
   factory $RegisterUserDTOCopyWith(
-    RegisterUserDTO value,
-    $Res Function(RegisterUserDTO) then,
-  ) = _$RegisterUserDTOCopyWithImpl<$Res, RegisterUserDTO>;
+          RegisterUserDTO value, $Res Function(RegisterUserDTO) then) =
+      _$RegisterUserDTOCopyWithImpl<$Res, RegisterUserDTO>;
   @useResult
-  $Res call({
-    String id,
-    String firstName,
-    String lastName,
-    String email,
-    String password,
-  });
+  $Res call(
+      {String id,
+      String firstName,
+      String lastName,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -56,8 +51,6 @@ class _$RegisterUserDTOCopyWithImpl<$Res, $Val extends RegisterUserDTO>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RegisterUserDTO
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -67,55 +60,45 @@ class _$RegisterUserDTOCopyWithImpl<$Res, $Val extends RegisterUserDTO>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            firstName:
-                null == firstName
-                    ? _value.firstName
-                    : firstName // ignore: cast_nullable_to_non_nullable
-                        as String,
-            lastName:
-                null == lastName
-                    ? _value.lastName
-                    : lastName // ignore: cast_nullable_to_non_nullable
-                        as String,
-            email:
-                null == email
-                    ? _value.email
-                    : email // ignore: cast_nullable_to_non_nullable
-                        as String,
-            password:
-                null == password
-                    ? _value.password
-                    : password // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$RegisterUserDTOImplCopyWith<$Res>
     implements $RegisterUserDTOCopyWith<$Res> {
-  factory _$$RegisterUserDTOImplCopyWith(
-    _$RegisterUserDTOImpl value,
-    $Res Function(_$RegisterUserDTOImpl) then,
-  ) = __$$RegisterUserDTOImplCopyWithImpl<$Res>;
+  factory _$$RegisterUserDTOImplCopyWith(_$RegisterUserDTOImpl value,
+          $Res Function(_$RegisterUserDTOImpl) then) =
+      __$$RegisterUserDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String firstName,
-    String lastName,
-    String email,
-    String password,
-  });
+  $Res call(
+      {String id,
+      String firstName,
+      String lastName,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -123,12 +106,9 @@ class __$$RegisterUserDTOImplCopyWithImpl<$Res>
     extends _$RegisterUserDTOCopyWithImpl<$Res, _$RegisterUserDTOImpl>
     implements _$$RegisterUserDTOImplCopyWith<$Res> {
   __$$RegisterUserDTOImplCopyWithImpl(
-    _$RegisterUserDTOImpl _value,
-    $Res Function(_$RegisterUserDTOImpl) _then,
-  ) : super(_value, _then);
+      _$RegisterUserDTOImpl _value, $Res Function(_$RegisterUserDTOImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of RegisterUserDTO
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,48 +118,40 @@ class __$$RegisterUserDTOImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(
-      _$RegisterUserDTOImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        firstName:
-            null == firstName
-                ? _value.firstName
-                : firstName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        lastName:
-            null == lastName
-                ? _value.lastName
-                : lastName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        email:
-            null == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                    as String,
-        password:
-            null == password
-                ? _value.password
-                : password // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+    return _then(_$RegisterUserDTOImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$RegisterUserDTOImpl implements _RegisterUserDTO {
-  const _$RegisterUserDTOImpl({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.password,
-  });
+  const _$RegisterUserDTOImpl(
+      {required this.id,
+      required this.firstName,
+      required this.lastName,
+      required this.email,
+      required this.password});
 
   @override
   final String id;
@@ -216,26 +188,21 @@ class _$RegisterUserDTOImpl implements _RegisterUserDTO {
   int get hashCode =>
       Object.hash(runtimeType, id, firstName, lastName, email, password);
 
-  /// Create a copy of RegisterUserDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterUserDTOImplCopyWith<_$RegisterUserDTOImpl> get copyWith =>
       __$$RegisterUserDTOImplCopyWithImpl<_$RegisterUserDTOImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 }
 
 abstract class _RegisterUserDTO implements RegisterUserDTO {
-  const factory _RegisterUserDTO({
-    required final String id,
-    required final String firstName,
-    required final String lastName,
-    required final String email,
-    required final String password,
-  }) = _$RegisterUserDTOImpl;
+  const factory _RegisterUserDTO(
+      {required final String id,
+      required final String firstName,
+      required final String lastName,
+      required final String email,
+      required final String password}) = _$RegisterUserDTOImpl;
 
   @override
   String get id;
@@ -247,11 +214,8 @@ abstract class _RegisterUserDTO implements RegisterUserDTO {
   String get email;
   @override
   String get password;
-
-  /// Create a copy of RegisterUserDTO
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RegisterUserDTOImplCopyWith<_$RegisterUserDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

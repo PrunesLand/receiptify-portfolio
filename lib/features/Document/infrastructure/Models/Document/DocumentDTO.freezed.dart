@@ -12,8 +12,7 @@ part of 'DocumentDTO.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DocumentDTO {
@@ -21,9 +20,7 @@ mixin _$DocumentDTO {
   String get content => throw _privateConstructorUsedError;
   String get filePath => throw _privateConstructorUsedError;
 
-  /// Create a copy of DocumentDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DocumentDTOCopyWith<DocumentDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -31,9 +28,8 @@ mixin _$DocumentDTO {
 /// @nodoc
 abstract class $DocumentDTOCopyWith<$Res> {
   factory $DocumentDTOCopyWith(
-    DocumentDTO value,
-    $Res Function(DocumentDTO) then,
-  ) = _$DocumentDTOCopyWithImpl<$Res, DocumentDTO>;
+          DocumentDTO value, $Res Function(DocumentDTO) then) =
+      _$DocumentDTOCopyWithImpl<$Res, DocumentDTO>;
   @useResult
   $Res call({String id, String content, String filePath});
 }
@@ -48,8 +44,6 @@ class _$DocumentDTOCopyWithImpl<$Res, $Val extends DocumentDTO>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DocumentDTO
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -57,26 +51,20 @@ class _$DocumentDTOCopyWithImpl<$Res, $Val extends DocumentDTO>
     Object? content = null,
     Object? filePath = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            content:
-                null == content
-                    ? _value.content
-                    : content // ignore: cast_nullable_to_non_nullable
-                        as String,
-            filePath:
-                null == filePath
-                    ? _value.filePath
-                    : filePath // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -84,9 +72,8 @@ class _$DocumentDTOCopyWithImpl<$Res, $Val extends DocumentDTO>
 abstract class _$$DocumentDTOImplCopyWith<$Res>
     implements $DocumentDTOCopyWith<$Res> {
   factory _$$DocumentDTOImplCopyWith(
-    _$DocumentDTOImpl value,
-    $Res Function(_$DocumentDTOImpl) then,
-  ) = __$$DocumentDTOImplCopyWithImpl<$Res>;
+          _$DocumentDTOImpl value, $Res Function(_$DocumentDTOImpl) then) =
+      __$$DocumentDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String content, String filePath});
@@ -97,12 +84,9 @@ class __$$DocumentDTOImplCopyWithImpl<$Res>
     extends _$DocumentDTOCopyWithImpl<$Res, _$DocumentDTOImpl>
     implements _$$DocumentDTOImplCopyWith<$Res> {
   __$$DocumentDTOImplCopyWithImpl(
-    _$DocumentDTOImpl _value,
-    $Res Function(_$DocumentDTOImpl) _then,
-  ) : super(_value, _then);
+      _$DocumentDTOImpl _value, $Res Function(_$DocumentDTOImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of DocumentDTO
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,36 +94,28 @@ class __$$DocumentDTOImplCopyWithImpl<$Res>
     Object? content = null,
     Object? filePath = null,
   }) {
-    return _then(
-      _$DocumentDTOImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        content:
-            null == content
-                ? _value.content
-                : content // ignore: cast_nullable_to_non_nullable
-                    as String,
-        filePath:
-            null == filePath
-                ? _value.filePath
-                : filePath // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+    return _then(_$DocumentDTOImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$DocumentDTOImpl implements _DocumentDTO {
-  const _$DocumentDTOImpl({
-    required this.id,
-    required this.content,
-    required this.filePath,
-  });
+  const _$DocumentDTOImpl(
+      {required this.id, required this.content, required this.filePath});
 
   @override
   final String id;
@@ -167,9 +143,7 @@ class _$DocumentDTOImpl implements _DocumentDTO {
   @override
   int get hashCode => Object.hash(runtimeType, id, content, filePath);
 
-  /// Create a copy of DocumentDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentDTOImplCopyWith<_$DocumentDTOImpl> get copyWith =>
@@ -177,11 +151,10 @@ class _$DocumentDTOImpl implements _DocumentDTO {
 }
 
 abstract class _DocumentDTO implements DocumentDTO {
-  const factory _DocumentDTO({
-    required final String id,
-    required final String content,
-    required final String filePath,
-  }) = _$DocumentDTOImpl;
+  const factory _DocumentDTO(
+      {required final String id,
+      required final String content,
+      required final String filePath}) = _$DocumentDTOImpl;
 
   @override
   String get id;
@@ -189,11 +162,8 @@ abstract class _DocumentDTO implements DocumentDTO {
   String get content;
   @override
   String get filePath;
-
-  /// Create a copy of DocumentDTO
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DocumentDTOImplCopyWith<_$DocumentDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

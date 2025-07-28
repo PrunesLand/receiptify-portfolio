@@ -12,8 +12,7 @@ part of 'RegisterUserModel.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RegisterUserModel {
@@ -24,9 +23,7 @@ mixin _$RegisterUserModel {
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
 
-  /// Create a copy of RegisterUserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RegisterUserModelCopyWith<RegisterUserModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -34,18 +31,16 @@ mixin _$RegisterUserModel {
 /// @nodoc
 abstract class $RegisterUserModelCopyWith<$Res> {
   factory $RegisterUserModelCopyWith(
-    RegisterUserModel value,
-    $Res Function(RegisterUserModel) then,
-  ) = _$RegisterUserModelCopyWithImpl<$Res, RegisterUserModel>;
+          RegisterUserModel value, $Res Function(RegisterUserModel) then) =
+      _$RegisterUserModelCopyWithImpl<$Res, RegisterUserModel>;
   @useResult
-  $Res call({
-    String id,
-    String firstName,
-    String lastName,
-    String email,
-    String password,
-    String confirmPassword,
-  });
+  $Res call(
+      {String id,
+      String firstName,
+      String lastName,
+      String email,
+      String password,
+      String confirmPassword});
 }
 
 /// @nodoc
@@ -58,8 +53,6 @@ class _$RegisterUserModelCopyWithImpl<$Res, $Val extends RegisterUserModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RegisterUserModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -70,74 +63,60 @@ class _$RegisterUserModelCopyWithImpl<$Res, $Val extends RegisterUserModel>
     Object? password = null,
     Object? confirmPassword = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            firstName:
-                null == firstName
-                    ? _value.firstName
-                    : firstName // ignore: cast_nullable_to_non_nullable
-                        as String,
-            lastName:
-                null == lastName
-                    ? _value.lastName
-                    : lastName // ignore: cast_nullable_to_non_nullable
-                        as String,
-            email:
-                null == email
-                    ? _value.email
-                    : email // ignore: cast_nullable_to_non_nullable
-                        as String,
-            password:
-                null == password
-                    ? _value.password
-                    : password // ignore: cast_nullable_to_non_nullable
-                        as String,
-            confirmPassword:
-                null == confirmPassword
-                    ? _value.confirmPassword
-                    : confirmPassword // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$RegisterUserModelImplCopyWith<$Res>
     implements $RegisterUserModelCopyWith<$Res> {
-  factory _$$RegisterUserModelImplCopyWith(
-    _$RegisterUserModelImpl value,
-    $Res Function(_$RegisterUserModelImpl) then,
-  ) = __$$RegisterUserModelImplCopyWithImpl<$Res>;
+  factory _$$RegisterUserModelImplCopyWith(_$RegisterUserModelImpl value,
+          $Res Function(_$RegisterUserModelImpl) then) =
+      __$$RegisterUserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String firstName,
-    String lastName,
-    String email,
-    String password,
-    String confirmPassword,
-  });
+  $Res call(
+      {String id,
+      String firstName,
+      String lastName,
+      String email,
+      String password,
+      String confirmPassword});
 }
 
 /// @nodoc
 class __$$RegisterUserModelImplCopyWithImpl<$Res>
     extends _$RegisterUserModelCopyWithImpl<$Res, _$RegisterUserModelImpl>
     implements _$$RegisterUserModelImplCopyWith<$Res> {
-  __$$RegisterUserModelImplCopyWithImpl(
-    _$RegisterUserModelImpl _value,
-    $Res Function(_$RegisterUserModelImpl) _then,
-  ) : super(_value, _then);
+  __$$RegisterUserModelImplCopyWithImpl(_$RegisterUserModelImpl _value,
+      $Res Function(_$RegisterUserModelImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of RegisterUserModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,54 +127,45 @@ class __$$RegisterUserModelImplCopyWithImpl<$Res>
     Object? password = null,
     Object? confirmPassword = null,
   }) {
-    return _then(
-      _$RegisterUserModelImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        firstName:
-            null == firstName
-                ? _value.firstName
-                : firstName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        lastName:
-            null == lastName
-                ? _value.lastName
-                : lastName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        email:
-            null == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                    as String,
-        password:
-            null == password
-                ? _value.password
-                : password // ignore: cast_nullable_to_non_nullable
-                    as String,
-        confirmPassword:
-            null == confirmPassword
-                ? _value.confirmPassword
-                : confirmPassword // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+    return _then(_$RegisterUserModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$RegisterUserModelImpl implements _RegisterUserModel {
-  const _$RegisterUserModelImpl({
-    this.id = '',
-    this.firstName = '',
-    this.lastName = '',
-    this.email = '',
-    this.password = '',
-    this.confirmPassword = '',
-  });
+  const _$RegisterUserModelImpl(
+      {this.id = '',
+      this.firstName = '',
+      this.lastName = '',
+      this.email = '',
+      this.password = '',
+      this.confirmPassword = ''});
 
   @override
   @JsonKey()
@@ -240,36 +210,24 @@ class _$RegisterUserModelImpl implements _RegisterUserModel {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    firstName,
-    lastName,
-    email,
-    password,
-    confirmPassword,
-  );
+      runtimeType, id, firstName, lastName, email, password, confirmPassword);
 
-  /// Create a copy of RegisterUserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterUserModelImplCopyWith<_$RegisterUserModelImpl> get copyWith =>
       __$$RegisterUserModelImplCopyWithImpl<_$RegisterUserModelImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 }
 
 abstract class _RegisterUserModel implements RegisterUserModel {
-  const factory _RegisterUserModel({
-    final String id,
-    final String firstName,
-    final String lastName,
-    final String email,
-    final String password,
-    final String confirmPassword,
-  }) = _$RegisterUserModelImpl;
+  const factory _RegisterUserModel(
+      {final String id,
+      final String firstName,
+      final String lastName,
+      final String email,
+      final String password,
+      final String confirmPassword}) = _$RegisterUserModelImpl;
 
   @override
   String get id;
@@ -283,11 +241,8 @@ abstract class _RegisterUserModel implements RegisterUserModel {
   String get password;
   @override
   String get confirmPassword;
-
-  /// Create a copy of RegisterUserModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RegisterUserModelImplCopyWith<_$RegisterUserModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -7,7 +7,11 @@ part of 'AuthTokenDTO.dart';
 // **************************************************************************
 
 _$AuthTokenDTOImpl _$$AuthTokenDTOImplFromJson(Map<String, dynamic> json) =>
-    _$AuthTokenDTOImpl(accessToken: json['access_token'] as String);
+    _$AuthTokenDTOImpl(
+      accessToken: json['access_token'] as String,
+    );
 
 Map<String, dynamic> _$$AuthTokenDTOImplToJson(_$AuthTokenDTOImpl instance) =>
-    <String, dynamic>{'access_token': instance.accessToken};
+    <String, dynamic>{
+      'access_token': instance.accessToken,
+    };

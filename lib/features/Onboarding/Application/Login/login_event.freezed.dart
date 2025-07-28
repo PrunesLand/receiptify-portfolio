@@ -12,8 +12,7 @@ part of 'login_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LoginEvent {
@@ -21,42 +20,47 @@ mixin _$LoginEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() isLoading,
     required TResult Function(LoginUserModel user) loginUser,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? isLoading,
     TResult? Function(LoginUserModel user)? loginUser,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? isLoading,
     TResult Function(LoginUserModel user)? loginUser,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_LoginUser value) loginUser,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_LoginUser value)? loginUser,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_LoginUser value)? loginUser,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LoginEventCopyWith<$Res> {
   factory $LoginEventCopyWith(
-    LoginEvent value,
-    $Res Function(LoginEvent) then,
-  ) = _$LoginEventCopyWithImpl<$Res, LoginEvent>;
+          LoginEvent value, $Res Function(LoginEvent) then) =
+      _$LoginEventCopyWithImpl<$Res, LoginEvent>;
 }
 
 /// @nodoc
@@ -68,17 +72,13 @@ class _$LoginEventCopyWithImpl<$Res, $Val extends LoginEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$IsLoadingImplCopyWith<$Res> {
   factory _$$IsLoadingImplCopyWith(
-    _$IsLoadingImpl value,
-    $Res Function(_$IsLoadingImpl) then,
-  ) = __$$IsLoadingImplCopyWithImpl<$Res>;
+          _$IsLoadingImpl value, $Res Function(_$IsLoadingImpl) then) =
+      __$$IsLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -86,12 +86,8 @@ class __$$IsLoadingImplCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res, _$IsLoadingImpl>
     implements _$$IsLoadingImplCopyWith<$Res> {
   __$$IsLoadingImplCopyWithImpl(
-    _$IsLoadingImpl _value,
-    $Res Function(_$IsLoadingImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
+      _$IsLoadingImpl _value, $Res Function(_$IsLoadingImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -183,9 +179,8 @@ abstract class _IsLoading implements LoginEvent {
 /// @nodoc
 abstract class _$$LoginUserImplCopyWith<$Res> {
   factory _$$LoginUserImplCopyWith(
-    _$LoginUserImpl value,
-    $Res Function(_$LoginUserImpl) then,
-  ) = __$$LoginUserImplCopyWithImpl<$Res>;
+          _$LoginUserImpl value, $Res Function(_$LoginUserImpl) then) =
+      __$$LoginUserImplCopyWithImpl<$Res>;
   @useResult
   $Res call({LoginUserModel user});
 
@@ -197,28 +192,22 @@ class __$$LoginUserImplCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res, _$LoginUserImpl>
     implements _$$LoginUserImplCopyWith<$Res> {
   __$$LoginUserImplCopyWithImpl(
-    _$LoginUserImpl _value,
-    $Res Function(_$LoginUserImpl) _then,
-  ) : super(_value, _then);
+      _$LoginUserImpl _value, $Res Function(_$LoginUserImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? user = null}) {
-    return _then(
-      _$LoginUserImpl(
-        user:
-            null == user
-                ? _value.user
-                : user // ignore: cast_nullable_to_non_nullable
-                    as LoginUserModel,
-      ),
-    );
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$LoginUserImpl(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as LoginUserModel,
+    ));
   }
 
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LoginUserModelCopyWith<$Res> get user {
@@ -252,9 +241,7 @@ class _$LoginUserImpl implements _LoginUser {
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginUserImplCopyWith<_$LoginUserImpl> get copyWith =>
@@ -328,10 +315,7 @@ abstract class _LoginUser implements LoginEvent {
       _$LoginUserImpl;
 
   LoginUserModel get user;
-
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoginUserImplCopyWith<_$LoginUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

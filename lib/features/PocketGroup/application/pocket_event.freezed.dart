@@ -12,8 +12,7 @@ part of 'pocket_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PocketEvent {
@@ -21,42 +20,47 @@ mixin _$PocketEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(PocketModel pocket) addPocket,
     required TResult Function(String id) removePocket,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(PocketModel pocket)? addPocket,
     TResult? Function(String id)? removePocket,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(PocketModel pocket)? addPocket,
     TResult Function(String id)? removePocket,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddPocket value) addPocket,
     required TResult Function(_RemovePocket value) removePocket,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddPocket value)? addPocket,
     TResult? Function(_RemovePocket value)? removePocket,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddPocket value)? addPocket,
     TResult Function(_RemovePocket value)? removePocket,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PocketEventCopyWith<$Res> {
   factory $PocketEventCopyWith(
-    PocketEvent value,
-    $Res Function(PocketEvent) then,
-  ) = _$PocketEventCopyWithImpl<$Res, PocketEvent>;
+          PocketEvent value, $Res Function(PocketEvent) then) =
+      _$PocketEventCopyWithImpl<$Res, PocketEvent>;
 }
 
 /// @nodoc
@@ -68,17 +72,13 @@ class _$PocketEventCopyWithImpl<$Res, $Val extends PocketEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of PocketEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$AddPocketImplCopyWith<$Res> {
   factory _$$AddPocketImplCopyWith(
-    _$AddPocketImpl value,
-    $Res Function(_$AddPocketImpl) then,
-  ) = __$$AddPocketImplCopyWithImpl<$Res>;
+          _$AddPocketImpl value, $Res Function(_$AddPocketImpl) then) =
+      __$$AddPocketImplCopyWithImpl<$Res>;
   @useResult
   $Res call({PocketModel pocket});
 
@@ -90,27 +90,22 @@ class __$$AddPocketImplCopyWithImpl<$Res>
     extends _$PocketEventCopyWithImpl<$Res, _$AddPocketImpl>
     implements _$$AddPocketImplCopyWith<$Res> {
   __$$AddPocketImplCopyWithImpl(
-    _$AddPocketImpl _value,
-    $Res Function(_$AddPocketImpl) _then,
-  ) : super(_value, _then);
+      _$AddPocketImpl _value, $Res Function(_$AddPocketImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of PocketEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? pocket = null}) {
-    return _then(
-      _$AddPocketImpl(
-        null == pocket
-            ? _value.pocket
-            : pocket // ignore: cast_nullable_to_non_nullable
-                as PocketModel,
-      ),
-    );
+  $Res call({
+    Object? pocket = null,
+  }) {
+    return _then(_$AddPocketImpl(
+      null == pocket
+          ? _value.pocket
+          : pocket // ignore: cast_nullable_to_non_nullable
+              as PocketModel,
+    ));
   }
 
-  /// Create a copy of PocketEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PocketModelCopyWith<$Res> get pocket {
@@ -144,9 +139,7 @@ class _$AddPocketImpl implements _AddPocket {
   @override
   int get hashCode => Object.hash(runtimeType, pocket);
 
-  /// Create a copy of PocketEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AddPocketImplCopyWith<_$AddPocketImpl> get copyWith =>
@@ -219,10 +212,7 @@ abstract class _AddPocket implements PocketEvent {
   const factory _AddPocket(final PocketModel pocket) = _$AddPocketImpl;
 
   PocketModel get pocket;
-
-  /// Create a copy of PocketEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AddPocketImplCopyWith<_$AddPocketImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -230,9 +220,8 @@ abstract class _AddPocket implements PocketEvent {
 /// @nodoc
 abstract class _$$RemovePocketImplCopyWith<$Res> {
   factory _$$RemovePocketImplCopyWith(
-    _$RemovePocketImpl value,
-    $Res Function(_$RemovePocketImpl) then,
-  ) = __$$RemovePocketImplCopyWithImpl<$Res>;
+          _$RemovePocketImpl value, $Res Function(_$RemovePocketImpl) then) =
+      __$$RemovePocketImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String id});
 }
@@ -242,23 +231,20 @@ class __$$RemovePocketImplCopyWithImpl<$Res>
     extends _$PocketEventCopyWithImpl<$Res, _$RemovePocketImpl>
     implements _$$RemovePocketImplCopyWith<$Res> {
   __$$RemovePocketImplCopyWithImpl(
-    _$RemovePocketImpl _value,
-    $Res Function(_$RemovePocketImpl) _then,
-  ) : super(_value, _then);
+      _$RemovePocketImpl _value, $Res Function(_$RemovePocketImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of PocketEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null}) {
-    return _then(
-      _$RemovePocketImpl(
-        null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                as String,
-      ),
-    );
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$RemovePocketImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -286,9 +272,7 @@ class _$RemovePocketImpl implements _RemovePocket {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  /// Create a copy of PocketEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RemovePocketImplCopyWith<_$RemovePocketImpl> get copyWith =>
@@ -361,10 +345,7 @@ abstract class _RemovePocket implements PocketEvent {
   const factory _RemovePocket(final String id) = _$RemovePocketImpl;
 
   String get id;
-
-  /// Create a copy of PocketEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RemovePocketImplCopyWith<_$RemovePocketImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

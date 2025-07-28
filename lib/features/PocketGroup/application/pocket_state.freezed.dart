@@ -12,8 +12,7 @@ part of 'pocket_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PocketState {
@@ -23,9 +22,7 @@ mixin _$PocketState {
   String get totalBudget => throw _privateConstructorUsedError;
   List<PocketModel> get pockets => throw _privateConstructorUsedError;
 
-  /// Create a copy of PocketState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PocketStateCopyWith<PocketState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -33,17 +30,15 @@ mixin _$PocketState {
 /// @nodoc
 abstract class $PocketStateCopyWith<$Res> {
   factory $PocketStateCopyWith(
-    PocketState value,
-    $Res Function(PocketState) then,
-  ) = _$PocketStateCopyWithImpl<$Res, PocketState>;
+          PocketState value, $Res Function(PocketState) then) =
+      _$PocketStateCopyWithImpl<$Res, PocketState>;
   @useResult
-  $Res call({
-    String id,
-    String title,
-    String totalExpense,
-    String totalBudget,
-    List<PocketModel> pockets,
-  });
+  $Res call(
+      {String id,
+      String title,
+      String totalExpense,
+      String totalBudget,
+      List<PocketModel> pockets});
 }
 
 /// @nodoc
@@ -56,8 +51,6 @@ class _$PocketStateCopyWithImpl<$Res, $Val extends PocketState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PocketState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -67,36 +60,28 @@ class _$PocketStateCopyWithImpl<$Res, $Val extends PocketState>
     Object? totalBudget = null,
     Object? pockets = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            title:
-                null == title
-                    ? _value.title
-                    : title // ignore: cast_nullable_to_non_nullable
-                        as String,
-            totalExpense:
-                null == totalExpense
-                    ? _value.totalExpense
-                    : totalExpense // ignore: cast_nullable_to_non_nullable
-                        as String,
-            totalBudget:
-                null == totalBudget
-                    ? _value.totalBudget
-                    : totalBudget // ignore: cast_nullable_to_non_nullable
-                        as String,
-            pockets:
-                null == pockets
-                    ? _value.pockets
-                    : pockets // ignore: cast_nullable_to_non_nullable
-                        as List<PocketModel>,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalExpense: null == totalExpense
+          ? _value.totalExpense
+          : totalExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalBudget: null == totalBudget
+          ? _value.totalBudget
+          : totalBudget // ignore: cast_nullable_to_non_nullable
+              as String,
+      pockets: null == pockets
+          ? _value.pockets
+          : pockets // ignore: cast_nullable_to_non_nullable
+              as List<PocketModel>,
+    ) as $Val);
   }
 }
 
@@ -104,18 +89,16 @@ class _$PocketStateCopyWithImpl<$Res, $Val extends PocketState>
 abstract class _$$PocketStateImplCopyWith<$Res>
     implements $PocketStateCopyWith<$Res> {
   factory _$$PocketStateImplCopyWith(
-    _$PocketStateImpl value,
-    $Res Function(_$PocketStateImpl) then,
-  ) = __$$PocketStateImplCopyWithImpl<$Res>;
+          _$PocketStateImpl value, $Res Function(_$PocketStateImpl) then) =
+      __$$PocketStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String title,
-    String totalExpense,
-    String totalBudget,
-    List<PocketModel> pockets,
-  });
+  $Res call(
+      {String id,
+      String title,
+      String totalExpense,
+      String totalBudget,
+      List<PocketModel> pockets});
 }
 
 /// @nodoc
@@ -123,12 +106,9 @@ class __$$PocketStateImplCopyWithImpl<$Res>
     extends _$PocketStateCopyWithImpl<$Res, _$PocketStateImpl>
     implements _$$PocketStateImplCopyWith<$Res> {
   __$$PocketStateImplCopyWithImpl(
-    _$PocketStateImpl _value,
-    $Res Function(_$PocketStateImpl) _then,
-  ) : super(_value, _then);
+      _$PocketStateImpl _value, $Res Function(_$PocketStateImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of PocketState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,48 +118,41 @@ class __$$PocketStateImplCopyWithImpl<$Res>
     Object? totalBudget = null,
     Object? pockets = null,
   }) {
-    return _then(
-      _$PocketStateImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        title:
-            null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                    as String,
-        totalExpense:
-            null == totalExpense
-                ? _value.totalExpense
-                : totalExpense // ignore: cast_nullable_to_non_nullable
-                    as String,
-        totalBudget:
-            null == totalBudget
-                ? _value.totalBudget
-                : totalBudget // ignore: cast_nullable_to_non_nullable
-                    as String,
-        pockets:
-            null == pockets
-                ? _value._pockets
-                : pockets // ignore: cast_nullable_to_non_nullable
-                    as List<PocketModel>,
-      ),
-    );
+    return _then(_$PocketStateImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalExpense: null == totalExpense
+          ? _value.totalExpense
+          : totalExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalBudget: null == totalBudget
+          ? _value.totalBudget
+          : totalBudget // ignore: cast_nullable_to_non_nullable
+              as String,
+      pockets: null == pockets
+          ? _value._pockets
+          : pockets // ignore: cast_nullable_to_non_nullable
+              as List<PocketModel>,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$PocketStateImpl implements _PocketState {
-  const _$PocketStateImpl({
-    this.id = '',
-    this.title = '',
-    this.totalExpense = '',
-    this.totalBudget = '',
-    final List<PocketModel> pockets = const [],
-  }) : _pockets = pockets;
+  const _$PocketStateImpl(
+      {this.id = '',
+      this.title = '',
+      this.totalExpense = '',
+      this.totalBudget = '',
+      final List<PocketModel> pockets = const []})
+      : _pockets = pockets;
 
   @override
   @JsonKey()
@@ -222,18 +195,10 @@ class _$PocketStateImpl implements _PocketState {
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    title,
-    totalExpense,
-    totalBudget,
-    const DeepCollectionEquality().hash(_pockets),
-  );
+  int get hashCode => Object.hash(runtimeType, id, title, totalExpense,
+      totalBudget, const DeepCollectionEquality().hash(_pockets));
 
-  /// Create a copy of PocketState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PocketStateImplCopyWith<_$PocketStateImpl> get copyWith =>
@@ -241,13 +206,12 @@ class _$PocketStateImpl implements _PocketState {
 }
 
 abstract class _PocketState implements PocketState {
-  const factory _PocketState({
-    final String id,
-    final String title,
-    final String totalExpense,
-    final String totalBudget,
-    final List<PocketModel> pockets,
-  }) = _$PocketStateImpl;
+  const factory _PocketState(
+      {final String id,
+      final String title,
+      final String totalExpense,
+      final String totalBudget,
+      final List<PocketModel> pockets}) = _$PocketStateImpl;
 
   @override
   String get id;
@@ -259,11 +223,8 @@ abstract class _PocketState implements PocketState {
   String get totalBudget;
   @override
   List<PocketModel> get pockets;
-
-  /// Create a copy of PocketState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PocketStateImplCopyWith<_$PocketStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

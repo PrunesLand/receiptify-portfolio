@@ -28,10 +28,15 @@ void signalFirebaseFailed(Object error) {
 }
 
 void setupServiceLocator() {
-  getIt.registerSingleton<Future<void>>(firebaseReadyFuture, instanceName: 'firebaseReady');
+  getIt.registerSingleton<Future<void>>(
+    firebaseReadyFuture,
+    instanceName: 'firebaseReady',
+  );
   getIt.registerLazySingleton(() => DocumentBloc());
 
   getIt.registerLazySingleton(() => TokenStorageService());
+
+  // getIt.registerLazySingleton(() => UserStorageService());
 
   getIt.registerLazySingleton<Dio>(() {
     final dio = Dio();

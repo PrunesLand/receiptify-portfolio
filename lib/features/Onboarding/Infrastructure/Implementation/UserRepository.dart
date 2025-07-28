@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
 
-import '../../../../core/TokenStorageService.dart';
+import '../../../../core/Storage/TokenStorageService.dart';
 
 class UserRepository implements IUserRepository {
   final UserRepositoryService _userRepositoryService;

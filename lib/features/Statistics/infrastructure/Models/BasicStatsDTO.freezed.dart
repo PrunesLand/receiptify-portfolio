@@ -12,8 +12,7 @@ part of 'BasicStatsDTO.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BasicStatsDTO _$BasicStatsDTOFromJson(Map<String, dynamic> json) {
   return _BasicStatsDTO.fromJson(json);
@@ -28,12 +27,8 @@ mixin _$BasicStatsDTO {
   @JsonKey(name: 'remaining_budget')
   String get remainingBudget => throw _privateConstructorUsedError;
 
-  /// Serializes this BasicStatsDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BasicStatsDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BasicStatsDTOCopyWith<BasicStatsDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -41,15 +36,13 @@ mixin _$BasicStatsDTO {
 /// @nodoc
 abstract class $BasicStatsDTOCopyWith<$Res> {
   factory $BasicStatsDTOCopyWith(
-    BasicStatsDTO value,
-    $Res Function(BasicStatsDTO) then,
-  ) = _$BasicStatsDTOCopyWithImpl<$Res, BasicStatsDTO>;
+          BasicStatsDTO value, $Res Function(BasicStatsDTO) then) =
+      _$BasicStatsDTOCopyWithImpl<$Res, BasicStatsDTO>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'total_expense') String totalExpense,
-    @JsonKey(name: 'date_last_expense') String dateOfLastExpense,
-    @JsonKey(name: 'remaining_budget') String remainingBudget,
-  });
+  $Res call(
+      {@JsonKey(name: 'total_expense') String totalExpense,
+      @JsonKey(name: 'date_last_expense') String dateOfLastExpense,
+      @JsonKey(name: 'remaining_budget') String remainingBudget});
 }
 
 /// @nodoc
@@ -62,8 +55,6 @@ class _$BasicStatsDTOCopyWithImpl<$Res, $Val extends BasicStatsDTO>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BasicStatsDTO
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -71,26 +62,20 @@ class _$BasicStatsDTOCopyWithImpl<$Res, $Val extends BasicStatsDTO>
     Object? dateOfLastExpense = null,
     Object? remainingBudget = null,
   }) {
-    return _then(
-      _value.copyWith(
-            totalExpense:
-                null == totalExpense
-                    ? _value.totalExpense
-                    : totalExpense // ignore: cast_nullable_to_non_nullable
-                        as String,
-            dateOfLastExpense:
-                null == dateOfLastExpense
-                    ? _value.dateOfLastExpense
-                    : dateOfLastExpense // ignore: cast_nullable_to_non_nullable
-                        as String,
-            remainingBudget:
-                null == remainingBudget
-                    ? _value.remainingBudget
-                    : remainingBudget // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      totalExpense: null == totalExpense
+          ? _value.totalExpense
+          : totalExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+      dateOfLastExpense: null == dateOfLastExpense
+          ? _value.dateOfLastExpense
+          : dateOfLastExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+      remainingBudget: null == remainingBudget
+          ? _value.remainingBudget
+          : remainingBudget // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -98,16 +83,14 @@ class _$BasicStatsDTOCopyWithImpl<$Res, $Val extends BasicStatsDTO>
 abstract class _$$BasicStatsDTOImplCopyWith<$Res>
     implements $BasicStatsDTOCopyWith<$Res> {
   factory _$$BasicStatsDTOImplCopyWith(
-    _$BasicStatsDTOImpl value,
-    $Res Function(_$BasicStatsDTOImpl) then,
-  ) = __$$BasicStatsDTOImplCopyWithImpl<$Res>;
+          _$BasicStatsDTOImpl value, $Res Function(_$BasicStatsDTOImpl) then) =
+      __$$BasicStatsDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'total_expense') String totalExpense,
-    @JsonKey(name: 'date_last_expense') String dateOfLastExpense,
-    @JsonKey(name: 'remaining_budget') String remainingBudget,
-  });
+  $Res call(
+      {@JsonKey(name: 'total_expense') String totalExpense,
+      @JsonKey(name: 'date_last_expense') String dateOfLastExpense,
+      @JsonKey(name: 'remaining_budget') String remainingBudget});
 }
 
 /// @nodoc
@@ -115,12 +98,9 @@ class __$$BasicStatsDTOImplCopyWithImpl<$Res>
     extends _$BasicStatsDTOCopyWithImpl<$Res, _$BasicStatsDTOImpl>
     implements _$$BasicStatsDTOImplCopyWith<$Res> {
   __$$BasicStatsDTOImplCopyWithImpl(
-    _$BasicStatsDTOImpl _value,
-    $Res Function(_$BasicStatsDTOImpl) _then,
-  ) : super(_value, _then);
+      _$BasicStatsDTOImpl _value, $Res Function(_$BasicStatsDTOImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of BasicStatsDTO
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,36 +108,30 @@ class __$$BasicStatsDTOImplCopyWithImpl<$Res>
     Object? dateOfLastExpense = null,
     Object? remainingBudget = null,
   }) {
-    return _then(
-      _$BasicStatsDTOImpl(
-        totalExpense:
-            null == totalExpense
-                ? _value.totalExpense
-                : totalExpense // ignore: cast_nullable_to_non_nullable
-                    as String,
-        dateOfLastExpense:
-            null == dateOfLastExpense
-                ? _value.dateOfLastExpense
-                : dateOfLastExpense // ignore: cast_nullable_to_non_nullable
-                    as String,
-        remainingBudget:
-            null == remainingBudget
-                ? _value.remainingBudget
-                : remainingBudget // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+    return _then(_$BasicStatsDTOImpl(
+      totalExpense: null == totalExpense
+          ? _value.totalExpense
+          : totalExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+      dateOfLastExpense: null == dateOfLastExpense
+          ? _value.dateOfLastExpense
+          : dateOfLastExpense // ignore: cast_nullable_to_non_nullable
+              as String,
+      remainingBudget: null == remainingBudget
+          ? _value.remainingBudget
+          : remainingBudget // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$BasicStatsDTOImpl implements _BasicStatsDTO {
-  const _$BasicStatsDTOImpl({
-    @JsonKey(name: 'total_expense') required this.totalExpense,
-    @JsonKey(name: 'date_last_expense') required this.dateOfLastExpense,
-    @JsonKey(name: 'remaining_budget') required this.remainingBudget,
-  });
+  const _$BasicStatsDTOImpl(
+      {@JsonKey(name: 'total_expense') required this.totalExpense,
+      @JsonKey(name: 'date_last_expense') required this.dateOfLastExpense,
+      @JsonKey(name: 'remaining_budget') required this.remainingBudget});
 
   factory _$BasicStatsDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$BasicStatsDTOImplFromJson(json);
@@ -190,18 +164,12 @@ class _$BasicStatsDTOImpl implements _BasicStatsDTO {
                 other.remainingBudget == remainingBudget));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    totalExpense,
-    dateOfLastExpense,
-    remainingBudget,
-  );
+      runtimeType, totalExpense, dateOfLastExpense, remainingBudget);
 
-  /// Create a copy of BasicStatsDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BasicStatsDTOImplCopyWith<_$BasicStatsDTOImpl> get copyWith =>
@@ -209,16 +177,19 @@ class _$BasicStatsDTOImpl implements _BasicStatsDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BasicStatsDTOImplToJson(this);
+    return _$$BasicStatsDTOImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _BasicStatsDTO implements BasicStatsDTO {
-  const factory _BasicStatsDTO({
-    @JsonKey(name: 'total_expense') required final String totalExpense,
-    @JsonKey(name: 'date_last_expense') required final String dateOfLastExpense,
-    @JsonKey(name: 'remaining_budget') required final String remainingBudget,
-  }) = _$BasicStatsDTOImpl;
+  const factory _BasicStatsDTO(
+      {@JsonKey(name: 'total_expense') required final String totalExpense,
+      @JsonKey(name: 'date_last_expense')
+      required final String dateOfLastExpense,
+      @JsonKey(name: 'remaining_budget')
+      required final String remainingBudget}) = _$BasicStatsDTOImpl;
 
   factory _BasicStatsDTO.fromJson(Map<String, dynamic> json) =
       _$BasicStatsDTOImpl.fromJson;
@@ -232,11 +203,8 @@ abstract class _BasicStatsDTO implements BasicStatsDTO {
   @override
   @JsonKey(name: 'remaining_budget')
   String get remainingBudget;
-
-  /// Create a copy of BasicStatsDTO
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BasicStatsDTOImplCopyWith<_$BasicStatsDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

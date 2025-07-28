@@ -12,17 +12,14 @@ part of 'LoginUserDTO.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LoginUserDTO {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginUserDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LoginUserDTOCopyWith<LoginUserDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -30,9 +27,8 @@ mixin _$LoginUserDTO {
 /// @nodoc
 abstract class $LoginUserDTOCopyWith<$Res> {
   factory $LoginUserDTOCopyWith(
-    LoginUserDTO value,
-    $Res Function(LoginUserDTO) then,
-  ) = _$LoginUserDTOCopyWithImpl<$Res, LoginUserDTO>;
+          LoginUserDTO value, $Res Function(LoginUserDTO) then) =
+      _$LoginUserDTOCopyWithImpl<$Res, LoginUserDTO>;
   @useResult
   $Res call({String email, String password});
 }
@@ -47,26 +43,22 @@ class _$LoginUserDTOCopyWithImpl<$Res, $Val extends LoginUserDTO>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginUserDTO
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? email = null, Object? password = null}) {
-    return _then(
-      _value.copyWith(
-            email:
-                null == email
-                    ? _value.email
-                    : email // ignore: cast_nullable_to_non_nullable
-                        as String,
-            password:
-                null == password
-                    ? _value.password
-                    : password // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -74,9 +66,8 @@ class _$LoginUserDTOCopyWithImpl<$Res, $Val extends LoginUserDTO>
 abstract class _$$LoginUserDTOImplCopyWith<$Res>
     implements $LoginUserDTOCopyWith<$Res> {
   factory _$$LoginUserDTOImplCopyWith(
-    _$LoginUserDTOImpl value,
-    $Res Function(_$LoginUserDTOImpl) then,
-  ) = __$$LoginUserDTOImplCopyWithImpl<$Res>;
+          _$LoginUserDTOImpl value, $Res Function(_$LoginUserDTOImpl) then) =
+      __$$LoginUserDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String email, String password});
@@ -87,29 +78,25 @@ class __$$LoginUserDTOImplCopyWithImpl<$Res>
     extends _$LoginUserDTOCopyWithImpl<$Res, _$LoginUserDTOImpl>
     implements _$$LoginUserDTOImplCopyWith<$Res> {
   __$$LoginUserDTOImplCopyWithImpl(
-    _$LoginUserDTOImpl _value,
-    $Res Function(_$LoginUserDTOImpl) _then,
-  ) : super(_value, _then);
+      _$LoginUserDTOImpl _value, $Res Function(_$LoginUserDTOImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of LoginUserDTO
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? email = null, Object? password = null}) {
-    return _then(
-      _$LoginUserDTOImpl(
-        email:
-            null == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                    as String,
-        password:
-            null == password
-                ? _value.password
-                : password // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$LoginUserDTOImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -141,9 +128,7 @@ class _$LoginUserDTOImpl implements _LoginUserDTO {
   @override
   int get hashCode => Object.hash(runtimeType, email, password);
 
-  /// Create a copy of LoginUserDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginUserDTOImplCopyWith<_$LoginUserDTOImpl> get copyWith =>
@@ -151,20 +136,16 @@ class _$LoginUserDTOImpl implements _LoginUserDTO {
 }
 
 abstract class _LoginUserDTO implements LoginUserDTO {
-  const factory _LoginUserDTO({
-    required final String email,
-    required final String password,
-  }) = _$LoginUserDTOImpl;
+  const factory _LoginUserDTO(
+      {required final String email,
+      required final String password}) = _$LoginUserDTOImpl;
 
   @override
   String get email;
   @override
   String get password;
-
-  /// Create a copy of LoginUserDTO
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoginUserDTOImplCopyWith<_$LoginUserDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
