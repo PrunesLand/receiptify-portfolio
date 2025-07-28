@@ -8,20 +8,13 @@ class DocumentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = DateTime.now();
-
     return isLoading
         ? Shimmer.fromColors(
           baseColor: Colors.grey[300]!,
           highlightColor: Colors.grey[100]!,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Card(
-              child: Container(
-                height: 100, // Adjust height as needed
-                width: double.infinity,
-              ),
-            ),
+            child: Card(child: Container(height: 100, width: double.infinity)),
           ),
         )
         : GestureDetector(
@@ -30,7 +23,7 @@ class DocumentCard extends StatelessWidget {
             child: Card(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text(text ?? 'No Text')],
+                children: [Text("\$${text}")],
               ),
             ),
           ),

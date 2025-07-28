@@ -3,12 +3,9 @@ import 'dart:typed_data';
 
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:receipt_app/features/Document/Index.dart';
 import 'package:uuid/uuid.dart';
-
-import '../../domain/models/Image/ImageModel.dart';
-import 'document_event.dart';
-import 'document_state.dart';
 
 class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
   DocumentBloc() : super(const DocumentState()) {
@@ -17,24 +14,54 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
         loading: () async {
           emit(state.copyWith(isLoading: true));
         },
-        addImage: (File file) async {
-          final uuid = Uuid().v4();
-
-          final addedImage = ImageModel(
-            id: uuid,
-            content: '',
-            file: File(file.path),
+        removeImage: (String id) async {
+          final imageToRemove = state.list.firstWhere(
+            (item) => item!.id == id,
+            orElse: () => null,
           );
 
-          final newList = [addedImage, ...state.list];
-
-          emit(state.copyWith(list: newList, OcrLoading: true));
-        },
-        removeImage: (String id) {
+          double updatedTotalExpense =
+              double.tryParse(state.totalExpenseMain) ?? 0.0;
+          if (imageToRemove != null && imageToRemove.file != null) {
+            try {
+              final file = File(imageToRemove.file!.path);
+              if (await file.exists()) {
+                await file.delete();
+                print('Deleted file: ${file.path}');
+              }
+              final removedAmount =
+                  double.tryParse(imageToRemove.content) ?? 0.0;
+              updatedTotalExpense -= removedAmount;
+            } catch (e) {
+              print('Error deleting file: $e');
+            }
+          }
           final tempList = state.list.where((item) => item!.id != id).toList();
-          emit(state.copyWith(list: tempList));
+          emit(
+            state.copyWith(
+              list: tempList,
+              totalExpenseMain: updatedTotalExpense.toStringAsFixed(2),
+            ),
+          );
         },
-        processImage: () async {
+        processImage: (File file) async {
+          List<ImageModel?> newList = state.list;
+          try {
+            final uuid = Uuid().v4();
+            final savedFile = await saveImageToMainPocketDirectory(file, uuid);
+
+            final addedImage = ImageModel(
+              id: uuid,
+              content: '',
+              file: savedFile,
+            );
+
+            newList = [addedImage, ...state.list];
+          } catch (e) {
+            print('Error adding image: $e');
+          }
+          emit(state.copyWith(list: newList, OcrLoading: true));
+
           if (state.list.isEmpty || state.list.first?.file == null) {
             print('No image file to process.');
             emit(state.copyWith(OcrLoading: false));
@@ -54,15 +81,9 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               'Original image size: ${await originalImageFile.length() / (1024 * 1024)} MB',
             );
 
-            final Uint8List? compressedImageBytes =
-                await FlutterImageCompress.compressWithFile(
-                  // ignore: cascade_invocations
-                  originalImageFile.absolute.path,
-                  quality: 70,
-                  minWidth: 1280,
-                  minHeight: 1024,
-                  format: CompressFormat.jpeg,
-                );
+            final Uint8List? compressedImageBytes = await compressImage(
+              originalImageFile,
+            );
 
             Uint8List imageBytesToSend;
             compressionStopwatch.start();
@@ -139,9 +160,8 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             final list = updatedList;
             double total = 0.0;
             for (final item in list) {
-              total += double.tryParse(item.content ?? '0.0') ?? 0.0;
+              total += double.tryParse(item.content) ?? 0.0;
             }
-
             emit(
               state.copyWith(
                 OcrLoading: false,
@@ -158,15 +178,15 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             return;
           }
         },
-        updateTotalExpense: () {
-          final list = state.list;
-          double total = 0.0;
-          for (final item in list) {
-            // Use tryParse to handle potential formatting issues gracefully
-            total += double.tryParse(item?.content ?? '0.0') ?? 0.0;
-          }
+        loadSavedFiles: () async {
+          final directory = await getApplicationDocumentsDirectory();
+          final appDirPath = directory.path;
+          final imageDir = Directory(appDirPath);
 
-          emit(state.copyWith(totalExpenseMain: total.toString()));
+          if (!await imageDir.exists()) {
+            print('Image directory does not exist.');
+            return;
+          }
         },
       );
     });

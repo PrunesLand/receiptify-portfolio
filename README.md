@@ -28,7 +28,7 @@ A new Flutter project.
 
 If you make changes to your model classes, rebuild the generated code with:
 ```sh
-dart run build_runner build --delete-conflicting-outputs
+dart run build_runner build --delete-conflicting-outputs -v
 ```
 
 ## Getting Started

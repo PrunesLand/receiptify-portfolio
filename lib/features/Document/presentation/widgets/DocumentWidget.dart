@@ -28,7 +28,9 @@ class _DocumentWidgetState extends State<DocumentWidget> {
               childAspectRatio: 1.0,
             ),
             itemBuilder: (context, index) {
-              final itemId = state.list[index]!.id;
+              final item = state.list[index];
+              final itemId = item!.id;
+
               return GestureDetector(
                 onTap: () {
                   if (!(index == 0 && state.OcrLoading)) {
@@ -38,6 +40,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                           (context) => ItemSelectSheet(
                             title: 'Receipt Summary',
                             description: state.list[index]!.content,
+                            thumbnail: state.list[index]!.file!,
                           ),
                     );
                   }
@@ -49,10 +52,12 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                       context: context,
                       builder: (context) {
                         return DocumentDeleteDialog(
-                          onFileSelected:
-                              () => getIt<DocumentBloc>().add(
-                                DocumentEvent.removeImage(id: itemId),
-                              ),
+                          onFileSelected: () {
+                            getIt<DocumentBloc>().add(
+                              DocumentEvent.removeImage(id: itemId),
+                            );
+                            Navigator.of(context).pop();
+                          },
                         );
                       },
                     );
@@ -62,9 +67,9 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                     index == 0
                         ? DocumentCard(
                           isLoading: state.OcrLoading,
-                          text: index.toString(),
+                          text: item.content,
                         )
-                        : DocumentCard(text: index.toString()),
+                        : DocumentCard(text: item.content),
               );
             },
           ),
@@ -85,9 +90,8 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                   onFileSelected: () {
                     Navigator.pop(context);
                     getIt<DocumentBloc>().add(
-                      DocumentEvent.addImage(file: image),
+                      DocumentEvent.processImage(file: image),
                     );
-                    getIt<DocumentBloc>().add(DocumentEvent.processImage());
                   },
                 ),
           );

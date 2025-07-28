@@ -39,50 +39,106 @@ class StatsBaseScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Flexible(
-                  flex: 1,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: ElevatedButton(
-                            onPressed: () async {
-                              final image = await pickImageFromGallery();
-
-                              if (image != null) {
-                                showDialog(
-                                  context: context,
-                                  builder:
-                                      (context) => FileSelectModal(
-                                        file: image,
-                                        onFileSelected: () {
-                                          Navigator.pop(context);
-                                          getIt<DocumentBloc>().add(
-                                            DocumentEvent.addImage(file: image),
-                                          );
-                                          getIt<DocumentBloc>().add(
-                                            DocumentEvent.processImage(),
-                                          );
-                                        },
-                                      ),
-                                );
-                              } else {
-                                showErrorSnackBar();
-                              }
-                            },
-                            child: Text('Add Document'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 Flexible(flex: 6, child: DocumentWidget()),
               ],
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ElevatedButton(
+                onPressed: () async {
+                  final image = await pickImageFromGallery();
+
+                  if (image != null) {
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) => FileSelectModal(
+                            file: image,
+                            onFileSelected: () {
+                              Navigator.pop(context);
+                              getIt<DocumentBloc>().add(
+                                DocumentEvent.processImage(file: image),
+                              );
+                            },
+                          ),
+                    );
+                  } else {
+                    showErrorSnackBar();
+                  }
+                },
+                child: Text('Add Document'),
+              ),
             ),
           ),
     );
   }
 }
+
+//               children: [
+//                 Flexible(
+//                   flex: 3,
+//                   child: Column(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       Center(
+//                         child: Column(
+//                           children: [
+//                             Text('Your total expense'),
+//                             Text(
+//                               "\$${state.totalExpenseMain}",
+//                               style: TextStyle(fontSize: 40),
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 Flexible(
+//                   flex: 1,
+//                   child: Center(
+//                     child: Row(
+//                       mainAxisAlignment: MainAxisAlignment.center,
+//                       children: [
+//                         Padding(
+//                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
+//                           child: ElevatedButton(
+//                             onPressed: () async {
+//                               final image = await pickImageFromGallery();
+//
+//                               if (image != null) {
+//                                 showDialog(
+//                                   context: context,
+//                                   builder:
+//                                       (context) => FileSelectModal(
+//                                         file: image,
+//                                         onFileSelected: () {
+//                                           Navigator.pop(context);
+//                                           getIt<DocumentBloc>().add(
+//                                             DocumentEvent.processImage(
+//                                               file: image,
+//                                             ),
+//                                           );
+//                                         },
+//                                       ),
+//                                 );
+//                               } else {
+//                                 showErrorSnackBar();
+//                               }
+//                             },
+//                             child: Text('Add Document'),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//                 Flexible(flex: 6, child: DocumentWidget()),
+//               ],
+//             ),
+//           ),
+//     );
+//   }
+// }

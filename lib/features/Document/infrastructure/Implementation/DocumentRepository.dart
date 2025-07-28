@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 
 import '../../domain/models/Image/ImageModel.dart';
@@ -18,7 +16,7 @@ class DocumentRepository implements IDocumentRepository {
       final documentDTO = DocumentDTO(
         id: imageModel.id,
         content: imageModel.content,
-        file: imageModel.file ?? File(''),
+        filePath: '',
       );
       await _documentRepositoryService.uploadDocument(documentDTO);
     } on DioException {

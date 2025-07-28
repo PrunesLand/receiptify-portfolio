@@ -9,6 +9,6 @@ class DocumentDTO with _$DocumentDTO {
   const factory DocumentDTO({
     required String id,
     required String content,
-    required File file,
+    required String filePath,
   }) = _DocumentDTO;
 }
