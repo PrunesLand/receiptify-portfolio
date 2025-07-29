@@ -6,7 +6,7 @@ part 'User.g.dart';
 @Name("User")
 class User {
   @Name("id")
-  Id id = Isar.autoIncrement;
+  Id id;
 
   @Name("name")
   String? name;
@@ -15,7 +15,11 @@ class User {
   MainPocket mainPocket = MainPocket();
 
   @Name("SubPockets")
-  SubPocket subPocket = SubPocket();
+  List<SubPocket?> subPocket = [];
+
+  User({this.id = 1, this.name}); // Defaulting to ID 1
+
+  static const int singleUserId = 1;
 }
 
 @embedded
