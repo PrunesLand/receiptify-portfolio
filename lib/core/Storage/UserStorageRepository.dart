@@ -1,17 +1,18 @@
-import 'package:isar/isar.dart';
+import 'dart:typed_data';
 
-import '../Schema/User.dart';
+import 'package:isar/isar.dart';
+import 'package:receipt_app/core/index.dart';
+
 // Import your User model (e.g., user.dart)
 // import 'path_to_your_model/user.dart'; // Assuming User class is defined here
 
-class UserStorageRepository {
+class UserStorageRepository implements IUserStorageRepository {
   final Isar isar;
 
   static const int _singleUserId = 1;
 
   UserStorageRepository(this.isar);
 
-  // --- Create ---
   Future<User> getOrCreateUser() async {
     User? user = await isar.users.get(_singleUserId);
     if (user == null) {
@@ -27,6 +28,65 @@ class UserStorageRepository {
       });
     }
     return user;
+  }
+
+  Future<void> addDocumentToMainPocket(
+    Uint8List imageBytes,
+    String fileName,
+    String totalExpense,
+  ) async {
+    try {
+      await isar.writeTxn(() async {
+        final user = await isar.users.get(_singleUserId);
+        if (user == null) {
+          throw Exception("Single user not found.");
+        }
+
+        final doc =
+            Document()
+              ..fileName = fileName
+              ..totalExpense = totalExpense
+              ..image = imageBytes;
+
+        final updatedExpenses = List<Document>.from(user.mainPocket.expenses);
+
+        updatedExpenses.add(doc);
+
+        user.mainPocket.expenses = updatedExpenses;
+
+        await isar.users.put(user);
+        print(
+          "Document '$fileName' added to MainPocket for user $_singleUserId.",
+        ); // Good for logging
+      });
+    } catch (e) {
+      print("Error adding document to MainPocket: $e");
+    }
+  }
+
+  Future<void> deleteDocumentFromMainPocketByFileName(String fileName) async {
+    bool removed = false;
+    await isar.writeTxn(() async {
+      final user = await isar.users.get(_singleUserId);
+      if (user == null) {
+        throw Exception("Single user not found.");
+      }
+
+      int initialLength = user.mainPocket.expenses.length;
+      user.mainPocket.expenses.removeWhere((doc) => doc.fileName == fileName);
+
+      if (user.mainPocket.expenses.length < initialLength) {
+        await isar.users.put(user);
+        removed = true;
+        print(
+          "Document with fileName '$fileName' removed from MainPocket for user $_singleUserId.",
+        );
+      } else {
+        print(
+          "Document with fileName '$fileName' not found in MainPocket for user $_singleUserId.",
+        );
+      }
+    });
   }
 
   Future<void> addSubPocket(SubPocket newSubPocketData) async {
@@ -87,74 +147,5 @@ class UserStorageRepository {
       user.subPocket.removeAt(index);
       await isar.users.put(user);
     });
-  }
-
-  // Future<void> create
-
-  // Future<List<int>> createMultipleUsers(List<User> users) async {
-  //   return await isar.writeTxn(() async {
-  //     return await isar.users.putAll(users);
-  //   });
-  // }
-
-  // --- Read ---
-  Future<User?> getUserById(int id) async {
-    return await isar.users.get(id);
-  }
-
-  // Future<List<User>> getAllUsers() async {
-  //   return await isar.users.where().findAll();
-  // }
-
-  Future<User?> findFirstUserByName(String name) async {
-    return await isar.users.filter().nameEqualTo(name).findFirst();
-  }
-
-  // You can add more complex query methods here
-  // For example, using sorted queries, distinct values, etc.
-  Future<List<User>> getUsersSortedByName() async {
-    return await isar.users.where().sortByName().findAll();
-  }
-
-  // --- Update ---
-  // Isar's `put` operation handles both create and update.
-  // If an object with the same ID exists, it's updated. Otherwise, it's created.
-  Future<int> updateUser(User user) async {
-    // Ensure the user object has an existing ID if you intend to update
-    if (user.id == Isar.autoIncrement || user.id == null) {
-      // Or however you handle new IDs vs existing IDs
-      throw ArgumentError('User must have a valid ID to be updated.');
-    }
-    return await isar.writeTxn(() async {
-      return await isar.users.put(user);
-    });
-  }
-
-  // --- Delete ---
-  Future<bool> deleteUserById(int id) async {
-    return await isar.writeTxn(() async {
-      return await isar.users.delete(id);
-    });
-  }
-
-  Future<int> deleteMultipleUsersByIds(List<int> ids) async {
-    return await isar.writeTxn(() async {
-      return await isar.users.deleteAll(ids);
-    });
-  }
-
-  Future<int> clearAllUsers() async {
-    return await isar.writeTxn(() async {
-      return await isar.users.where().deleteAll();
-    });
-  }
-
-  // --- Watchers (for reactive updates) ---
-  Stream<void> watchUsers() {
-    return isar.users.watchLazy();
-  }
-
-  Stream<User?> watchUser(int id) {
-    return isar.users.watchObject(id);
   }
 }

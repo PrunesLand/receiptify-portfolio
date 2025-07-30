@@ -41,6 +41,13 @@ Future<File> saveImageToMainPocketDirectory(File file, String fileName) async {
   return fileToStore;
 }
 
+Future<void> removeImageFromMainPocketDirectory(String fileName) async {
+  final file = await getImageFromMainPocketDirectory(fileName);
+  if (file != null && await file.exists()) {
+    await file.delete();
+  }
+}
+
 Future<File?> getImageFromMainPocketDirectory(String fileName) async {
   final appDocDir = await getApplicationDocumentsDirectory();
   final file = File('${appDocDir.path}/MainPocket/$fileName');

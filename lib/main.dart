@@ -41,7 +41,15 @@ void main() async {
   //   print('Error activating Firebase App Check: $e');
   //   // Handle activation error - your app might not work with backend services
   // }
-  setupServiceLocator();
+  try {
+    await setupServiceLocator(); // CRUCIAL
+    print("Main: Service locator setup completed successfully.");
+  } catch (e, s) {
+    print("Main: Service locator setup FAILED: $e");
+    print("Main: Stack Trace: $s");
+    // Optionally: show an error screen instead of runApp if setup fails
+    return;
+  }
 
   runApp(const MyApp());
 }

@@ -3,11 +3,13 @@ import 'dart:typed_data';
 
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:receipt_app/core/index.dart';
 import 'package:receipt_app/features/Document/Index.dart';
 import 'package:uuid/uuid.dart';
 
 class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
-  DocumentBloc() : super(const DocumentState()) {
+  final IUserStorageRepository _userStorageRepository;
+  DocumentBloc(this._userStorageRepository) : super(const DocumentState()) {
     on<DocumentEvent>((event, emit) async {
       await event.when(
         loading: () async {
@@ -42,8 +44,12 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               totalExpenseMain: updatedTotalExpense.toStringAsFixed(2),
             ),
           );
+          await _userStorageRepository.deleteDocumentFromMainPocketByFileName(
+            id,
+          );
         },
         processImage: (File file) async {
+          // -- Add image to state list --
           List<ImageModel?> newList = state.list;
           try {
             final uuid = Uuid().v4();
@@ -61,6 +67,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
           }
           emit(state.copyWith(list: newList, OcrLoading: true));
 
+          // -- Check if list is empty --
           if (state.list.isEmpty || state.list.first?.file == null) {
             print('No image file to process.');
             emit(state.copyWith(OcrLoading: false));
@@ -69,44 +76,17 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
 
           emit(state.copyWith(OcrLoading: true));
 
+          // -- AI image feeding process --
           final ImageModel itemToProcess = state.list.first!;
-          final File originalImageFile = itemToProcess.file!;
+          final Uint8List originalImageFile =
+              await itemToProcess.file!.readAsBytes();
 
           final totalStopwatch = Stopwatch()..start();
-          final compressionStopwatch = Stopwatch();
           final geminiStopwatch = Stopwatch();
+
           try {
-            print(
-              'Original image size: ${await originalImageFile.length() / (1024 * 1024)} MB',
-            );
-
-            final Uint8List? compressedImageBytes = await compressImage(
-              originalImageFile,
-            );
-
-            Uint8List imageBytesToSend;
-            compressionStopwatch.start();
-            // Simulate compression time
-            // await Future.delayed(const Duration(milliseconds: 100));
-            if (compressedImageBytes != null &&
-                compressedImageBytes.isNotEmpty) {
-              print(
-                'Compressed image size: ${compressedImageBytes.lengthInBytes / (1024 * 1024)} MB',
-              );
-              imageBytesToSend = compressedImageBytes;
-            } else {
-              print(
-                'Compression failed or resulted in empty bytes. Falling back to original.',
-              );
-              imageBytesToSend = await originalImageFile.readAsBytes();
-            }
-            compressionStopwatch.stop();
-            print(
-              'Time to compress image: ${compressionStopwatch.elapsedMilliseconds} ms',
-            );
-
-            if (imageBytesToSend.isEmpty) {
-              throw Exception("Image data is empty after compression attempt.");
+            if (originalImageFile.isEmpty) {
+              throw Exception("Image data is empty before feeding to the AI.");
             }
 
             final generationConfig = GenerationConfig(
@@ -120,7 +100,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
 
             final prompt = TextPart("Return total expense. Answer in Decimals");
 
-            final imagePart = InlineDataPart('image/jpeg', imageBytesToSend);
+            final imagePart = InlineDataPart('image/jpeg', originalImageFile);
 
             print('Sending request to Gemini...');
             geminiStopwatch.start();
@@ -170,6 +150,11 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             );
             print(
               'Total time for the entire process: ${totalStopwatch.elapsedMilliseconds} ms',
+            );
+            await _userStorageRepository.addDocumentToMainPocket(
+              originalImageFile,
+              newItem.id,
+              newItem.content,
             );
           } catch (e) {
             print('Error processing image in DocumentBloc: ${e.toString()}');

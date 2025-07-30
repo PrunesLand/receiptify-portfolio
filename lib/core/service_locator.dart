@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:receipt_app/core/Storage/UserStorageRepository.dart';
 import 'package:receipt_app/core/index.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
@@ -30,12 +29,11 @@ void signalFirebaseFailed(Object error) {
   }
 }
 
-void setupServiceLocator() async {
+Future<void> setupServiceLocator() async {
   getIt.registerSingleton<Future<void>>(
     firebaseReadyFuture,
     instanceName: 'firebaseReady',
   );
-  getIt.registerLazySingleton(() => DocumentBloc());
 
   getIt.registerSingletonAsync<Isar>(() async {
     final dir = await getApplicationDocumentsDirectory();
@@ -71,6 +69,10 @@ void setupServiceLocator() async {
   }
 
   getIt.registerLazySingleton(() => TokenStorageService());
+
+  getIt.registerLazySingleton(
+    () => DocumentBloc(getIt<UserStorageRepository>()),
+  );
 
   getIt.registerLazySingleton<Dio>(() {
     final dio = Dio();

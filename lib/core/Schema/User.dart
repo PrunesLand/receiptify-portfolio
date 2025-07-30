@@ -52,5 +52,5 @@ class Document {
   String totalExpense = '0';
 
   @Name("image")
-  List<int> image = [];
+  List<byte> image = [];
 }
