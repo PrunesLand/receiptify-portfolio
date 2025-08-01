@@ -3,8 +3,8 @@ import 'dart:typed_data';
 
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:receipt_app/core/index.dart';
 import 'package:receipt_app/features/Document/Index.dart';
+import 'package:receipt_app/features/User/index.dart';
 import 'package:uuid/uuid.dart';
 
 class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
@@ -163,11 +163,31 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
           }
         },
         loadSavedFiles: () async {
-          final imageDir = await getMainPocketDirectory();
+          try {
+            final imageDir = await getMainPocketDirectory();
 
-          if (!await imageDir.exists()) {
-            print('Image directory does not exist.');
-            return;
+            if (!await imageDir.exists()) {
+              print('Image directory does not exist.');
+              return;
+            }
+
+            final loadedList =
+                await _userStorageRepository.getAllDocumentsFromMainPockets();
+
+            double total = 0.0;
+            for (final item in loadedList) {
+              total += double.tryParse(item?.content ?? '0') ?? 0.0;
+            }
+
+            emit(
+              state.copyWith(
+                list: loadedList,
+                totalExpenseMain: total.toString(),
+                OcrLoading: false,
+              ),
+            );
+          } catch (e) {
+            print('Error loading saved files: $e');
           }
         },
       );

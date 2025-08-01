@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
-import '../Schema/User.dart';
+import '../../Document/domain/models/Image/ImageModel.dart';
+import 'Schema/User.dart';
 
 abstract class IUserStorageRepository {
   Future<User> getOrCreateUser();
@@ -14,4 +15,5 @@ abstract class IUserStorageRepository {
   Future<List<SubPocket?>> getAllSubPockets();
   Future<void> updateSubPocket(int index, SubPocket updatedSubPocketData);
   Future<void> deleteSubPocket(int index);
+  Future<List<ImageModel?>> getAllDocumentsFromMainPockets();
 }

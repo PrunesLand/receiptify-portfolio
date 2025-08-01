@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:receipt_app/core/index.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
+import 'package:receipt_app/features/User/index.dart';
 
 import '../features/Document/Index.dart';
 

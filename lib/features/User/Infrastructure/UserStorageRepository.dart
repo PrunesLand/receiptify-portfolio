@@ -2,10 +2,9 @@ import 'dart:typed_data';
 
 import 'package:isar/isar.dart';
 import 'package:logger/logger.dart';
-import 'package:receipt_app/core/index.dart';
+import 'package:receipt_app/features/User/Domain/index.dart';
 
-// Import your User model (e.g., user.dart)
-// import 'path_to_your_model/user.dart'; // Assuming User class is defined here
+import '../../Document/domain/models/Image/ImageModel.dart';
 
 class UserStorageRepository implements IUserStorageRepository {
   final Isar isar;
@@ -21,10 +20,8 @@ class UserStorageRepository implements IUserStorageRepository {
       _logger.i(
         "Single user not found. Creating a new one with ID: $_singleUserId",
       );
-      user = User(id: _singleUserId, name: "Default User"); // Set the fixed ID
-      // Initialize other default fields for User if necessary
-      // user.mainPocket = MainPocket(); // Already initialized in your schema
-      // user.subPocket = [];          // Already initialized in your schema
+      user = User(id: _singleUserId, name: "Default User");
+
       await isar.writeTxn(() async {
         await isar.users.put(user!);
       });
@@ -147,5 +144,27 @@ class UserStorageRepository implements IUserStorageRepository {
       user.subPocket.removeAt(index);
       await isar.users.put(user);
     });
+  }
+
+  @override
+  Future<List<ImageModel?>> getAllDocumentsFromMainPockets() async {
+    try {
+      final user = await isar.users.get(_singleUserId);
+      if (user == null) {
+        _logger.w(
+          "User not found when trying to get documents from main pocket.",
+        );
+        return [];
+      }
+      final documents = user.mainPocket.expenses;
+      final newList = mapDocumentsToImageModels(documents);
+      return newList;
+    } catch (e) {
+      _logger.e(
+        "Error getting documents from main pocket",
+        error: e.toString(),
+      );
+      return [];
+    }
   }
 }

@@ -62,7 +62,10 @@ final GoRouter router = GoRouter(
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
         return MultiBlocProvider(
-          providers: [BlocProvider(create: (context) => getIt<PocketBloc>())],
+          providers: [
+            BlocProvider(create: (context) => getIt<PocketBloc>()),
+            BlocProvider(create: (context) => getIt<DocumentBloc>()),
+          ],
           child: AppDrawer(child: child, state: state),
         );
       },
@@ -85,18 +88,13 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: '/home',
           builder: (BuildContext, GoRouterState state) {
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider(create: (context) => getIt<DocumentBloc>()),
-              ],
-              child: StatsBaseScreen(
-                args: BasicStats(
-                  summaryExpense: '6000',
-                  pocket: PocketModel(
-                    title: 'Main',
-                    totalExpense: '5000',
-                    totalBudget: '5000',
-                  ),
+            return StatsBaseScreen(
+              args: BasicStats(
+                summaryExpense: '6000',
+                pocket: PocketModel(
+                  title: 'Main',
+                  totalExpense: '5000',
+                  totalBudget: '5000',
                 ),
               ),
             );
