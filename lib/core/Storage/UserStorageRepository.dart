@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:isar/isar.dart';
+import 'package:logger/logger.dart';
 import 'package:receipt_app/core/index.dart';
 
 // Import your User model (e.g., user.dart)
@@ -8,15 +9,16 @@ import 'package:receipt_app/core/index.dart';
 
 class UserStorageRepository implements IUserStorageRepository {
   final Isar isar;
+  final Logger _logger;
 
   static const int _singleUserId = 1;
 
-  UserStorageRepository(this.isar);
+  UserStorageRepository(this.isar, this._logger);
 
   Future<User> getOrCreateUser() async {
     User? user = await isar.users.get(_singleUserId);
     if (user == null) {
-      print(
+      _logger.i(
         "Single user not found. Creating a new one with ID: $_singleUserId",
       );
       user = User(id: _singleUserId, name: "Default User"); // Set the fixed ID
@@ -55,17 +57,16 @@ class UserStorageRepository implements IUserStorageRepository {
         user.mainPocket.expenses = updatedExpenses;
 
         await isar.users.put(user);
-        print(
+        _logger.i(
           "Document '$fileName' added to MainPocket for user $_singleUserId.",
         ); // Good for logging
       });
     } catch (e) {
-      print("Error adding document to MainPocket: $e");
+      _logger.e("Error adding document to MainPocket", error: e.toString());
     }
   }
 
   Future<void> deleteDocumentFromMainPocketByFileName(String fileName) async {
-    bool removed = false;
     await isar.writeTxn(() async {
       final user = await isar.users.get(_singleUserId);
       if (user == null) {
@@ -77,12 +78,11 @@ class UserStorageRepository implements IUserStorageRepository {
 
       if (user.mainPocket.expenses.length < initialLength) {
         await isar.users.put(user);
-        removed = true;
-        print(
+        _logger.i(
           "Document with fileName '$fileName' removed from MainPocket for user $_singleUserId.",
         );
       } else {
-        print(
+        _logger.e(
           "Document with fileName '$fileName' not found in MainPocket for user $_singleUserId.",
         );
       }

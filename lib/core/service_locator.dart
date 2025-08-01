@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:isar/isar.dart';
+import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:receipt_app/core/index.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
@@ -11,6 +12,7 @@ import 'package:receipt_app/features/PocketGroup/application/index.dart';
 import '../features/Document/Index.dart';
 
 final getIt = GetIt.instance;
+final _logger = Logger();
 
 final Completer<void> _firebaseReadyCompleter = Completer<void>();
 Future<void> get firebaseReadyFuture => _firebaseReadyCompleter.future;
@@ -18,14 +20,17 @@ Future<void> get firebaseReadyFuture => _firebaseReadyCompleter.future;
 void signalFirebaseReady() {
   if (!_firebaseReadyCompleter.isCompleted) {
     _firebaseReadyCompleter.complete();
-    print('ServiceLocator: Firebase signaled as ready.');
+    _logger.i('ServiceLocator: Firebase signaled as ready.');
   }
 }
 
 void signalFirebaseFailed(Object error) {
   if (!_firebaseReadyCompleter.isCompleted) {
     _firebaseReadyCompleter.completeError(error);
-    print('ServiceLocator: Firebase signaled as FAILED.');
+    _logger.e(
+      'ServiceLocator: Firebase signaled as FAILED.',
+      error: error.toString(),
+    );
   }
 }
 
@@ -35,6 +40,8 @@ Future<void> setupServiceLocator() async {
     instanceName: 'firebaseReady',
   );
 
+  getIt.registerLazySingleton(() => Logger());
+
   getIt.registerSingletonAsync<Isar>(() async {
     final dir = await getApplicationDocumentsDirectory();
     final isarInstance = await Isar.open(
@@ -42,24 +49,27 @@ Future<void> setupServiceLocator() async {
       directory: dir.path,
       name: "receiptAppDB",
     );
-    print('ServiceLocator: Isar opened successfully.');
+    _logger.i('ServiceLocator: Isar opened successfully.');
     return isarInstance;
   });
 
   await getIt.isReady<Isar>();
-  print('ServiceLocator: Isar is ready.');
+  _logger.i('ServiceLocator: Isar is ready.');
 
-  getIt.registerLazySingleton(() => UserStorageRepository(getIt<Isar>()));
+  getIt.registerLazySingleton(
+    () => UserStorageRepository(getIt<Isar>(), getIt<Logger>()),
+  );
   final userStorageRepository = getIt<UserStorageRepository>();
   try {
     // This method should check if the user exists and create if not.
     User currentUser = await userStorageRepository.getOrCreateUser();
-    print(
+    _logger.i(
       'ServiceLocator: Single user check/creation complete. User ID: ${currentUser.id}, Name: ${currentUser.name}',
     );
   } catch (e) {
-    print(
-      'ServiceLocator: CRITICAL - Error during single user check/creation: $e',
+    _logger.e(
+      'ServiceLocator: CRITICAL - Error during single user check/creation',
+      error: e.toString(),
     );
     // How you handle this is important.
     // For a single-user app, if the user record can't be ensured, the app might be unusable.
