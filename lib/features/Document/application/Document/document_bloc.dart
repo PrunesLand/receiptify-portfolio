@@ -25,19 +25,30 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
 
           double updatedTotalExpense =
               double.tryParse(state.totalExpenseMain) ?? 0.0;
-          if (imageToRemove != null && imageToRemove.file != null) {
-            try {
-              final file = File(imageToRemove.file!.path);
-              if (await file.exists()) {
-                await file.delete();
-                print('Deleted file: ${file.path}');
+
+          if (imageToRemove != null) {
+            if (imageToRemove.file != null) {
+              try {
+                final file = File(imageToRemove.file!.path);
+                if (await file.exists()) {
+                  await file.delete();
+                  print('Deleted file: ${file.path}');
+                }
+              } catch (e) {
+                print('Error deleting file: $e');
               }
-              final removedAmount = double.tryParse(imageToRemove.cost) ?? 0.0;
-              updatedTotalExpense -= removedAmount;
-            } catch (e) {
-              print('Error deleting file: $e');
             }
+            final removedAmount = double.tryParse(imageToRemove.cost) ?? 0.0;
+            updatedTotalExpense -= removedAmount;
+            print(
+              'Item cost to remove: ${imageToRemove.cost}, Parsed amount: $removedAmount, New total: $updatedTotalExpense',
+            );
+          } else {
+            print(
+              'Item with id $id not found in the list. Total expense not changed.',
+            );
           }
+
           final tempList = state.list.where((item) => item!.id != id).toList();
           emit(
             state.copyWith(
@@ -45,10 +56,12 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               totalExpenseMain: updatedTotalExpense.toStringAsFixed(2),
             ),
           );
+
           await _userStorageRepository.deleteDocumentFromMainPocketByFileName(
             id,
           );
         },
+
         processImage: (File file) async {
           // -- Add image to state list --
           List<ReceiptModel?> newList = state.list;
@@ -192,14 +205,44 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
           }
         },
         addNewReceipt: (ReceiptModel receipt) async {
-          final updatedList = [receipt, ...state.list];
+          final uuid = Uuid().v4();
+          List<ReceiptModel?> updatedList = List.from(state.list);
+          final newReceipt = receipt.copyWith(id: uuid);
+          updatedList.add(newReceipt);
+
+          switch (state.chipEnum) {
+            case DocumentChipEnum.highest:
+              updatedList.sort((a, b) {
+                final costA = double.tryParse(a!.cost) ?? 0.0;
+                final costB = double.tryParse(b!.cost) ?? 0.0;
+                return costB.compareTo(costA);
+              });
+              break;
+            case DocumentChipEnum.lowest:
+              updatedList.sort((a, b) {
+                final costA = double.tryParse(a!.cost) ?? 0.0;
+                final costB = double.tryParse(b!.cost) ?? 0.0;
+                return costA.compareTo(costB);
+              });
+              break;
+            default:
+              updatedList.sort((a, b) {
+                if (a!.receiptDate == null && b!.receiptDate == null) return 0;
+                if (a.receiptDate == null) return 1;
+                if (b!.receiptDate == null) return -1;
+                return b.receiptDate!.compareTo(a.receiptDate!);
+              });
+              break;
+          }
+
           double total = 0.0;
           for (final item in updatedList) {
             total += double.tryParse(item?.cost ?? '0') ?? 0.0;
           }
           await _userStorageRepository.addDocumentToMainPocket(
-            fileName: receipt.id,
-            totalExpense: receipt.cost,
+            fileName: newReceipt.id,
+            totalExpense: newReceipt.cost,
+            dateOfReceipt: newReceipt.receiptDate,
           );
           emit(
             state.copyWith(
@@ -207,6 +250,55 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               totalExpenseMain: total.toStringAsFixed(2),
             ),
           );
+        },
+        chipSelect: (DocumentChipEnum value) async {
+          switch (value) {
+            case DocumentChipEnum.highest:
+              final sortedList = List.of(state.list);
+              sortedList.sort((a, b) {
+                final costA = double.tryParse(a!.cost) ?? 0.0;
+                final costB = double.tryParse(b!.cost) ?? 0.0;
+                return costB.compareTo(costA);
+              });
+              emit(
+                state.copyWith(
+                  list: sortedList,
+                  chipEnum: DocumentChipEnum.highest,
+                ),
+              );
+              break;
+
+            case DocumentChipEnum.lowest:
+              final sortedList = List.of(state.list);
+              sortedList.sort((a, b) {
+                final costA = double.tryParse(a!.cost) ?? 0.0;
+                final costB = double.tryParse(b!.cost) ?? 0.0;
+                return costA.compareTo(costB);
+              });
+              emit(
+                state.copyWith(
+                  list: sortedList,
+                  chipEnum: DocumentChipEnum.lowest,
+                ),
+              );
+              break;
+            case DocumentChipEnum.latest:
+              final sortedList = List.of(state.list);
+              sortedList.sort((a, b) {
+                if (a!.receiptDate == null && b!.receiptDate == null) return 0;
+                if (a.receiptDate == null) return 1;
+                if (b!.receiptDate == null) return -1;
+
+                return b.receiptDate!.compareTo(a.receiptDate!);
+              });
+              emit(
+                state.copyWith(
+                  list: sortedList,
+                  chipEnum: DocumentChipEnum.latest,
+                ),
+              );
+              break;
+          }
         },
       );
     });

@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 class ItemSelectSheet extends StatelessWidget {
   final String title;
   final String description;
-  final File thumbnail;
+  final File? thumbnail;
+  final String? receiptDate;
 
   const ItemSelectSheet({
     super.key,
     required this.title,
     required this.description,
     required this.thumbnail,
+    required this.receiptDate,
   });
 
   @override
@@ -34,16 +36,26 @@ class ItemSelectSheet extends StatelessWidget {
           Text(title, style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 8.0),
           Text(description, style: Theme.of(context).textTheme.bodyMedium),
-          Container(
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: FileImage(thumbnail),
-              ),
-            ),
+          Text(
+            receiptDate ?? 'Date not recorded',
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
+          if (thumbnail != null)
+            Container(
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: FileImage(thumbnail!),
+                ),
+              ),
+            )
+          else
+            const Text(
+              'No image',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
         ],
       ),
     );

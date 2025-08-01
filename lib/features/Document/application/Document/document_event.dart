@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:receipt_app/features/Document/domain/Enums/Enums.dart';
 import 'package:receipt_app/features/Document/domain/models/Receipt/ReceiptModel.dart';
 
 part 'document_event.freezed.dart';
@@ -14,4 +15,5 @@ class DocumentEvent with _$DocumentEvent {
   const factory DocumentEvent.loadSavedFiles() = _LoadSavedFiles;
   const factory DocumentEvent.addNewReceipt(ReceiptModel receipt) =
       _AddNewReceipt;
+  const factory DocumentEvent.chipSelect(DocumentChipEnum value) = _ChipSelect;
 }

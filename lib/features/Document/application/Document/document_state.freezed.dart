@@ -22,6 +22,7 @@ mixin _$DocumentState {
   bool get AddDocModalOpen => throw _privateConstructorUsedError;
   bool get OcrLoading => throw _privateConstructorUsedError;
   String get totalExpenseMain => throw _privateConstructorUsedError;
+  DocumentChipEnum get chipEnum => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DocumentStateCopyWith<DocumentState> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $DocumentStateCopyWith<$Res> {
       String textData,
       bool AddDocModalOpen,
       bool OcrLoading,
-      String totalExpenseMain});
+      String totalExpenseMain,
+      DocumentChipEnum chipEnum});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
     Object? AddDocModalOpen = null,
     Object? OcrLoading = null,
     Object? totalExpenseMain = null,
+    Object? chipEnum = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -88,6 +91,10 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
           ? _value.totalExpenseMain
           : totalExpenseMain // ignore: cast_nullable_to_non_nullable
               as String,
+      chipEnum: null == chipEnum
+          ? _value.chipEnum
+          : chipEnum // ignore: cast_nullable_to_non_nullable
+              as DocumentChipEnum,
     ) as $Val);
   }
 }
@@ -106,7 +113,8 @@ abstract class _$$DocumentStateImplCopyWith<$Res>
       String textData,
       bool AddDocModalOpen,
       bool OcrLoading,
-      String totalExpenseMain});
+      String totalExpenseMain,
+      DocumentChipEnum chipEnum});
 }
 
 /// @nodoc
@@ -126,6 +134,7 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
     Object? AddDocModalOpen = null,
     Object? OcrLoading = null,
     Object? totalExpenseMain = null,
+    Object? chipEnum = null,
   }) {
     return _then(_$DocumentStateImpl(
       isLoading: null == isLoading
@@ -152,6 +161,10 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
           ? _value.totalExpenseMain
           : totalExpenseMain // ignore: cast_nullable_to_non_nullable
               as String,
+      chipEnum: null == chipEnum
+          ? _value.chipEnum
+          : chipEnum // ignore: cast_nullable_to_non_nullable
+              as DocumentChipEnum,
     ));
   }
 }
@@ -165,7 +178,8 @@ class _$DocumentStateImpl implements _DocumentState {
       this.textData = '',
       this.AddDocModalOpen = false,
       this.OcrLoading = true,
-      this.totalExpenseMain = '0'})
+      this.totalExpenseMain = '0',
+      this.chipEnum = DocumentChipEnum.latest})
       : _list = list;
 
   @override
@@ -192,10 +206,13 @@ class _$DocumentStateImpl implements _DocumentState {
   @override
   @JsonKey()
   final String totalExpenseMain;
+  @override
+  @JsonKey()
+  final DocumentChipEnum chipEnum;
 
   @override
   String toString() {
-    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen, OcrLoading: $OcrLoading, totalExpenseMain: $totalExpenseMain)';
+    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen, OcrLoading: $OcrLoading, totalExpenseMain: $totalExpenseMain, chipEnum: $chipEnum)';
   }
 
   @override
@@ -213,7 +230,9 @@ class _$DocumentStateImpl implements _DocumentState {
             (identical(other.OcrLoading, OcrLoading) ||
                 other.OcrLoading == OcrLoading) &&
             (identical(other.totalExpenseMain, totalExpenseMain) ||
-                other.totalExpenseMain == totalExpenseMain));
+                other.totalExpenseMain == totalExpenseMain) &&
+            (identical(other.chipEnum, chipEnum) ||
+                other.chipEnum == chipEnum));
   }
 
   @override
@@ -224,7 +243,8 @@ class _$DocumentStateImpl implements _DocumentState {
       textData,
       AddDocModalOpen,
       OcrLoading,
-      totalExpenseMain);
+      totalExpenseMain,
+      chipEnum);
 
   @JsonKey(ignore: true)
   @override
@@ -240,7 +260,8 @@ abstract class _DocumentState implements DocumentState {
       final String textData,
       final bool AddDocModalOpen,
       final bool OcrLoading,
-      final String totalExpenseMain}) = _$DocumentStateImpl;
+      final String totalExpenseMain,
+      final DocumentChipEnum chipEnum}) = _$DocumentStateImpl;
 
   @override
   bool get isLoading;
@@ -254,6 +275,8 @@ abstract class _DocumentState implements DocumentState {
   bool get OcrLoading;
   @override
   String get totalExpenseMain;
+  @override
+  DocumentChipEnum get chipEnum;
   @override
   @JsonKey(ignore: true)
   _$$DocumentStateImplCopyWith<_$DocumentStateImpl> get copyWith =>

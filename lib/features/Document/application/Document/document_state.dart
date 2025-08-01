@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:receipt_app/features/Document/domain/Enums/Enums.dart';
 import 'package:receipt_app/features/Document/domain/models/Receipt/index.dart';
-
-import '../../domain/models/Image/ImageModel.dart';
 
 part 'document_state.freezed.dart';
 
@@ -14,5 +13,6 @@ class DocumentState with _$DocumentState {
     @Default(false) bool AddDocModalOpen,
     @Default(true) bool OcrLoading,
     @Default('0') String totalExpenseMain,
+    @Default(DocumentChipEnum.latest) DocumentChipEnum chipEnum,
   }) = _DocumentState;
 }

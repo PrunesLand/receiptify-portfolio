@@ -70,26 +70,35 @@ class UserStorageRepository implements IUserStorageRepository {
   }
 
   Future<void> deleteDocumentFromMainPocketByFileName(String fileName) async {
-    await isar.writeTxn(() async {
-      final user = await isar.users.get(_singleUserId);
-      if (user == null) {
-        throw Exception("Single user not found.");
-      }
+    try {
+      await isar.writeTxn(() async {
+        final user = await isar.users.get(_singleUserId);
+        if (user == null) {
+          throw Exception("Single user not found.");
+        }
 
-      int initialLength = user.mainPocket.expenses.length;
-      user.mainPocket.expenses.removeWhere((doc) => doc.fileName == fileName);
+        int initialLength = user.mainPocket.expenses.length;
+        // Create a new list without the element to be removed
+        final updatedExpenses =
+            user.mainPocket.expenses
+                .where((doc) => doc.fileName != fileName)
+                .toList();
 
-      if (user.mainPocket.expenses.length < initialLength) {
-        await isar.users.put(user);
-        _logger.i(
-          "Document with fileName '$fileName' removed from MainPocket for user $_singleUserId.",
-        );
-      } else {
-        _logger.e(
-          "Document with fileName '$fileName' not found in MainPocket for user $_singleUserId.",
-        );
-      }
-    });
+        if (updatedExpenses.length < initialLength) {
+          user.mainPocket.expenses = updatedExpenses; // Assign the new list
+          await isar.users.put(user);
+          _logger.i(
+            "Document with fileName '$fileName' removed from MainPocket for user $_singleUserId.",
+          );
+        } else {
+          _logger.e(
+            "Document with fileName '$fileName' not found in MainPocket for user $_singleUserId.",
+          );
+        }
+      });
+    } catch (e) {
+      _logger.e("Error deleting document from MainPocket", error: e.toString());
+    }
   }
 
   Future<void> addSubPocket(SubPocket newSubPocketData) async {
