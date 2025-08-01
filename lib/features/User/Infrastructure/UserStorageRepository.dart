@@ -2,9 +2,8 @@ import 'dart:typed_data';
 
 import 'package:isar/isar.dart';
 import 'package:logger/logger.dart';
+import 'package:receipt_app/features/Document/domain/models/Receipt/index.dart';
 import 'package:receipt_app/features/User/Domain/index.dart';
-
-import '../../Document/domain/models/Image/ImageModel.dart';
 
 class UserStorageRepository implements IUserStorageRepository {
   final Isar isar;
@@ -20,7 +19,7 @@ class UserStorageRepository implements IUserStorageRepository {
       _logger.i(
         "Single user not found. Creating a new one with ID: $_singleUserId",
       );
-      user = User(id: _singleUserId, name: "Default User");
+      user = User(id: _singleUserId, title: "Default User");
 
       await isar.writeTxn(() async {
         await isar.users.put(user!);
@@ -29,11 +28,12 @@ class UserStorageRepository implements IUserStorageRepository {
     return user;
   }
 
-  Future<void> addDocumentToMainPocket(
-    Uint8List imageBytes,
-    String fileName,
-    String totalExpense,
-  ) async {
+  Future<void> addDocumentToMainPocket({
+    Uint8List? imageBytes,
+    required String fileName,
+    required String totalExpense,
+    DateTime? dateOfReceipt,
+  }) async {
     try {
       await isar.writeTxn(() async {
         final user = await isar.users.get(_singleUserId);
@@ -44,8 +44,14 @@ class UserStorageRepository implements IUserStorageRepository {
         final doc =
             Document()
               ..fileName = fileName
-              ..totalExpense = totalExpense
-              ..image = imageBytes;
+              ..totalExpense = totalExpense;
+
+        if (imageBytes != null) {
+          doc.image = imageBytes;
+        }
+        if (dateOfReceipt != null) {
+          doc.dateOfReceipt = dateOfReceipt;
+        }
 
         final updatedExpenses = List<Document>.from(user.mainPocket.expenses);
 
@@ -147,7 +153,7 @@ class UserStorageRepository implements IUserStorageRepository {
   }
 
   @override
-  Future<List<ImageModel?>> getAllDocumentsFromMainPockets() async {
+  Future<List<ReceiptModel?>> getAllDocumentsFromMainPockets() async {
     try {
       final user = await isar.users.get(_singleUserId);
       if (user == null) {

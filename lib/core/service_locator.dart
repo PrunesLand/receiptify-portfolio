@@ -65,7 +65,7 @@ Future<void> setupServiceLocator() async {
     // This method should check if the user exists and create if not.
     User currentUser = await userStorageRepository.getOrCreateUser();
     _logger.i(
-      'ServiceLocator: Single user check/creation complete. User ID: ${currentUser.id}, Name: ${currentUser.name}',
+      'ServiceLocator: Single user check/creation complete. User ID: ${currentUser.id}, Title: ${currentUser.title}',
     );
   } catch (e) {
     _logger.e(

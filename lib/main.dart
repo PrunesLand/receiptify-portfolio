@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:receipt_app/features/Document/Index.dart';
 import 'package:receipt_app/features/Onboarding/presentation/RegisterScreen.dart';
+import 'package:receipt_app/features/Payment/index.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
 import 'package:receipt_app/features/PocketGroup/domain/index.dart';
 import 'package:receipt_app/features/PocketGroup/presentation/DataSelectionScreen.dart';
@@ -14,6 +15,7 @@ import 'package:receipt_app/features/Statistics/presentation/StatsBaseScreen.dar
 import 'core/service_locator.dart';
 import 'features/AppDrawer/presentation/AppDrawer.dart';
 import 'features/CameraOCR/presentation/CameraScreen.dart';
+import 'features/Document/presentation/widgets/NewItemFormScreen.dart';
 import 'features/Onboarding/presentation/HeroScreen.dart';
 import 'features/Onboarding/presentation/LoginScreen.dart';
 import 'features/Statistics/domain/Models/BasicStats.dart';
@@ -79,10 +81,7 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: '/selection',
           builder: (BuildContext context, GoRouterState state) {
-            return BlocProvider(
-              create: (context) => getIt<PocketBloc>(),
-              child: DataSelectionScreen(),
-            );
+            return DataSelectionScreen();
           },
         ),
         GoRoute(
@@ -98,6 +97,18 @@ final GoRouter router = GoRouter(
                 ),
               ),
             );
+          },
+        ),
+        GoRoute(
+          path: '/newItemForm',
+          builder: (BuildContext context, GoRouterState state) {
+            return NewItemFormScreen();
+          },
+        ),
+        GoRoute(
+          path: '/payment',
+          builder: (BuildContext context, GoRouterState state) {
+            return PaymentScreen();
           },
         ),
       ],

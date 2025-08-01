@@ -2,14 +2,14 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:receipt_app/features/Document/domain/models/Receipt/index.dart';
 
-import '../../Document/domain/models/Image/ImageModel.dart';
 import 'Schema/User.dart';
 
-Future<ImageModel> mapDocumentToImageModel(Document isarDocument) async {
+Future<ReceiptModel> mapDocumentToImageModel(Document isarDocument) async {
   File? imageFile;
 
-  if (isarDocument.image.isNotEmpty) {
+  if (isarDocument.image != null && isarDocument.image!.isNotEmpty) {
     // 1. Get a temporary directory to save the file
     final tempDir = await getTemporaryDirectory();
 
@@ -30,8 +30,7 @@ Future<ImageModel> mapDocumentToImageModel(Document isarDocument) async {
     final filePath = '${tempDir.path}/$effectiveFileName';
     imageFile = File(filePath);
 
-    // 3. Convert List<byte> (which is List<int> in Dart) to Uint8List
-    final Uint8List imageBytes = Uint8List.fromList(isarDocument.image);
+    final Uint8List imageBytes = Uint8List.fromList(isarDocument.image!);
 
     // 4. Write the bytes to the file
     await imageFile.writeAsBytes(imageBytes);
@@ -41,15 +40,14 @@ Future<ImageModel> mapDocumentToImageModel(Document isarDocument) async {
   // Adjust if your ID logic is different.
   // Also, you might want to map `totalExpense` to `content` or another field
   // if it makes sense for your `ImageModel`.
-  return ImageModel(
+  return ReceiptModel(
     id: isarDocument.fileName, // Or another unique identifier from Document
     file: imageFile,
-    content:
-        isarDocument.totalExpense, // Example: mapping totalExpense to content
+    cost: isarDocument.totalExpense, // Example: mapping totalExpense to content
   );
 }
 
-Future<List<ImageModel>> mapDocumentsToImageModels(
+Future<List<ReceiptModel>> mapDocumentsToImageModels(
   List<Document> documents,
 ) async {
   return Future.wait(documents.map((doc) => mapDocumentToImageModel(doc)));

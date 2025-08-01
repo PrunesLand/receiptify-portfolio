@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:receipt_app/features/Document/domain/models/Receipt/index.dart';
 
 import '../../domain/models/Image/ImageModel.dart';
 
@@ -8,7 +9,7 @@ part 'document_state.freezed.dart';
 class DocumentState with _$DocumentState {
   const factory DocumentState({
     @Default(false) bool isLoading,
-    @Default([]) List<ImageModel?> list,
+    @Default([]) List<ReceiptModel?> list,
     @Default('') String textData,
     @Default(false) bool AddDocModalOpen,
     @Default(true) bool OcrLoading,

@@ -8,8 +8,8 @@ class User {
   @Name("id")
   Id id;
 
-  @Name("name")
-  String? name;
+  @Name("title")
+  String? title;
 
   @Name("MainPocket")
   MainPocket mainPocket = MainPocket();
@@ -17,7 +17,7 @@ class User {
   @Name("SubPockets")
   List<SubPocket?> subPocket = [];
 
-  User({this.id = 1, this.name}); // Defaulting to ID 1
+  User({this.id = 1, this.title}); // Defaulting to ID 1
 
   static const int singleUserId = 1;
 }
@@ -48,9 +48,15 @@ class Document {
   @Name("fileName")
   String fileName = '';
 
+  @Name("title")
+  String? title;
+
   @Name("totalExpense")
   String totalExpense = '0';
 
   @Name("image")
-  List<byte> image = [];
+  List<byte>? image;
+
+  @Name("dateOfReceipt")
+  DateTime? dateOfReceipt;
 }

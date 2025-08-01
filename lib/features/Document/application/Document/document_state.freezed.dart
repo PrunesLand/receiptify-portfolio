@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DocumentState {
   bool get isLoading => throw _privateConstructorUsedError;
-  List<ImageModel?> get list => throw _privateConstructorUsedError;
+  List<ReceiptModel?> get list => throw _privateConstructorUsedError;
   String get textData => throw _privateConstructorUsedError;
   bool get AddDocModalOpen => throw _privateConstructorUsedError;
   bool get OcrLoading => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $DocumentStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
-      List<ImageModel?> list,
+      List<ReceiptModel?> list,
       String textData,
       bool AddDocModalOpen,
       bool OcrLoading,
@@ -71,7 +71,7 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
       list: null == list
           ? _value.list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ImageModel?>,
+              as List<ReceiptModel?>,
       textData: null == textData
           ? _value.textData
           : textData // ignore: cast_nullable_to_non_nullable
@@ -102,7 +102,7 @@ abstract class _$$DocumentStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
-      List<ImageModel?> list,
+      List<ReceiptModel?> list,
       String textData,
       bool AddDocModalOpen,
       bool OcrLoading,
@@ -135,7 +135,7 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ImageModel?>,
+              as List<ReceiptModel?>,
       textData: null == textData
           ? _value.textData
           : textData // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
 class _$DocumentStateImpl implements _DocumentState {
   const _$DocumentStateImpl(
       {this.isLoading = false,
-      final List<ImageModel?> list = const [],
+      final List<ReceiptModel?> list = const [],
       this.textData = '',
       this.AddDocModalOpen = false,
       this.OcrLoading = true,
@@ -171,10 +171,10 @@ class _$DocumentStateImpl implements _DocumentState {
   @override
   @JsonKey()
   final bool isLoading;
-  final List<ImageModel?> _list;
+  final List<ReceiptModel?> _list;
   @override
   @JsonKey()
-  List<ImageModel?> get list {
+  List<ReceiptModel?> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_list);
@@ -236,7 +236,7 @@ class _$DocumentStateImpl implements _DocumentState {
 abstract class _DocumentState implements DocumentState {
   const factory _DocumentState(
       {final bool isLoading,
-      final List<ImageModel?> list,
+      final List<ReceiptModel?> list,
       final String textData,
       final bool AddDocModalOpen,
       final bool OcrLoading,
@@ -245,7 +245,7 @@ abstract class _DocumentState implements DocumentState {
   @override
   bool get isLoading;
   @override
-  List<ImageModel?> get list;
+  List<ReceiptModel?> get list;
   @override
   String get textData;
   @override

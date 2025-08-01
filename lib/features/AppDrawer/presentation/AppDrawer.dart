@@ -63,6 +63,16 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
+              leading: Icon(Icons.monetization_on),
+              title: Text('Subscription'),
+              onTap: () {
+                GoRouter.of(context).pushReplacement('/payment');
+                Future.delayed(const Duration(milliseconds: 150), () {
+                  Navigator.pop(context);
+                });
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.select_all),
               title: Text('Settings'),
               onTap: () {

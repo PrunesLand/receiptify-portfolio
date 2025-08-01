@@ -7,6 +7,8 @@ import 'package:receipt_app/features/Document/Index.dart';
 import 'package:receipt_app/features/User/index.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../domain/models/Receipt/ReceiptModel.dart';
+
 class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
   final IUserStorageRepository _userStorageRepository;
   DocumentBloc(this._userStorageRepository) : super(const DocumentState()) {
@@ -30,8 +32,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
                 await file.delete();
                 print('Deleted file: ${file.path}');
               }
-              final removedAmount =
-                  double.tryParse(imageToRemove.content) ?? 0.0;
+              final removedAmount = double.tryParse(imageToRemove.cost) ?? 0.0;
               updatedTotalExpense -= removedAmount;
             } catch (e) {
               print('Error deleting file: $e');
@@ -50,14 +51,14 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
         },
         processImage: (File file) async {
           // -- Add image to state list --
-          List<ImageModel?> newList = state.list;
+          List<ReceiptModel?> newList = state.list;
           try {
             final uuid = Uuid().v4();
             final savedFile = await saveImageToMainPocketDirectory(file, uuid);
 
-            final addedImage = ImageModel(
+            final addedImage = ReceiptModel(
               id: uuid,
-              content: '',
+              cost: '',
               file: savedFile,
             );
 
@@ -77,7 +78,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
           emit(state.copyWith(OcrLoading: true));
 
           // -- AI image feeding process --
-          final ImageModel itemToProcess = state.list.first!;
+          final ReceiptModel itemToProcess = state.list.first!;
           final Uint8List originalImageFile =
               await itemToProcess.file!.readAsBytes();
 
@@ -125,7 +126,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
 
             totalStopwatch.stop();
             final newItem = itemToProcess.copyWith(
-              content: response.text ?? 'No data.',
+              cost: response.text ?? 'No data.',
             );
 
             final updatedList =
@@ -139,7 +140,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             final list = updatedList;
             double total = 0.0;
             for (final item in list) {
-              total += double.tryParse(item.content) ?? 0.0;
+              total += double.tryParse(item.cost) ?? 0.0;
             }
             emit(
               state.copyWith(
@@ -152,9 +153,9 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               'Total time for the entire process: ${totalStopwatch.elapsedMilliseconds} ms',
             );
             await _userStorageRepository.addDocumentToMainPocket(
-              originalImageFile,
-              newItem.id,
-              newItem.content,
+              imageBytes: originalImageFile,
+              fileName: newItem.id,
+              totalExpense: newItem.cost,
             );
           } catch (e) {
             print('Error processing image in DocumentBloc: ${e.toString()}');
@@ -176,7 +177,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
 
             double total = 0.0;
             for (final item in loadedList) {
-              total += double.tryParse(item?.content ?? '0') ?? 0.0;
+              total += double.tryParse(item?.cost ?? '0') ?? 0.0;
             }
 
             emit(
@@ -189,6 +190,23 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
           } catch (e) {
             print('Error loading saved files: $e');
           }
+        },
+        addNewReceipt: (ReceiptModel receipt) async {
+          final updatedList = [receipt, ...state.list];
+          double total = 0.0;
+          for (final item in updatedList) {
+            total += double.tryParse(item?.cost ?? '0') ?? 0.0;
+          }
+          await _userStorageRepository.addDocumentToMainPocket(
+            fileName: receipt.id,
+            totalExpense: receipt.cost,
+          );
+          emit(
+            state.copyWith(
+              list: updatedList,
+              totalExpenseMain: total.toStringAsFixed(2),
+            ),
+          );
         },
       );
     });
