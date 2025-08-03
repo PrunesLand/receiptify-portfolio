@@ -108,4 +108,6 @@ Future<void> setupServiceLocator() async {
   );
 
   getIt.registerLazySingleton(() => PocketBloc());
+
+  getIt.registerLazySingleton(() => RegisterBloc());
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,6 +11,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _email = '';
+  String _password = '';
+  String _errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         body: Column(
           children: [
+            if (_errorMessage.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(_errorMessage, style: TextStyle(color: Colors.red)),
+              ),
             Flexible(
               flex: 2,
               child: Center(child: Text('Login to your account')),
@@ -54,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                           return null;
                         },
+                        onSaved: (value) => _email = value ?? '',
                       ),
                     ),
                     SizedBox(height: 24.0),
@@ -73,6 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                           return null;
                         },
+                        onSaved: (value) => _password = value ?? '',
                       ),
                     ),
                     SizedBox(height: 40),
@@ -87,13 +99,32 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         fixedSize: Size.fromWidth(200),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState?.validate() ?? false) {
+                          _formKey.currentState?.save();
                           FocusScope.of(context).unfocus();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Logging in...')),
                           );
-                          GoRouter.of(context).go('/selection');
+                          try {
+                            UserCredential userCredential = await _auth
+                                .signInWithEmailAndPassword(
+                                  email: _email,
+                                  password: _password,
+                                );
+                            // Navigate to the next screen upon successful login
+                            if (userCredential.user != null) {
+                              GoRouter.of(context).go('/home');
+                            }
+                          } on FirebaseAuthException catch (e) {
+                            setState(() {
+                              _errorMessage =
+                                  e.message ?? 'An unknown error occurred';
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(_errorMessage)),
+                            );
+                          }
                         }
                       },
                       child: Text("Login"),

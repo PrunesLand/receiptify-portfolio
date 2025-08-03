@@ -18,38 +18,44 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RegisterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() registerUser,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? registerUser,
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? registerUser,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_RegisterUser value) registerUser,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RegisterUser value)? registerUser,
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RegisterUser value)? registerUser,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) =>
@@ -75,67 +81,96 @@ class _$RegisterEventCopyWithImpl<$Res, $Val extends RegisterEvent>
 }
 
 /// @nodoc
-abstract class _$$RegisterUserImplCopyWith<$Res> {
-  factory _$$RegisterUserImplCopyWith(
-          _$RegisterUserImpl value, $Res Function(_$RegisterUserImpl) then) =
-      __$$RegisterUserImplCopyWithImpl<$Res>;
+abstract class _$$EmailChangedImplCopyWith<$Res> {
+  factory _$$EmailChangedImplCopyWith(
+          _$EmailChangedImpl value, $Res Function(_$EmailChangedImpl) then) =
+      __$$EmailChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email});
 }
 
 /// @nodoc
-class __$$RegisterUserImplCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$RegisterUserImpl>
-    implements _$$RegisterUserImplCopyWith<$Res> {
-  __$$RegisterUserImplCopyWithImpl(
-      _$RegisterUserImpl _value, $Res Function(_$RegisterUserImpl) _then)
+class __$$EmailChangedImplCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res, _$EmailChangedImpl>
+    implements _$$EmailChangedImplCopyWith<$Res> {
+  __$$EmailChangedImplCopyWithImpl(
+      _$EmailChangedImpl _value, $Res Function(_$EmailChangedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_$EmailChangedImpl(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$RegisterUserImpl implements _RegisterUser {
-  const _$RegisterUserImpl();
+class _$EmailChangedImpl implements _EmailChanged {
+  const _$EmailChangedImpl(this.email);
+
+  @override
+  final String email;
 
   @override
   String toString() {
-    return 'RegisterEvent.registerUser()';
+    return 'RegisterEvent.emailChanged(email: $email)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RegisterUserImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$EmailChangedImpl &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, email);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmailChangedImplCopyWith<_$EmailChangedImpl> get copyWith =>
+      __$$EmailChangedImplCopyWithImpl<_$EmailChangedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() registerUser,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
   }) {
-    return registerUser();
+    return emailChanged(email);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? registerUser,
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
   }) {
-    return registerUser?.call();
+    return emailChanged?.call(email);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? registerUser,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
     required TResult orElse(),
   }) {
-    if (registerUser != null) {
-      return registerUser();
+    if (emailChanged != null) {
+      return emailChanged(email);
     }
     return orElse();
   }
@@ -143,37 +178,186 @@ class _$RegisterUserImpl implements _RegisterUser {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_RegisterUser value) registerUser,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
   }) {
-    return registerUser(this);
+    return emailChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RegisterUser value)? registerUser,
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
-    return registerUser?.call(this);
+    return emailChanged?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RegisterUser value)? registerUser,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {
-    if (registerUser != null) {
-      return registerUser(this);
+    if (emailChanged != null) {
+      return emailChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class _RegisterUser implements RegisterEvent {
-  const factory _RegisterUser() = _$RegisterUserImpl;
+abstract class _EmailChanged implements RegisterEvent {
+  const factory _EmailChanged(final String email) = _$EmailChangedImpl;
+
+  String get email;
+  @JsonKey(ignore: true)
+  _$$EmailChangedImplCopyWith<_$EmailChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PasswordChangedImplCopyWith<$Res> {
+  factory _$$PasswordChangedImplCopyWith(_$PasswordChangedImpl value,
+          $Res Function(_$PasswordChangedImpl) then) =
+      __$$PasswordChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String password});
+}
+
+/// @nodoc
+class __$$PasswordChangedImplCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res, _$PasswordChangedImpl>
+    implements _$$PasswordChangedImplCopyWith<$Res> {
+  __$$PasswordChangedImplCopyWithImpl(
+      _$PasswordChangedImpl _value, $Res Function(_$PasswordChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? password = null,
+  }) {
+    return _then(_$PasswordChangedImpl(
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PasswordChangedImpl implements _PasswordChanged {
+  const _$PasswordChangedImpl(this.password);
+
+  @override
+  final String password;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.passwordChanged(password: $password)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PasswordChangedImpl &&
+            (identical(other.password, password) ||
+                other.password == password));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, password);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PasswordChangedImplCopyWith<_$PasswordChangedImpl> get copyWith =>
+      __$$PasswordChangedImplCopyWithImpl<_$PasswordChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function() isLoading,
+  }) {
+    return passwordChanged(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
+    TResult? Function()? isLoading,
+  }) {
+    return passwordChanged?.call(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? isLoading,
+    required TResult orElse(),
+  }) {
+    if (passwordChanged != null) {
+      return passwordChanged(password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_IsLoading value) isLoading,
+  }) {
+    return passwordChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_IsLoading value)? isLoading,
+  }) {
+    return passwordChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_IsLoading value)? isLoading,
+    required TResult orElse(),
+  }) {
+    if (passwordChanged != null) {
+      return passwordChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PasswordChanged implements RegisterEvent {
+  const factory _PasswordChanged(final String password) = _$PasswordChangedImpl;
+
+  String get password;
+  @JsonKey(ignore: true)
+  _$$PasswordChangedImplCopyWith<_$PasswordChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -214,7 +398,8 @@ class _$IsLoadingImpl implements _IsLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() registerUser,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
   }) {
     return isLoading();
@@ -223,7 +408,8 @@ class _$IsLoadingImpl implements _IsLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? registerUser,
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
   }) {
     return isLoading?.call();
@@ -232,7 +418,8 @@ class _$IsLoadingImpl implements _IsLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? registerUser,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
     required TResult orElse(),
   }) {
@@ -245,7 +432,8 @@ class _$IsLoadingImpl implements _IsLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_RegisterUser value) registerUser,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
   }) {
     return isLoading(this);
@@ -254,7 +442,8 @@ class _$IsLoadingImpl implements _IsLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RegisterUser value)? registerUser,
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
   }) {
     return isLoading?.call(this);
@@ -263,7 +452,8 @@ class _$IsLoadingImpl implements _IsLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RegisterUser value)? registerUser,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
     required TResult orElse(),
   }) {

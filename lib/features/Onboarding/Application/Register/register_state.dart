@@ -8,6 +8,8 @@ part 'register_state.freezed.dart';
 class RegisterState with _$RegisterState {
   const factory RegisterState({
     @Default(false) bool isLoading,
-    RegisterUserModel? user,
+    String? email,
+    String? password,
+    String? repeatPassword,
   }) = _RegisterState;
 }

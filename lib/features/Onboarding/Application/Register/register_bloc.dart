@@ -10,8 +10,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         isLoading: () async {
           emit(state.copyWith(isLoading: true));
         },
-        registerUser: () async {
-          emit(state.copyWith(isLoading: false));
+        emailChanged: (String email) async {
+          emit(state.copyWith(email: email));
+        },
+        passwordChanged: (String password) async {
+          emit(state.copyWith(password: password));
         },
       );
     });

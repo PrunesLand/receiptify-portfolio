@@ -16,6 +16,7 @@ import 'core/service_locator.dart';
 import 'features/AppDrawer/presentation/AppDrawer.dart';
 import 'features/CameraOCR/presentation/CameraScreen.dart';
 import 'features/Document/presentation/widgets/NewItemFormScreen.dart';
+import 'features/Onboarding/Application/Register/register_bloc.dart';
 import 'features/Onboarding/presentation/HeroScreen.dart';
 import 'features/Onboarding/presentation/LoginScreen.dart';
 import 'features/Statistics/domain/Models/BasicStats.dart';
@@ -59,7 +60,7 @@ void main() async {
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
 final GoRouter router = GoRouter(
-  initialLocation: kDebugMode ? '/home' : '/onboarding',
+  initialLocation: !kDebugMode ? '/home' : '/onboarding',
   routes: <RouteBase>[
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -154,7 +155,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/register',
       builder: (BuildContext context, GoRouterState state) {
-        return const RegisterScreen();
+        return BlocProvider(
+          create: (context) => getIt<RegisterBloc>(),
+          child: RegisterScreen(),
+        );
       },
     ),
   ],

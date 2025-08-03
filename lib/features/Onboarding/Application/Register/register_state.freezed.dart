@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$RegisterState {
   bool get isLoading => throw _privateConstructorUsedError;
-  RegisterUserModel? get user => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  String? get repeatPassword => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
@@ -30,9 +32,11 @@ abstract class $RegisterStateCopyWith<$Res> {
           RegisterState value, $Res Function(RegisterState) then) =
       _$RegisterStateCopyWithImpl<$Res, RegisterState>;
   @useResult
-  $Res call({bool isLoading, RegisterUserModel? user});
-
-  $RegisterUserModelCopyWith<$Res>? get user;
+  $Res call(
+      {bool isLoading,
+      String? email,
+      String? password,
+      String? repeatPassword});
 }
 
 /// @nodoc
@@ -49,30 +53,28 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
   @override
   $Res call({
     Object? isLoading = null,
-    Object? user = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? repeatPassword = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as RegisterUserModel?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      repeatPassword: freezed == repeatPassword
+          ? _value.repeatPassword
+          : repeatPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $RegisterUserModelCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $RegisterUserModelCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 }
 
@@ -84,10 +86,11 @@ abstract class _$$RegisterStateImplCopyWith<$Res>
       __$$RegisterStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, RegisterUserModel? user});
-
-  @override
-  $RegisterUserModelCopyWith<$Res>? get user;
+  $Res call(
+      {bool isLoading,
+      String? email,
+      String? password,
+      String? repeatPassword});
 }
 
 /// @nodoc
@@ -102,17 +105,27 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
-    Object? user = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? repeatPassword = freezed,
   }) {
     return _then(_$RegisterStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as RegisterUserModel?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      repeatPassword: freezed == repeatPassword
+          ? _value.repeatPassword
+          : repeatPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -120,17 +133,22 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RegisterStateImpl implements _RegisterState {
-  const _$RegisterStateImpl({this.isLoading = false, this.user});
+  const _$RegisterStateImpl(
+      {this.isLoading = false, this.email, this.password, this.repeatPassword});
 
   @override
   @JsonKey()
   final bool isLoading;
   @override
-  final RegisterUserModel? user;
+  final String? email;
+  @override
+  final String? password;
+  @override
+  final String? repeatPassword;
 
   @override
   String toString() {
-    return 'RegisterState(isLoading: $isLoading, user: $user)';
+    return 'RegisterState(isLoading: $isLoading, email: $email, password: $password, repeatPassword: $repeatPassword)';
   }
 
   @override
@@ -140,11 +158,16 @@ class _$RegisterStateImpl implements _RegisterState {
             other is _$RegisterStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.repeatPassword, repeatPassword) ||
+                other.repeatPassword == repeatPassword));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, user);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, email, password, repeatPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -156,12 +179,18 @@ class _$RegisterStateImpl implements _RegisterState {
 abstract class _RegisterState implements RegisterState {
   const factory _RegisterState(
       {final bool isLoading,
-      final RegisterUserModel? user}) = _$RegisterStateImpl;
+      final String? email,
+      final String? password,
+      final String? repeatPassword}) = _$RegisterStateImpl;
 
   @override
   bool get isLoading;
   @override
-  RegisterUserModel? get user;
+  String? get email;
+  @override
+  String? get password;
+  @override
+  String? get repeatPassword;
   @override
   @JsonKey(ignore: true)
   _$$RegisterStateImplCopyWith<_$RegisterStateImpl> get copyWith =>

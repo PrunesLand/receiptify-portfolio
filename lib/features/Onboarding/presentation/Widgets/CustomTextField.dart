@@ -4,11 +4,15 @@ class CustomTextField extends StatelessWidget {
   final String labelText;
   final TextInputType inputType;
   final RegExp? regexPattern;
+  final String? repeatPassword;
+  final ValueChanged<String>? onChange;
   const CustomTextField({
     super.key,
     required this.labelText,
     required this.inputType,
     this.regexPattern,
+    this.onChange,
+    this.repeatPassword,
   });
 
   @override
@@ -31,8 +35,12 @@ class CustomTextField extends StatelessWidget {
               return 'Please enter a valid $labelText';
             }
           }
+          if (repeatPassword != null && repeatPassword != value) {
+            return 'Password does not match';
+          }
           return null;
         },
+        onChanged: onChange,
       ),
     );
   }
