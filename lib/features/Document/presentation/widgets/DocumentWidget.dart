@@ -19,11 +19,20 @@ class _DocumentWidgetState extends State<DocumentWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<DocumentBloc, DocumentState>(
       builder: (context, state) {
-        return SingleChildScrollView(
+        return Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surfaceVariant,
+            borderRadius: BorderRadius.circular(16.0),
+          ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              // 1. Removed the Flexible widget from here.
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 8.0,
+                ),
                 child: Row(
                   children: [
                     ChoiceChip(
@@ -45,7 +54,6 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                       selected: state.chipEnum == DocumentChipEnum.lowest,
                       selectedColor:
                           Theme.of(context).colorScheme.primaryContainer,
-
                       onSelected: (selected) {
                         if (selected) {
                           getIt<DocumentBloc>().add(
@@ -71,17 +79,13 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                   ],
                 ),
               ),
-              Container(
-                constraints: BoxConstraints(maxHeight: 300),
-                child: GridView.builder(
-                  shrinkWrap: true,
+              // 2. Changed Flexible to Expanded.
+              Expanded(
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  // ✅ This is the correct property to stop the overscroll effect.
+                  physics: const ClampingScrollPhysics(),
                   itemCount: state.list.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 8.0,
-                    crossAxisSpacing: 8.0,
-                    childAspectRatio: 1.0,
-                  ),
                   itemBuilder: (context, index) {
                     final item = state.list[index];
                     final itemId = item!.id;
@@ -121,11 +125,11 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                       },
                       child:
                           index == 0
-                              ? DocumentCard(
+                              ? TileWidget(
+                                title: item.cost,
                                 isLoading: state.OcrLoading,
-                                text: item.cost,
                               )
-                              : DocumentCard(text: item.cost),
+                              : TileWidget(title: item.cost),
                     );
                   },
                 ),
