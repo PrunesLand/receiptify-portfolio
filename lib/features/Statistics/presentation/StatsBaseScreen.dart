@@ -32,10 +32,6 @@ class _StatsBaseScreenState extends State<StatsBaseScreen> {
       child: BlocBuilder<DocumentBloc, DocumentState>(
         builder:
             (context, state) => Scaffold(
-              appBar: AppBar(
-                title: Text(widget.args.pocket.title),
-                centerTitle: true,
-              ),
               body: Column(
                 children: [
                   Flexible(
@@ -43,6 +39,15 @@ class _StatsBaseScreenState extends State<StatsBaseScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 8, 0, 30),
+                          child: Center(
+                            child: Text(
+                              widget.args.pocket.title,
+                              style: TextStyle(fontSize: 40),
+                            ),
+                          ),
+                        ),
                         Center(
                           child: Column(
                             children: [

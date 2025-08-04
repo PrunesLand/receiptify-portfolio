@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:receipt_app/core/theme_data.dart';
 import 'package:receipt_app/features/Document/Index.dart';
 import 'package:receipt_app/features/Onboarding/presentation/RegisterScreen.dart';
 import 'package:receipt_app/features/Payment/index.dart';
@@ -13,6 +15,7 @@ import 'package:receipt_app/features/Settings/index.dart';
 import 'package:receipt_app/features/Statistics/presentation/StatsBaseScreen.dart';
 
 import 'core/service_locator.dart';
+import 'core/theme_provider.dart';
 import 'features/AppDrawer/presentation/AppDrawer.dart';
 import 'features/CameraOCR/presentation/CameraScreen.dart';
 import 'features/Document/presentation/widgets/NewItemFormScreen.dart';
@@ -54,7 +57,12 @@ void main() async {
     return;
   }
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -169,13 +177,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp.router(
       scaffoldMessengerKey: messengerKey,
       routerConfig: router,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      themeMode: themeProvider.themeMode,
+      theme: MyThemes.lightTheme,
+      darkTheme: MyThemes.darkTheme,
     );
   }
 }

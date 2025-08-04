@@ -72,22 +72,12 @@ class AppDrawer extends StatelessWidget {
                 });
               },
             ),
-            ListTile(
-              leading: Icon(Icons.select_all),
-              title: Text('Settings'),
-              onTap: () {
-                GoRouter.of(context).pushReplacement('/settings');
-                Future.delayed(const Duration(milliseconds: 150), () {
-                  Navigator.pop(context);
-                });
-              },
-            ),
             Spacer(),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Log out'),
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
               onTap: () {
-                GoRouter.of(context).go('/onboarding');
+                GoRouter.of(context).go('/settings');
                 Navigator.pop(context);
               },
             ),
