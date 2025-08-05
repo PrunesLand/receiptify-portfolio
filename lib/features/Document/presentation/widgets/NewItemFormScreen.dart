@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../domain/Enums/Enums.dart';
 import '../../domain/models/Receipt/ReceiptModel.dart';
 
 class NewItemFormScreen extends StatefulWidget {
@@ -13,7 +14,8 @@ class NewItemFormScreen extends StatefulWidget {
 class _NewItemFormScreenState extends State<NewItemFormScreen> {
   final _formKey = GlobalKey<FormState>();
   final _costController = TextEditingController();
-  DateTime? _selectedDate;
+  DateTime _selectedDate = DateTime.now();
+  ExpenseEnum _selectedCategory = ExpenseEnum.others;
 
   Future<void> _presentDatePicker() async {
     final now = DateTime.now();
@@ -38,7 +40,7 @@ class _NewItemFormScreenState extends State<NewItemFormScreen> {
           ),
     );
     setState(() {
-      _selectedDate = pickedDate;
+      _selectedDate = pickedDate ?? DateTime.now();
     });
   }
 
@@ -52,6 +54,7 @@ class _NewItemFormScreenState extends State<NewItemFormScreen> {
     final newReceipt = ReceiptModel(
       cost: enteredCost.toString(),
       receiptDate: _selectedDate,
+      category: _selectedCategory,
     );
 
     Navigator.of(context).pop(newReceipt);
@@ -131,15 +134,10 @@ class _NewItemFormScreenState extends State<NewItemFormScreen> {
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            _selectedDate == null
-                                ? 'No Date Chosen'
-                                : 'Picked Date: ${DateFormat('dd/MM/yyyy').format(_selectedDate!)}',
+                            'Picked Date: ${DateFormat('dd/MM/yyyy').format(_selectedDate)}',
                             style: TextStyle(
                               fontSize: 16,
-                              color:
-                                  _selectedDate == null
-                                      ? Colors.grey.shade700
-                                      : Colors.black87,
+                              color: Colors.black87,
                             ),
                           ),
                         ),
@@ -159,6 +157,42 @@ class _NewItemFormScreenState extends State<NewItemFormScreen> {
                         ),
                       ],
                     ),
+                  ),
+                  const SizedBox(height: 24),
+                  const Text(
+                    'Select Category:',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 4.0,
+                    children:
+                        ExpenseEnum.values.map((ExpenseEnum category) {
+                          return ChoiceChip(
+                            label: Text(category.name),
+                            selected: _selectedCategory == category,
+                            onSelected: (bool selected) {
+                              setState(() {
+                                _selectedCategory =
+                                    selected ? category : ExpenseEnum.others;
+                              });
+                            },
+                            selectedColor:
+                                Theme.of(context).colorScheme.primary,
+                            labelStyle: TextStyle(
+                              color:
+                                  _selectedCategory == category
+                                      ? Colors.white
+                                      : Colors.black,
+                            ),
+                            backgroundColor: Colors.white,
+                          );
+                        }).toList(),
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton.icon(

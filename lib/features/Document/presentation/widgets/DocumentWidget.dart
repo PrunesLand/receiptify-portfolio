@@ -126,10 +126,16 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                       child:
                           index == 0
                               ? TileWidget(
-                                title: item.cost,
+                                cost: item.cost,
+                                dateOfReceipt: item.receiptDate,
+                                category: item.category,
                                 isLoading: state.OcrLoading,
                               )
-                              : TileWidget(title: item.cost),
+                              : TileWidget(
+                                cost: item.cost,
+                                dateOfReceipt: item.receiptDate,
+                                category: item.category,
+                              ),
                     );
                   },
                 ),

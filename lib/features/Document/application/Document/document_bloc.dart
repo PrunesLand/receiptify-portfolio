@@ -11,6 +11,7 @@ import '../../domain/models/Receipt/ReceiptModel.dart';
 
 class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
   final IUserStorageRepository _userStorageRepository;
+
   DocumentBloc(this._userStorageRepository) : super(const DocumentState()) {
     on<DocumentEvent>((event, emit) async {
       await event.when(
@@ -73,6 +74,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               id: uuid,
               cost: '',
               file: savedFile,
+              receiptDate: DateTime.now(),
             );
 
             newList = [addedImage, ...state.list];
@@ -112,7 +114,9 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               generationConfig: generationConfig,
             );
 
-            final prompt = TextPart("Return total expense. Answer in Decimals");
+            final prompt = TextPart(
+              "Return total expense. Answer in Decimals.",
+            );
 
             final imagePart = InlineDataPart('image/jpeg', originalImageFile);
 
@@ -196,7 +200,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             emit(
               state.copyWith(
                 list: loadedList,
-                totalExpenseMain: total.toString(),
+                totalExpenseMain: total.toStringAsFixed(2),
                 OcrLoading: false,
               ),
             );
