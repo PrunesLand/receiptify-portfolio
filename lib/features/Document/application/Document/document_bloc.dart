@@ -114,9 +114,12 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               generationConfig: generationConfig,
             );
 
-            final prompt = TextPart(
-              "Return total expense. Answer in Decimals.",
-            );
+            final prompt = TextPart("""
+              Return total expense. Answer in Decimals. 
+              Select category fits best: {food, entertainment, travel, others}. if unsure, pick others.
+              Get receipt date. if none, return today date. format: dd/mm/yy
+              return string separated by comma.
+              """);
 
             final imagePart = InlineDataPart('image/jpeg', originalImageFile);
 
@@ -142,8 +145,11 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             }
 
             totalStopwatch.stop();
+            print("PRUNE: ${await getExpenseEnumFromString(response.text)}");
             final newItem = itemToProcess.copyWith(
-              cost: response.text ?? 'No data.',
+              cost: await getCostFromString(response.text),
+              category: await getExpenseEnumFromString(response.text),
+              receiptDate: await getDateFromString(response.text),
             );
 
             final updatedList =
@@ -173,6 +179,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               imageBytes: originalImageFile,
               fileName: newItem.id,
               totalExpense: newItem.cost,
+              dateOfReceipt: newItem.receiptDate,
             );
           } catch (e) {
             print('Error processing image in DocumentBloc: ${e.toString()}');

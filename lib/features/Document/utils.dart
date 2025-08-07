@@ -3,7 +3,9 @@ import 'dart:typed_data';
 
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:receipt_app/features/Document/domain/Enums/Enums.dart';
 
 import 'domain/models/Image/ImageModel.dart';
 
@@ -91,6 +93,72 @@ Future<void> saveImageModel(ImageModel modelInstance, String fileName) async {
   // String jsonString = jsonEncode(modelJson);
   // await file.writeAsString(jsonString);
   // print('Saved model to: ${file.path}');
+}
+
+Future<ExpenseEnum> getExpenseEnumFromString(String? input) async {
+  if (input == null || input.isEmpty) {
+    return ExpenseEnum.others;
+  }
+
+  String processedInput = input.toLowerCase();
+  int commaIndex = processedInput.indexOf(',');
+
+  if (commaIndex != -1) {
+    List<String> parts = processedInput.split(',');
+    if (parts.length > 1) {
+      processedInput = parts[1].trim().split(' ').first;
+    }
+  }
+
+  switch (processedInput) {
+    case 'food':
+      return ExpenseEnum.food;
+    case 'travel':
+      return ExpenseEnum.travel;
+    case 'entertainment':
+      return ExpenseEnum.entertainment;
+    default:
+      return ExpenseEnum.others;
+  }
+}
+
+Future<String> getCostFromString(String? input) async {
+  if (input == null || input.isEmpty) {
+    return "0";
+  }
+
+  String processedInput = input.toLowerCase();
+  int commaIndex = processedInput.indexOf(',');
+
+  if (commaIndex != -1) {
+    String substringBeforeComma =
+        processedInput.substring(0, commaIndex).trim();
+    return substringBeforeComma.split(' ').first;
+  }
+
+  return processedInput.split(' ').first;
+}
+
+Future<DateTime?> getDateFromString(String? input) async {
+  if (input == null || input.isEmpty) {
+    return null;
+  }
+
+  String processedInput = input.toLowerCase();
+  List<String> parts = processedInput.split(',');
+
+  if (parts.length >= 3) {
+    String dateString = parts[2].trim();
+    try {
+      DateFormat format = DateFormat("dd/MM/yy");
+      return format.parse(dateString);
+    } catch (e) {
+      print("Error parsing date: $e");
+      return null;
+    }
+  }
+
+  return null;
 }
 
 Future<Uint8List?> compressImage(File file) async {
