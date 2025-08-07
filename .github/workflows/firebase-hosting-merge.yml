@@ -28,7 +28,6 @@ jobs:
       # Run standard build steps
       - run: flutter pub get
       - run: dart run build_runner build --delete-conflicting-outputs -v
-      - run: chmod +x android/gradlew
       - run: flutter build apk --debug
 
       # Upload to Firebase
