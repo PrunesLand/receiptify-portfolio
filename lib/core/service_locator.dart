@@ -10,7 +10,7 @@ import 'package:receipt_app/features/Onboarding/index.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
 import 'package:receipt_app/features/User/index.dart';
 
-import '../features/Document/Index.dart';
+import '../features/Document/index.dart';
 
 final getIt = GetIt.instance;
 final _logger = Logger();
