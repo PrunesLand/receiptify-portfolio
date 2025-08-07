@@ -80,19 +80,30 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                 ),
               ),
               // 2. Changed Flexible to Expanded.
-              Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  // ✅ This is the correct property to stop the overscroll effect.
-                  physics: const ClampingScrollPhysics(),
-                  itemCount: state.list.length,
-                  itemBuilder: (context, index) {
-                    final item = state.list[index];
-                    final itemId = item!.id;
+              if (state.OcrLoading && state.list.isEmpty)
+                TileWidget(isLoading: true)
+              else
+                Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    // ✅ This is the correct property to stop the overscroll effect.
+                    physics: const ClampingScrollPhysics(),
+                    itemCount:
+                        state.OcrLoading
+                            ? state.list.length + 1
+                            : state.list.length,
+                    itemBuilder: (context, index) {
+                      if (state.OcrLoading && index == 0) {
+                        return TileWidget(isLoading: true);
+                      }
 
-                    return GestureDetector(
-                      onTap: () {
-                        if (!(index == 0 && state.OcrLoading)) {
+                      final itemIndex = state.OcrLoading ? index - 1 : index;
+                      final item = state.list[itemIndex];
+                      final itemId = item!.id;
+
+                      return GestureDetector(
+                        onTap: () {
+                          // if (!(index == 0 && state.OcrLoading)) { // This condition is now handled by the itemIndex logic
                           showModalBottomSheet<void>(
                             context: context,
                             builder:
@@ -103,10 +114,10 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                   receiptDate: item.receiptDate?.toString(),
                                 ),
                           );
-                        }
-                      },
-                      onLongPress: () {
-                        if (!(index == 0 && state.OcrLoading)) {
+                          // }
+                        },
+                        onLongPress: () {
+                          // if (!(index == 0 && state.OcrLoading)) { // This condition is now handled by the itemIndex logic
                           HapticFeedback.heavyImpact();
                           showDialog(
                             context: context,
@@ -121,25 +132,17 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                               );
                             },
                           );
-                        }
-                      },
-                      child:
-                          index == 0
-                              ? TileWidget(
-                                cost: item.cost,
-                                dateOfReceipt: item.receiptDate,
-                                category: item.category,
-                                isLoading: state.OcrLoading,
-                              )
-                              : TileWidget(
-                                cost: item.cost,
-                                dateOfReceipt: item.receiptDate,
-                                category: item.category,
-                              ),
-                    );
-                  },
+                          // }
+                        },
+                        child: TileWidget(
+                          cost: item.cost,
+                          dateOfReceipt: item.receiptDate,
+                          category: item.category,
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
             ],
           ),
         );

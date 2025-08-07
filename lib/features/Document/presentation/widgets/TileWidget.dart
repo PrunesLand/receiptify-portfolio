@@ -4,9 +4,9 @@ import 'package:shimmer/shimmer.dart';
 import '../../domain/Enums/Enums.dart';
 
 class TileWidget extends StatelessWidget {
-  final String cost;
+  final String? cost;
   final DateTime? dateOfReceipt;
-  final ExpenseEnum category;
+  final ExpenseEnum? category;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
   final VoidCallback? onTap;
@@ -14,9 +14,9 @@ class TileWidget extends StatelessWidget {
 
   const TileWidget({
     super.key,
-    required this.cost,
+    this.cost,
     this.dateOfReceipt,
-    required this.category,
+    this.category,
     this.leadingIcon,
     this.trailingIcon,
     this.onTap,
@@ -66,7 +66,7 @@ class TileWidget extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(cost),
+              Text('\$$cost'),
               Text(
                 _formatDate(dateOfReceipt ?? DateTime.now()),
                 style: TextStyle(
@@ -76,7 +76,7 @@ class TileWidget extends StatelessWidget {
               ),
             ],
           ),
-          subtitle: Text(category.toString()),
+          subtitle: Text(category?.toString() ?? 'N/A'),
           trailing:
               isLoading
                   ? const SizedBox(

@@ -64,39 +64,11 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
         },
 
         processImage: (File file) async {
-          // -- Add image to state list --
-          List<ReceiptModel?> newList = state.list;
-          try {
-            final uuid = Uuid().v4();
-            final savedFile = await saveImageToMainPocketDirectory(file, uuid);
-
-            final addedImage = ReceiptModel(
-              id: uuid,
-              cost: '',
-              file: savedFile,
-              receiptDate: DateTime.now(),
-            );
-
-            newList = [addedImage, ...state.list];
-          } catch (e) {
-            print('Error adding image: $e');
-          }
-          emit(state.copyWith(list: newList, OcrLoading: true));
-
-          // -- Check if list is empty --
-          if (state.list.isEmpty || state.list.first?.file == null) {
-            print('No image file to process.');
-            emit(state.copyWith(OcrLoading: false));
-            return;
-          }
-
+          // -- Set loading state --
           emit(state.copyWith(OcrLoading: true));
 
           // -- AI image feeding process --
-          final ReceiptModel itemToProcess = state.list.first!;
-          final Uint8List originalImageFile =
-              await itemToProcess.file!.readAsBytes();
-
+          final Uint8List originalImageFile = await file.readAsBytes();
           final totalStopwatch = Stopwatch()..start();
           final geminiStopwatch = Stopwatch();
 
@@ -135,10 +107,13 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               'Time to get response from Gemini: ${geminiStopwatch.elapsedMilliseconds} ms',
             );
 
-            // Check if response text is null or empty
+            // Check if response text is null or empty or "false"
             if (response.text == null ||
-                response.text!.toLowerCase() == "false") {
-              throw Exception('Gemini response text is null or empty.');
+                response.text!.trim().toLowerCase() == "false") {
+              print('Gemini response indicates not a receipt or is invalid.');
+              emit(state.copyWith(OcrLoading: false)); // Stop loading
+              // Optionally, you can show a message to the user here
+              return; // Exit the function, do not add to list
             }
 
             // Log token usage
@@ -151,32 +126,42 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               print('Tokens in total used: ${usageMetadata.totalTokenCount}');
             }
 
-            totalStopwatch.stop();
-            print("PRUNE: ${await getExpenseEnumFromString(response.text)}");
-            final newItem = itemToProcess.copyWith(
-              cost: await getCostFromString(response.text),
-              category: await getExpenseEnumFromString(response.text),
-              receiptDate: await getDateFromString(response.text),
+            // -- If Gemini response is valid, then add image to state list --
+            final uuid = Uuid().v4();
+            final savedFile = await saveImageToMainPocketDirectory(file, uuid);
+
+            final addedImage = ReceiptModel(
+              id: uuid,
+              cost: await getCostFromString(
+                response.text!,
+              ), // Parse cost from valid response
+              file: savedFile,
+              receiptDate: await getDateFromString(
+                response.text!,
+              ), // Parse date from valid response
+              category: await getExpenseEnumFromString(
+                response.text!,
+              ), // Parse category
             );
 
-            final updatedList =
-                state.list.map((itemInTheList) {
-                  if (itemInTheList!.id == newItem.id) {
-                    return newItem;
-                  }
-                  return itemInTheList;
-                }).toList();
+            List<ReceiptModel?> newList = [addedImage, ...state.list];
 
-            final list = updatedList;
+            totalStopwatch.stop();
+            print(
+              "PRUNE: ${await getExpenseEnumFromString(response.text!)}",
+            ); // Use response.text!
+
             double total = 0.0;
-            for (final item in list) {
-              total += double.tryParse(item.cost) ?? 0.0;
+            for (final item in newList) {
+              // Recalculate total with the new item
+              total += double.tryParse(item!.cost) ?? 0.0;
             }
+
             emit(
               state.copyWith(
                 OcrLoading: false,
-                list: updatedList,
-                totalExpenseMain: total.toStringAsFixed(2).toString(),
+                list: newList,
+                totalExpenseMain: total.toStringAsFixed(2),
               ),
             );
             print(
@@ -184,12 +169,14 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             );
             await _userStorageRepository.addDocumentToMainPocket(
               imageBytes: originalImageFile,
-              fileName: newItem.id,
-              totalExpense: newItem.cost,
-              dateOfReceipt: newItem.receiptDate,
+              fileName: addedImage.id, // Use addedImage properties
+              totalExpense: addedImage.cost,
+              dateOfReceipt: addedImage.receiptDate,
             );
           } catch (e) {
             print('Error processing image in DocumentBloc: ${e.toString()}');
+            // If an error occurs (other than the "false" check),
+            // we also don't add the item and just stop loading.
             emit(state.copyWith(OcrLoading: false));
             return;
           }
