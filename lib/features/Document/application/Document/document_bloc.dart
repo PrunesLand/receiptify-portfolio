@@ -115,6 +115,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             );
 
             final prompt = TextPart("""
+              Identify receipt/invoice and if false return "false" and immediately stop processing.
               Return total expense. Answer in Decimals. 
               Select category fits best: {food, entertainment, travel, others}. if unsure, pick others.
               Get receipt date. if none, return today date. format: dd/mm/yy
@@ -133,6 +134,12 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             print(
               'Time to get response from Gemini: ${geminiStopwatch.elapsedMilliseconds} ms',
             );
+
+            // Check if response text is null or empty
+            if (response.text == null ||
+                response.text!.toLowerCase() == "false") {
+              throw Exception('Gemini response text is null or empty.');
+            }
 
             // Log token usage
             final usageMetadata = response.usageMetadata;
