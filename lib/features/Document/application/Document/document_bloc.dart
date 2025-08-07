@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:receipt_app/features/Document/Index.dart';
+import 'package:receipt_app/features/Document/index.dart';
 import 'package:receipt_app/features/User/index.dart';
 import 'package:uuid/uuid.dart';
 
