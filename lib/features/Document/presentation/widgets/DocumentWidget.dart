@@ -85,7 +85,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
               else
                 Expanded(
                   child: ListView.builder(
-                    padding: EdgeInsets.zero,
+                    padding: const EdgeInsets.only(bottom: 100.0),
                     // ✅ This is the correct property to stop the overscroll effect.
                     physics: const ClampingScrollPhysics(),
                     itemCount:
