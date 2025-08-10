@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginState {
   bool get isLoading => throw _privateConstructorUsedError;
   LoginUserModel? get user => throw _privateConstructorUsedError;
+  bool get loginFailed => throw _privateConstructorUsedError;
+  bool get finishLogin => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({bool isLoading, LoginUserModel? user});
+  $Res call(
+      {bool isLoading,
+      LoginUserModel? user,
+      bool loginFailed,
+      bool finishLogin});
 
   $LoginUserModelCopyWith<$Res>? get user;
 }
@@ -50,6 +56,8 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   $Res call({
     Object? isLoading = null,
     Object? user = freezed,
+    Object? loginFailed = null,
+    Object? finishLogin = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -60,6 +68,14 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as LoginUserModel?,
+      loginFailed: null == loginFailed
+          ? _value.loginFailed
+          : loginFailed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      finishLogin: null == finishLogin
+          ? _value.finishLogin
+          : finishLogin // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -84,7 +100,11 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       __$$LoginStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, LoginUserModel? user});
+  $Res call(
+      {bool isLoading,
+      LoginUserModel? user,
+      bool loginFailed,
+      bool finishLogin});
 
   @override
   $LoginUserModelCopyWith<$Res>? get user;
@@ -103,6 +123,8 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? user = freezed,
+    Object? loginFailed = null,
+    Object? finishLogin = null,
   }) {
     return _then(_$LoginStateImpl(
       isLoading: null == isLoading
@@ -113,6 +135,14 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as LoginUserModel?,
+      loginFailed: null == loginFailed
+          ? _value.loginFailed
+          : loginFailed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      finishLogin: null == finishLogin
+          ? _value.finishLogin
+          : finishLogin // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -120,17 +150,27 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoginStateImpl implements _LoginState {
-  const _$LoginStateImpl({this.isLoading = false, this.user});
+  const _$LoginStateImpl(
+      {this.isLoading = false,
+      this.user,
+      this.loginFailed = false,
+      this.finishLogin = false});
 
   @override
   @JsonKey()
   final bool isLoading;
   @override
   final LoginUserModel? user;
+  @override
+  @JsonKey()
+  final bool loginFailed;
+  @override
+  @JsonKey()
+  final bool finishLogin;
 
   @override
   String toString() {
-    return 'LoginState(isLoading: $isLoading, user: $user)';
+    return 'LoginState(isLoading: $isLoading, user: $user, loginFailed: $loginFailed, finishLogin: $finishLogin)';
   }
 
   @override
@@ -140,11 +180,16 @@ class _$LoginStateImpl implements _LoginState {
             other is _$LoginStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.loginFailed, loginFailed) ||
+                other.loginFailed == loginFailed) &&
+            (identical(other.finishLogin, finishLogin) ||
+                other.finishLogin == finishLogin));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, user);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, user, loginFailed, finishLogin);
 
   @JsonKey(ignore: true)
   @override
@@ -155,12 +200,19 @@ class _$LoginStateImpl implements _LoginState {
 
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
-      {final bool isLoading, final LoginUserModel? user}) = _$LoginStateImpl;
+      {final bool isLoading,
+      final LoginUserModel? user,
+      final bool loginFailed,
+      final bool finishLogin}) = _$LoginStateImpl;
 
   @override
   bool get isLoading;
   @override
   LoginUserModel? get user;
+  @override
+  bool get loginFailed;
+  @override
+  bool get finishLogin;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>

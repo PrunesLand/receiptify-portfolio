@@ -124,4 +124,8 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton(
     () => RegisterBloc(getIt<FirebaseAuthSingleton>(), getIt<Logger>()),
   );
+
+  getIt.registerLazySingleton(
+    () => LoginBloc(getIt<FirebaseAuthSingleton>(), getIt<Logger>()),
+  );
 }

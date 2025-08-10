@@ -6,6 +6,5 @@ part 'login_event.freezed.dart';
 @freezed
 class LoginEvent with _$LoginEvent {
   const factory LoginEvent.isLoading() = _IsLoading;
-  const factory LoginEvent.loginUser({required LoginUserModel user}) =
-      _LoginUser;
+  const factory LoginEvent.loginUser(LoginUserModel user) = _LoginUser;
 }

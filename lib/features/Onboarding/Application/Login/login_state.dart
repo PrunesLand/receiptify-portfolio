@@ -8,5 +8,7 @@ class LoginState with _$LoginState {
   const factory LoginState({
     @Default(false) bool isLoading,
     LoginUserModel? user,
+    @Default(false) bool loginFailed,
+    @Default(false) bool finishLogin,
   }) = _LoginState;
 }

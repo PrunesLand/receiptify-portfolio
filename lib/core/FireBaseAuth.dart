@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 class FirebaseAuthSingleton {
   final FirebaseAuth _firebaseAuth;
 
-  // Constructor that takes FirebaseAuth as a dependency
   FirebaseAuthSingleton(this._firebaseAuth);
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
@@ -41,6 +40,4 @@ class FirebaseAuthSingleton {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
-
-  // ... other methods
 }

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:receipt_app/core/theme_data.dart';
 import 'package:receipt_app/features/Document/index.dart';
+import 'package:receipt_app/features/Onboarding/Application/index.dart';
 import 'package:receipt_app/features/Onboarding/presentation/RegisterScreen.dart';
 import 'package:receipt_app/features/Payment/index.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
@@ -18,7 +19,6 @@ import 'core/theme_provider.dart';
 import 'features/AppDrawer/presentation/AppDrawer.dart';
 import 'features/CameraOCR/presentation/CameraScreen.dart';
 import 'features/Document/presentation/widgets/NewItemFormScreen.dart';
-import 'features/Onboarding/Application/Register/register_bloc.dart';
 import 'features/Onboarding/presentation/HeroScreen.dart';
 import 'features/Onboarding/presentation/LoginScreen.dart';
 import 'features/Statistics/application/Statistics/statistics_bloc.dart';
@@ -167,7 +167,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/login',
       builder: (BuildContext context, GoRouterState state) {
-        return const LoginScreen();
+        return BlocProvider.value(
+          value: getIt<LoginBloc>(),
+          child: LoginScreen(),
+        );
       },
     ),
     GoRoute(

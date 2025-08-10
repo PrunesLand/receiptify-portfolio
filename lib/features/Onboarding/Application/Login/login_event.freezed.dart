@@ -201,7 +201,7 @@ class __$$LoginUserImplCopyWithImpl<$Res>
     Object? user = null,
   }) {
     return _then(_$LoginUserImpl(
-      user: null == user
+      null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as LoginUserModel,
@@ -220,7 +220,7 @@ class __$$LoginUserImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoginUserImpl implements _LoginUser {
-  const _$LoginUserImpl({required this.user});
+  const _$LoginUserImpl(this.user);
 
   @override
   final LoginUserModel user;
@@ -311,8 +311,7 @@ class _$LoginUserImpl implements _LoginUser {
 }
 
 abstract class _LoginUser implements LoginEvent {
-  const factory _LoginUser({required final LoginUserModel user}) =
-      _$LoginUserImpl;
+  const factory _LoginUser(final LoginUserModel user) = _$LoginUserImpl;
 
   LoginUserModel get user;
   @JsonKey(ignore: true)
