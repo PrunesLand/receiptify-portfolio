@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:receipt_app/features/Document/domain/Enums/Enums.dart';
 import 'package:receipt_app/features/Document/domain/models/Receipt/index.dart';
 
 import 'Schema/User.dart';
@@ -11,6 +12,7 @@ abstract class IUserStorageRepository {
     required String fileName,
     required String totalExpense,
     DateTime? dateOfReceipt,
+    required ExpenseEnum category,
   });
   Future<void> deleteDocumentFromMainPocketByFileName(String fileName);
   Future<void> addSubPocket(SubPocket newSubPocketData);

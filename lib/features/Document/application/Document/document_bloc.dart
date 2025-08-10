@@ -169,14 +169,14 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             );
             await _userStorageRepository.addDocumentToMainPocket(
               imageBytes: originalImageFile,
-              fileName: addedImage.id, // Use addedImage properties
+              fileName: addedImage.id,
               totalExpense: addedImage.cost,
               dateOfReceipt: addedImage.receiptDate,
+              category: addedImage.category,
             );
           } catch (e) {
             print('Error processing image in DocumentBloc: ${e.toString()}');
-            // If an error occurs (other than the "false" check),
-            // we also don't add the item and just stop loading.
+
             emit(state.copyWith(OcrLoading: false));
             return;
           }
@@ -248,6 +248,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             fileName: newReceipt.id,
             totalExpense: newReceipt.cost,
             dateOfReceipt: newReceipt.receiptDate,
+            category: newReceipt.category,
           );
           emit(
             state.copyWith(

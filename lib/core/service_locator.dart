@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:receipt_app/core/index.dart';
 import 'package:receipt_app/features/Onboarding/index.dart';
 import 'package:receipt_app/features/PocketGroup/application/index.dart';
+import 'package:receipt_app/features/Statistics/application/Statistics/index.dart';
 import 'package:receipt_app/features/User/index.dart';
 
 import '../features/Document/index.dart';
@@ -46,7 +47,7 @@ Future<void> setupServiceLocator() async {
   getIt.registerSingletonAsync<Isar>(() async {
     final dir = await getApplicationDocumentsDirectory();
     final isarInstance = await Isar.open(
-      [UserSchema], // Add all your schemas
+      [UserSchema],
       directory: dir.path,
       name: "receiptAppDB",
     );
@@ -83,6 +84,10 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerLazySingleton(
     () => DocumentBloc(getIt<UserStorageRepository>()),
+  );
+
+  getIt.registerLazySingleton(
+    () => StatisticsBloc(getIt<UserStorageRepository>()),
   );
 
   getIt.registerLazySingleton<Dio>(() {

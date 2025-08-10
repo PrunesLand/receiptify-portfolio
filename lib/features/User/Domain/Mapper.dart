@@ -41,9 +41,11 @@ Future<ReceiptModel> mapDocumentToImageModel(Document isarDocument) async {
   // Also, you might want to map `totalExpense` to `content` or another field
   // if it makes sense for your `ImageModel`.
   return ReceiptModel(
-    id: isarDocument.fileName, // Or another unique identifier from Document
+    id: isarDocument.fileName,
     file: imageFile,
-    cost: isarDocument.totalExpense, // Example: mapping totalExpense to content
+    cost: isarDocument.totalExpense,
+    category: isarDocument.type,
+    receiptDate: isarDocument.dateOfReceipt,
   );
 }
 

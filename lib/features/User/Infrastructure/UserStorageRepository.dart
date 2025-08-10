@@ -5,6 +5,8 @@ import 'package:logger/logger.dart';
 import 'package:receipt_app/features/Document/domain/models/Receipt/index.dart';
 import 'package:receipt_app/features/User/Domain/index.dart';
 
+import '../../Document/domain/Enums/Enums.dart';
+
 class UserStorageRepository implements IUserStorageRepository {
   final Isar isar;
   final Logger _logger;
@@ -33,6 +35,7 @@ class UserStorageRepository implements IUserStorageRepository {
     required String fileName,
     required String totalExpense,
     DateTime? dateOfReceipt,
+    required ExpenseEnum category,
   }) async {
     try {
       await isar.writeTxn(() async {
@@ -44,6 +47,7 @@ class UserStorageRepository implements IUserStorageRepository {
         final doc =
             Document()
               ..fileName = fileName
+              ..type = category
               ..totalExpense = totalExpense;
 
         if (imageBytes != null) {

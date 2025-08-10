@@ -76,7 +76,7 @@ class TileWidget extends StatelessWidget {
               ),
             ],
           ),
-          subtitle: Text(category?.toString() ?? 'N/A'),
+          subtitle: Text(category?.name ?? 'N/A'),
           trailing:
               isLoading
                   ? const SizedBox(

@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+import 'package:receipt_app/features/Document/domain/Enums/Enums.dart';
 
 part 'User.g.dart';
 
@@ -59,4 +60,7 @@ class Document {
 
   @Name("dateOfReceipt")
   DateTime? dateOfReceipt;
+
+  @Enumerated(EnumType.name)
+  late ExpenseEnum type;
 }

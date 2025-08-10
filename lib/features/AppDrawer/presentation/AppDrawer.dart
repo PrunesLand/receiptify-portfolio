@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,73 +20,75 @@ class AppDrawer extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          actions:
-              state.topRoute?.path == '/selection'
-                  ? [
-                    IconButton(
-                      icon: const Icon(Icons.add),
-                      onPressed: () async {
-                        final result = await showDialog<PocketModel>(
-                          context: context,
-                          builder: (context) => BudgetModal(),
-                        );
-                        if (result != null) {
-                          getIt<PocketBloc>().add(
-                            PocketEvent.addPocket(result),
-                          );
-                        }
-                      },
-                    ),
-                  ]
-                  : null,
+          actions: [
+            if (state.topRoute?.path == '/selection')
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () async {
+                  final result = await showDialog<PocketModel>(
+                    context: context,
+                    builder: (context) => BudgetModal(),
+                  );
+                  if (result != null) {
+                    getIt<PocketBloc>().add(PocketEvent.addPocket(result));
+                  }
+                },
+              ),
+            IconButton(
+              icon: const Icon(Icons.bar_chart),
+              onPressed: () {
+                GoRouter.of(context).push('/analytics');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                GoRouter.of(context).push('/settings');
+              },
+            ),
+          ],
         ),
-        drawer: Drawer(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              DrawerHeader(child: Text('Receipt App')),
-              ListTile(
-                leading: Icon(Icons.select_all),
-                title: Text('Home'),
-                onTap: () {
-                  GoRouter.of(context).pushReplacement('/home');
-                  Future.delayed(const Duration(milliseconds: 150), () {
-                    Navigator.pop(context);
-                  });
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.select_all),
-                title: Text('Selection'),
-                onTap: () {
-                  GoRouter.of(context).pushReplacement('/selection');
-                  Future.delayed(const Duration(milliseconds: 150), () {
-                    Navigator.pop(context);
-                  });
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.monetization_on),
-                title: Text('Subscription'),
-                onTap: () {
-                  GoRouter.of(context).pushReplacement('/payment');
-                  Future.delayed(const Duration(milliseconds: 150), () {
-                    Navigator.pop(context);
-                  });
-                },
-              ),
-              Spacer(),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
-                onTap: () {
-                  GoRouter.of(context).go('/settings');
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer:
+            kDebugMode
+                ? Drawer(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      DrawerHeader(child: Text('Receipt App')),
+                      ListTile(
+                        leading: Icon(Icons.select_all),
+                        title: Text('Home'),
+                        onTap: () {
+                          GoRouter.of(context).pushReplacement('/home');
+                          Future.delayed(const Duration(milliseconds: 150), () {
+                            Navigator.pop(context);
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.select_all),
+                        title: Text('Selection'),
+                        onTap: () {
+                          GoRouter.of(context).pushReplacement('/selection');
+                          Future.delayed(const Duration(milliseconds: 150), () {
+                            Navigator.pop(context);
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.monetization_on),
+                        title: Text('Subscription'),
+                        onTap: () {
+                          GoRouter.of(context).pushReplacement('/payment');
+                          Future.delayed(const Duration(milliseconds: 150), () {
+                            Navigator.pop(context);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                )
+                : null,
         body: child,
       ),
     );

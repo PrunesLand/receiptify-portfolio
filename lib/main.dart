@@ -12,7 +12,7 @@ import 'package:receipt_app/features/PocketGroup/application/index.dart';
 import 'package:receipt_app/features/PocketGroup/domain/index.dart';
 import 'package:receipt_app/features/PocketGroup/presentation/DataSelectionScreen.dart';
 import 'package:receipt_app/features/Settings/index.dart';
-import 'package:receipt_app/features/Statistics/presentation/StatsBaseScreen.dart';
+import 'package:receipt_app/features/Statistics/index.dart';
 
 import 'core/service_locator.dart';
 import 'core/theme_provider.dart';
@@ -22,7 +22,7 @@ import 'features/Document/presentation/widgets/NewItemFormScreen.dart';
 import 'features/Onboarding/Application/Register/register_bloc.dart';
 import 'features/Onboarding/presentation/HeroScreen.dart';
 import 'features/Onboarding/presentation/LoginScreen.dart';
-import 'features/Statistics/domain/Models/BasicStats.dart';
+import 'features/Statistics/application/Statistics/statistics_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -75,18 +75,12 @@ final GoRouter router = GoRouter(
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => getIt<PocketBloc>()),
-            BlocProvider(create: (context) => getIt<DocumentBloc>()),
+            BlocProvider.value(value: getIt<DocumentBloc>()),
           ],
           child: AppDrawer(child: child, state: state),
         );
       },
       routes: [
-        GoRoute(
-          path: '/settings',
-          builder: (BuildContext context, GoRouterState state) {
-            return SettingsScreen();
-          },
-        ),
         GoRoute(
           path: '/selection',
           builder: (BuildContext context, GoRouterState state) {
@@ -121,6 +115,23 @@ final GoRouter router = GoRouter(
           },
         ),
       ],
+    ),
+
+    GoRoute(
+      path: '/settings',
+      builder: (BuildContext context, GoRouterState state) {
+        return SettingsScreen();
+      },
+    ),
+
+    GoRoute(
+      path: '/analytics',
+      builder: (BuildContext context, GoRouterState state) {
+        return BlocProvider.value(
+          value: getIt<StatisticsBloc>(),
+          child: StatsDataScreen(),
+        );
+      },
     ),
 
     GoRoute(
