@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -68,7 +67,7 @@ void main() async {
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
 final GoRouter router = GoRouter(
-  initialLocation: kDebugMode ? '/home' : '/onboarding',
+  initialLocation: '/onboarding',
   routes: <RouteBase>[
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -174,8 +173,8 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/register',
       builder: (BuildContext context, GoRouterState state) {
-        return BlocProvider(
-          create: (context) => getIt<RegisterBloc>(),
+        return BlocProvider.value(
+          value: getIt<RegisterBloc>(),
           child: RegisterScreen(),
         );
       },

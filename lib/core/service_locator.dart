@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:get_it/get_it.dart';
 import 'package:isar/isar.dart';
 import 'package:logger/logger.dart';
@@ -79,6 +80,12 @@ Future<void> setupServiceLocator() async {
     // For now, it logs and continues, but other services might fail if they expect a user.
     // Example: throw Exception("Failed to initialize core user data: $e");
   }
+  // Register FirebaseAuth instance
+  getIt.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+  getIt.registerLazySingleton(
+    // Register FirebaseAuthSingleton, ensuring FirebaseAuth is available
+    () => FirebaseAuthSingleton(getIt<FirebaseAuth>()),
+  );
 
   getIt.registerLazySingleton(() => TokenStorageService());
 
@@ -114,5 +121,7 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerLazySingleton(() => PocketBloc());
 
-  getIt.registerLazySingleton(() => RegisterBloc());
+  getIt.registerLazySingleton(
+    () => RegisterBloc(getIt<FirebaseAuthSingleton>(), getIt<Logger>()),
+  );
 }

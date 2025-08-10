@@ -15,8 +15,8 @@ extension RegisterUserModelMapper on RegisterUserModel {
   RegisterUserDTO toDTO() {
     return RegisterUserDTO(
       id: id,
-      firstName: firstName,
-      lastName: lastName,
+      firstName: '',
+      lastName: '',
       email: email,
       password: password,
     );

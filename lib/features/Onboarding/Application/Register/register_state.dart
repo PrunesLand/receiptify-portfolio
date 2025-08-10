@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../Domain/Models/RegisterUserModel.dart';
-
 part 'register_state.freezed.dart';
 
 @freezed
@@ -11,5 +9,7 @@ class RegisterState with _$RegisterState {
     String? email,
     String? password,
     String? repeatPassword,
+    @Default(false) bool registrationFailed,
+    @Default(false) bool finishRegister,
   }) = _RegisterState;
 }

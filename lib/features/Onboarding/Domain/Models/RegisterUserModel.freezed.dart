@@ -17,11 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$RegisterUserModel {
   String get id => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  String get confirmPassword => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterUserModelCopyWith<RegisterUserModel> get copyWith =>
@@ -34,13 +31,7 @@ abstract class $RegisterUserModelCopyWith<$Res> {
           RegisterUserModel value, $Res Function(RegisterUserModel) then) =
       _$RegisterUserModelCopyWithImpl<$Res, RegisterUserModel>;
   @useResult
-  $Res call(
-      {String id,
-      String firstName,
-      String lastName,
-      String email,
-      String password,
-      String confirmPassword});
+  $Res call({String id, String email, String password});
 }
 
 /// @nodoc
@@ -57,24 +48,13 @@ class _$RegisterUserModelCopyWithImpl<$Res, $Val extends RegisterUserModel>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
     Object? email = null,
     Object? password = null,
-    Object? confirmPassword = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
@@ -83,10 +63,6 @@ class _$RegisterUserModelCopyWithImpl<$Res, $Val extends RegisterUserModel>
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -100,13 +76,7 @@ abstract class _$$RegisterUserModelImplCopyWith<$Res>
       __$$RegisterUserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String firstName,
-      String lastName,
-      String email,
-      String password,
-      String confirmPassword});
+  $Res call({String id, String email, String password});
 }
 
 /// @nodoc
@@ -121,24 +91,13 @@ class __$$RegisterUserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
     Object? email = null,
     Object? password = null,
-    Object? confirmPassword = null,
   }) {
     return _then(_$RegisterUserModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
@@ -148,10 +107,6 @@ class __$$RegisterUserModelImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -160,35 +115,21 @@ class __$$RegisterUserModelImplCopyWithImpl<$Res>
 
 class _$RegisterUserModelImpl implements _RegisterUserModel {
   const _$RegisterUserModelImpl(
-      {this.id = '',
-      this.firstName = '',
-      this.lastName = '',
-      this.email = '',
-      this.password = '',
-      this.confirmPassword = ''});
+      {this.id = '', this.email = '', this.password = ''});
 
   @override
   @JsonKey()
   final String id;
   @override
   @JsonKey()
-  final String firstName;
-  @override
-  @JsonKey()
-  final String lastName;
-  @override
-  @JsonKey()
   final String email;
   @override
   @JsonKey()
   final String password;
-  @override
-  @JsonKey()
-  final String confirmPassword;
 
   @override
   String toString() {
-    return 'RegisterUserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password, confirmPassword: $confirmPassword)';
+    return 'RegisterUserModel(id: $id, email: $email, password: $password)';
   }
 
   @override
@@ -197,20 +138,13 @@ class _$RegisterUserModelImpl implements _RegisterUserModel {
         (other.runtimeType == runtimeType &&
             other is _$RegisterUserModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.confirmPassword, confirmPassword) ||
-                other.confirmPassword == confirmPassword));
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, firstName, lastName, email, password, confirmPassword);
+  int get hashCode => Object.hash(runtimeType, id, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -223,24 +157,15 @@ class _$RegisterUserModelImpl implements _RegisterUserModel {
 abstract class _RegisterUserModel implements RegisterUserModel {
   const factory _RegisterUserModel(
       {final String id,
-      final String firstName,
-      final String lastName,
       final String email,
-      final String password,
-      final String confirmPassword}) = _$RegisterUserModelImpl;
+      final String password}) = _$RegisterUserModelImpl;
 
   @override
   String get id;
   @override
-  String get firstName;
-  @override
-  String get lastName;
-  @override
   String get email;
   @override
   String get password;
-  @override
-  String get confirmPassword;
   @override
   @JsonKey(ignore: true)
   _$$RegisterUserModelImplCopyWith<_$RegisterUserModelImpl> get copyWith =>

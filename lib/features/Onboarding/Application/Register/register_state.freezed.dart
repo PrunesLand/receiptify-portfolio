@@ -20,6 +20,8 @@ mixin _$RegisterState {
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   String? get repeatPassword => throw _privateConstructorUsedError;
+  bool get registrationFailed => throw _privateConstructorUsedError;
+  bool get finishRegister => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
@@ -36,7 +38,9 @@ abstract class $RegisterStateCopyWith<$Res> {
       {bool isLoading,
       String? email,
       String? password,
-      String? repeatPassword});
+      String? repeatPassword,
+      bool registrationFailed,
+      bool finishRegister});
 }
 
 /// @nodoc
@@ -56,6 +60,8 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     Object? email = freezed,
     Object? password = freezed,
     Object? repeatPassword = freezed,
+    Object? registrationFailed = null,
+    Object? finishRegister = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -74,6 +80,14 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
           ? _value.repeatPassword
           : repeatPassword // ignore: cast_nullable_to_non_nullable
               as String?,
+      registrationFailed: null == registrationFailed
+          ? _value.registrationFailed
+          : registrationFailed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      finishRegister: null == finishRegister
+          ? _value.finishRegister
+          : finishRegister // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -90,7 +104,9 @@ abstract class _$$RegisterStateImplCopyWith<$Res>
       {bool isLoading,
       String? email,
       String? password,
-      String? repeatPassword});
+      String? repeatPassword,
+      bool registrationFailed,
+      bool finishRegister});
 }
 
 /// @nodoc
@@ -108,6 +124,8 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? password = freezed,
     Object? repeatPassword = freezed,
+    Object? registrationFailed = null,
+    Object? finishRegister = null,
   }) {
     return _then(_$RegisterStateImpl(
       isLoading: null == isLoading
@@ -126,6 +144,14 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
           ? _value.repeatPassword
           : repeatPassword // ignore: cast_nullable_to_non_nullable
               as String?,
+      registrationFailed: null == registrationFailed
+          ? _value.registrationFailed
+          : registrationFailed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      finishRegister: null == finishRegister
+          ? _value.finishRegister
+          : finishRegister // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -134,7 +160,12 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
 
 class _$RegisterStateImpl implements _RegisterState {
   const _$RegisterStateImpl(
-      {this.isLoading = false, this.email, this.password, this.repeatPassword});
+      {this.isLoading = false,
+      this.email,
+      this.password,
+      this.repeatPassword,
+      this.registrationFailed = false,
+      this.finishRegister = false});
 
   @override
   @JsonKey()
@@ -145,10 +176,16 @@ class _$RegisterStateImpl implements _RegisterState {
   final String? password;
   @override
   final String? repeatPassword;
+  @override
+  @JsonKey()
+  final bool registrationFailed;
+  @override
+  @JsonKey()
+  final bool finishRegister;
 
   @override
   String toString() {
-    return 'RegisterState(isLoading: $isLoading, email: $email, password: $password, repeatPassword: $repeatPassword)';
+    return 'RegisterState(isLoading: $isLoading, email: $email, password: $password, repeatPassword: $repeatPassword, registrationFailed: $registrationFailed, finishRegister: $finishRegister)';
   }
 
   @override
@@ -162,12 +199,16 @@ class _$RegisterStateImpl implements _RegisterState {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.repeatPassword, repeatPassword) ||
-                other.repeatPassword == repeatPassword));
+                other.repeatPassword == repeatPassword) &&
+            (identical(other.registrationFailed, registrationFailed) ||
+                other.registrationFailed == registrationFailed) &&
+            (identical(other.finishRegister, finishRegister) ||
+                other.finishRegister == finishRegister));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, email, password, repeatPassword);
+  int get hashCode => Object.hash(runtimeType, isLoading, email, password,
+      repeatPassword, registrationFailed, finishRegister);
 
   @JsonKey(ignore: true)
   @override
@@ -181,7 +222,9 @@ abstract class _RegisterState implements RegisterState {
       {final bool isLoading,
       final String? email,
       final String? password,
-      final String? repeatPassword}) = _$RegisterStateImpl;
+      final String? repeatPassword,
+      final bool registrationFailed,
+      final bool finishRegister}) = _$RegisterStateImpl;
 
   @override
   bool get isLoading;
@@ -191,6 +234,10 @@ abstract class _RegisterState implements RegisterState {
   String? get password;
   @override
   String? get repeatPassword;
+  @override
+  bool get registrationFailed;
+  @override
+  bool get finishRegister;
   @override
   @JsonKey(ignore: true)
   _$$RegisterStateImplCopyWith<_$RegisterStateImpl> get copyWith =>

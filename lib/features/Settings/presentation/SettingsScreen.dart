@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme_provider.dart';
@@ -15,27 +16,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return Scaffold(
-      appBar: AppBar(title: Text('Settings')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        appBar: AppBar(title: Text('Settings')),
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Dark Mode', style: TextStyle(fontSize: 18)),
-                Switch(
-                  value: themeProvider.isDarkMode,
-                  onChanged: (value) {
-                    themeProvider.toggleTheme(value);
-                  },
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Dark Mode', style: TextStyle(fontSize: 18)),
+                  Switch(
+                    value: themeProvider.isDarkMode,
+                    onChanged: (value) {
+                      themeProvider.toggleTheme(value);
+                    },
+                  ),
+                ],
+              ),
             ),
             Spacer(),
-            ElevatedButton(onPressed: () {}, child: Text("Log out")),
+            ListTile(
+              title: Text("Log out", style: TextStyle(color: Colors.red)),
+              onTap: () {
+                GoRouter.of(context).replace('/onboarding');
+              },
+              leading: Icon(Icons.logout, color: Colors.red),
+              tileColor: Colors.grey[200], // Or any other color you prefer
+            ),
           ],
         ),
       ),

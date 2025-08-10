@@ -21,6 +21,7 @@ mixin _$RegisterEvent {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
+    required TResult Function(RegisterUserModel user) register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$RegisterEvent {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
+    TResult? Function(RegisterUserModel user)? register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$RegisterEvent {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
+    TResult Function(RegisterUserModel user)? register,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$RegisterEvent {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Register value) register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$RegisterEvent {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Register value)? register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$RegisterEvent {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Register value)? register,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +153,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
+    required TResult Function(RegisterUserModel user) register,
   }) {
     return emailChanged(email);
   }
@@ -157,6 +164,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
+    TResult? Function(RegisterUserModel user)? register,
   }) {
     return emailChanged?.call(email);
   }
@@ -167,6 +175,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
+    TResult Function(RegisterUserModel user)? register,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -181,6 +190,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Register value) register,
   }) {
     return emailChanged(this);
   }
@@ -191,6 +201,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Register value)? register,
   }) {
     return emailChanged?.call(this);
   }
@@ -201,6 +212,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Register value)? register,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -288,6 +300,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
+    required TResult Function(RegisterUserModel user) register,
   }) {
     return passwordChanged(password);
   }
@@ -298,6 +311,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
+    TResult? Function(RegisterUserModel user)? register,
   }) {
     return passwordChanged?.call(password);
   }
@@ -308,6 +322,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
+    TResult Function(RegisterUserModel user)? register,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -322,6 +337,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Register value) register,
   }) {
     return passwordChanged(this);
   }
@@ -332,6 +348,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Register value)? register,
   }) {
     return passwordChanged?.call(this);
   }
@@ -342,6 +359,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Register value)? register,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -401,6 +419,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
+    required TResult Function(RegisterUserModel user) register,
   }) {
     return isLoading();
   }
@@ -411,6 +430,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
+    TResult? Function(RegisterUserModel user)? register,
   }) {
     return isLoading?.call();
   }
@@ -421,6 +441,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
+    TResult Function(RegisterUserModel user)? register,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -435,6 +456,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Register value) register,
   }) {
     return isLoading(this);
   }
@@ -445,6 +467,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Register value)? register,
   }) {
     return isLoading?.call(this);
   }
@@ -455,6 +478,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Register value)? register,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -466,4 +490,159 @@ class _$IsLoadingImpl implements _IsLoading {
 
 abstract class _IsLoading implements RegisterEvent {
   const factory _IsLoading() = _$IsLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$RegisterImplCopyWith<$Res> {
+  factory _$$RegisterImplCopyWith(
+          _$RegisterImpl value, $Res Function(_$RegisterImpl) then) =
+      __$$RegisterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RegisterUserModel user});
+
+  $RegisterUserModelCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$RegisterImplCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res, _$RegisterImpl>
+    implements _$$RegisterImplCopyWith<$Res> {
+  __$$RegisterImplCopyWithImpl(
+      _$RegisterImpl _value, $Res Function(_$RegisterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$RegisterImpl(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as RegisterUserModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RegisterUserModelCopyWith<$Res> get user {
+    return $RegisterUserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$RegisterImpl implements _Register {
+  const _$RegisterImpl(this.user);
+
+  @override
+  final RegisterUserModel user;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.register(user: $user)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegisterImpl &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegisterImplCopyWith<_$RegisterImpl> get copyWith =>
+      __$$RegisterImplCopyWithImpl<_$RegisterImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function() isLoading,
+    required TResult Function(RegisterUserModel user) register,
+  }) {
+    return register(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
+    TResult? Function()? isLoading,
+    TResult? Function(RegisterUserModel user)? register,
+  }) {
+    return register?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? isLoading,
+    TResult Function(RegisterUserModel user)? register,
+    required TResult orElse(),
+  }) {
+    if (register != null) {
+      return register(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Register value) register,
+  }) {
+    return register(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Register value)? register,
+  }) {
+    return register?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Register value)? register,
+    required TResult orElse(),
+  }) {
+    if (register != null) {
+      return register(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Register implements RegisterEvent {
+  const factory _Register(final RegisterUserModel user) = _$RegisterImpl;
+
+  RegisterUserModel get user;
+  @JsonKey(ignore: true)
+  _$$RegisterImplCopyWith<_$RegisterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
