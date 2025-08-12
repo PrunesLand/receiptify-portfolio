@@ -22,6 +22,7 @@ mixin _$RegisterEvent {
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
     required TResult Function(RegisterUserModel user) register,
+    required TResult Function() closeErrorPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$RegisterEvent {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
     TResult? Function(RegisterUserModel user)? register,
+    TResult? Function()? closeErrorPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$RegisterEvent {
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
     TResult Function(RegisterUserModel user)? register,
+    TResult Function()? closeErrorPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$RegisterEvent {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_Register value) register,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$RegisterEvent {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_Register value)? register,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$RegisterEvent {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_Register value)? register,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -154,6 +160,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
     required TResult Function(RegisterUserModel user) register,
+    required TResult Function() closeErrorPopup,
   }) {
     return emailChanged(email);
   }
@@ -165,6 +172,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
     TResult? Function(RegisterUserModel user)? register,
+    TResult? Function()? closeErrorPopup,
   }) {
     return emailChanged?.call(email);
   }
@@ -176,6 +184,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
     TResult Function(RegisterUserModel user)? register,
+    TResult Function()? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -191,6 +200,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_Register value) register,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
   }) {
     return emailChanged(this);
   }
@@ -202,6 +212,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_Register value)? register,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
   }) {
     return emailChanged?.call(this);
   }
@@ -213,6 +224,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_Register value)? register,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -301,6 +313,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
     required TResult Function(RegisterUserModel user) register,
+    required TResult Function() closeErrorPopup,
   }) {
     return passwordChanged(password);
   }
@@ -312,6 +325,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
     TResult? Function(RegisterUserModel user)? register,
+    TResult? Function()? closeErrorPopup,
   }) {
     return passwordChanged?.call(password);
   }
@@ -323,6 +337,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
     TResult Function(RegisterUserModel user)? register,
+    TResult Function()? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -338,6 +353,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_Register value) register,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
   }) {
     return passwordChanged(this);
   }
@@ -349,6 +365,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_Register value)? register,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
   }) {
     return passwordChanged?.call(this);
   }
@@ -360,6 +377,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_Register value)? register,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -420,6 +438,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
     required TResult Function(RegisterUserModel user) register,
+    required TResult Function() closeErrorPopup,
   }) {
     return isLoading();
   }
@@ -431,6 +450,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
     TResult? Function(RegisterUserModel user)? register,
+    TResult? Function()? closeErrorPopup,
   }) {
     return isLoading?.call();
   }
@@ -442,6 +462,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
     TResult Function(RegisterUserModel user)? register,
+    TResult Function()? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -457,6 +478,7 @@ class _$IsLoadingImpl implements _IsLoading {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_Register value) register,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
   }) {
     return isLoading(this);
   }
@@ -468,6 +490,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_Register value)? register,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
   }) {
     return isLoading?.call(this);
   }
@@ -479,6 +502,7 @@ class _$IsLoadingImpl implements _IsLoading {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_Register value)? register,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -570,6 +594,7 @@ class _$RegisterImpl implements _Register {
     required TResult Function(String password) passwordChanged,
     required TResult Function() isLoading,
     required TResult Function(RegisterUserModel user) register,
+    required TResult Function() closeErrorPopup,
   }) {
     return register(user);
   }
@@ -581,6 +606,7 @@ class _$RegisterImpl implements _Register {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? isLoading,
     TResult? Function(RegisterUserModel user)? register,
+    TResult? Function()? closeErrorPopup,
   }) {
     return register?.call(user);
   }
@@ -592,6 +618,7 @@ class _$RegisterImpl implements _Register {
     TResult Function(String password)? passwordChanged,
     TResult Function()? isLoading,
     TResult Function(RegisterUserModel user)? register,
+    TResult Function()? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (register != null) {
@@ -607,6 +634,7 @@ class _$RegisterImpl implements _Register {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_Register value) register,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
   }) {
     return register(this);
   }
@@ -618,6 +646,7 @@ class _$RegisterImpl implements _Register {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_Register value)? register,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
   }) {
     return register?.call(this);
   }
@@ -629,6 +658,7 @@ class _$RegisterImpl implements _Register {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_Register value)? register,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (register != null) {
@@ -645,4 +675,124 @@ abstract class _Register implements RegisterEvent {
   @JsonKey(ignore: true)
   _$$RegisterImplCopyWith<_$RegisterImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CloseErrorPopupImplCopyWith<$Res> {
+  factory _$$CloseErrorPopupImplCopyWith(_$CloseErrorPopupImpl value,
+          $Res Function(_$CloseErrorPopupImpl) then) =
+      __$$CloseErrorPopupImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CloseErrorPopupImplCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res, _$CloseErrorPopupImpl>
+    implements _$$CloseErrorPopupImplCopyWith<$Res> {
+  __$$CloseErrorPopupImplCopyWithImpl(
+      _$CloseErrorPopupImpl _value, $Res Function(_$CloseErrorPopupImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CloseErrorPopupImpl implements _CloseErrorPopup {
+  const _$CloseErrorPopupImpl();
+
+  @override
+  String toString() {
+    return 'RegisterEvent.closeErrorPopup()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CloseErrorPopupImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function() isLoading,
+    required TResult Function(RegisterUserModel user) register,
+    required TResult Function() closeErrorPopup,
+  }) {
+    return closeErrorPopup();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
+    TResult? Function()? isLoading,
+    TResult? Function(RegisterUserModel user)? register,
+    TResult? Function()? closeErrorPopup,
+  }) {
+    return closeErrorPopup?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? isLoading,
+    TResult Function(RegisterUserModel user)? register,
+    TResult Function()? closeErrorPopup,
+    required TResult orElse(),
+  }) {
+    if (closeErrorPopup != null) {
+      return closeErrorPopup();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_Register value) register,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
+  }) {
+    return closeErrorPopup(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_Register value)? register,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
+  }) {
+    return closeErrorPopup?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_Register value)? register,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
+    required TResult orElse(),
+  }) {
+    if (closeErrorPopup != null) {
+      return closeErrorPopup(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CloseErrorPopup implements RegisterEvent {
+  const factory _CloseErrorPopup() = _$CloseErrorPopupImpl;
 }

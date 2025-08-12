@@ -20,18 +20,21 @@ mixin _$LoginEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() isLoading,
     required TResult Function(LoginUserModel user) loginUser,
+    required TResult Function() closeErrorPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? isLoading,
     TResult? Function(LoginUserModel user)? loginUser,
+    TResult? Function()? closeErrorPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? isLoading,
     TResult Function(LoginUserModel user)? loginUser,
+    TResult Function()? closeErrorPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$LoginEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_LoginUser value) loginUser,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_LoginUser value)? loginUser,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_LoginUser value)? loginUser,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() isLoading,
     required TResult Function(LoginUserModel user) loginUser,
+    required TResult Function() closeErrorPopup,
   }) {
     return isLoading();
   }
@@ -123,6 +130,7 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? isLoading,
     TResult? Function(LoginUserModel user)? loginUser,
+    TResult? Function()? closeErrorPopup,
   }) {
     return isLoading?.call();
   }
@@ -132,6 +140,7 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? isLoading,
     TResult Function(LoginUserModel user)? loginUser,
+    TResult Function()? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -145,6 +154,7 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_LoginUser value) loginUser,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
   }) {
     return isLoading(this);
   }
@@ -154,6 +164,7 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_LoginUser value)? loginUser,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
   }) {
     return isLoading?.call(this);
   }
@@ -163,6 +174,7 @@ class _$IsLoadingImpl implements _IsLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_LoginUser value)? loginUser,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (isLoading != null) {
@@ -252,6 +264,7 @@ class _$LoginUserImpl implements _LoginUser {
   TResult when<TResult extends Object?>({
     required TResult Function() isLoading,
     required TResult Function(LoginUserModel user) loginUser,
+    required TResult Function() closeErrorPopup,
   }) {
     return loginUser(user);
   }
@@ -261,6 +274,7 @@ class _$LoginUserImpl implements _LoginUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? isLoading,
     TResult? Function(LoginUserModel user)? loginUser,
+    TResult? Function()? closeErrorPopup,
   }) {
     return loginUser?.call(user);
   }
@@ -270,6 +284,7 @@ class _$LoginUserImpl implements _LoginUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? isLoading,
     TResult Function(LoginUserModel user)? loginUser,
+    TResult Function()? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (loginUser != null) {
@@ -283,6 +298,7 @@ class _$LoginUserImpl implements _LoginUser {
   TResult map<TResult extends Object?>({
     required TResult Function(_IsLoading value) isLoading,
     required TResult Function(_LoginUser value) loginUser,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
   }) {
     return loginUser(this);
   }
@@ -292,6 +308,7 @@ class _$LoginUserImpl implements _LoginUser {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IsLoading value)? isLoading,
     TResult? Function(_LoginUser value)? loginUser,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
   }) {
     return loginUser?.call(this);
   }
@@ -301,6 +318,7 @@ class _$LoginUserImpl implements _LoginUser {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IsLoading value)? isLoading,
     TResult Function(_LoginUser value)? loginUser,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
     required TResult orElse(),
   }) {
     if (loginUser != null) {
@@ -317,4 +335,112 @@ abstract class _LoginUser implements LoginEvent {
   @JsonKey(ignore: true)
   _$$LoginUserImplCopyWith<_$LoginUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CloseErrorPopupImplCopyWith<$Res> {
+  factory _$$CloseErrorPopupImplCopyWith(_$CloseErrorPopupImpl value,
+          $Res Function(_$CloseErrorPopupImpl) then) =
+      __$$CloseErrorPopupImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CloseErrorPopupImplCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$CloseErrorPopupImpl>
+    implements _$$CloseErrorPopupImplCopyWith<$Res> {
+  __$$CloseErrorPopupImplCopyWithImpl(
+      _$CloseErrorPopupImpl _value, $Res Function(_$CloseErrorPopupImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CloseErrorPopupImpl implements _CloseErrorPopup {
+  const _$CloseErrorPopupImpl();
+
+  @override
+  String toString() {
+    return 'LoginEvent.closeErrorPopup()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CloseErrorPopupImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() isLoading,
+    required TResult Function(LoginUserModel user) loginUser,
+    required TResult Function() closeErrorPopup,
+  }) {
+    return closeErrorPopup();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? isLoading,
+    TResult? Function(LoginUserModel user)? loginUser,
+    TResult? Function()? closeErrorPopup,
+  }) {
+    return closeErrorPopup?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? isLoading,
+    TResult Function(LoginUserModel user)? loginUser,
+    TResult Function()? closeErrorPopup,
+    required TResult orElse(),
+  }) {
+    if (closeErrorPopup != null) {
+      return closeErrorPopup();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_IsLoading value) isLoading,
+    required TResult Function(_LoginUser value) loginUser,
+    required TResult Function(_CloseErrorPopup value) closeErrorPopup,
+  }) {
+    return closeErrorPopup(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_IsLoading value)? isLoading,
+    TResult? Function(_LoginUser value)? loginUser,
+    TResult? Function(_CloseErrorPopup value)? closeErrorPopup,
+  }) {
+    return closeErrorPopup?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_IsLoading value)? isLoading,
+    TResult Function(_LoginUser value)? loginUser,
+    TResult Function(_CloseErrorPopup value)? closeErrorPopup,
+    required TResult orElse(),
+  }) {
+    if (closeErrorPopup != null) {
+      return closeErrorPopup(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CloseErrorPopup implements LoginEvent {
+  const factory _CloseErrorPopup() = _$CloseErrorPopupImpl;
 }

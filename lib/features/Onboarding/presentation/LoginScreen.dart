@@ -27,10 +27,28 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
       top: false,
       child: BlocConsumer<LoginBloc, LoginState>(
-        listener:
-            (context, state) => {
-              if (state.finishLogin) GoRouter.of(context).replace('/home'),
-            },
+        listener: (context, state) {
+          if (state.finishLogin) {
+            GoRouter.of(context).replace('/home');
+          }
+          if (state.loginFailed) {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Login Failed'),
+                  content: Text('Invalid email or password. Please try again.'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('OK'),
+                    ),
+                  ],
+                );
+              },
+            );
+          }
+        },
         builder:
             (context, state) => Scaffold(
               appBar: AppBar(

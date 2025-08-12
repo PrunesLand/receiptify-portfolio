@@ -10,4 +10,5 @@ class RegisterEvent with _$RegisterEvent {
       _PasswordChanged;
   const factory RegisterEvent.isLoading() = _IsLoading;
   const factory RegisterEvent.register(RegisterUserModel user) = _Register;
+  const factory RegisterEvent.closeErrorPopup() = _CloseErrorPopup;
 }

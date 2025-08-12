@@ -25,9 +25,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return SafeArea(
       top: false,
       child: BlocConsumer<RegisterBloc, RegisterState>(
-        listenWhen: (previous, current) => current.finishRegister,
+        listenWhen:
+            (previous, current) =>
+                current.finishRegister || current.registrationFailed,
         listener: (context, state) {
           if (state.finishRegister) GoRouter.of(context).replace('/login');
+          if (state.registrationFailed) {
+            showDialog(
+              context: context,
+              builder:
+                  (context) => AlertDialog(
+                    title: Text('Error'),
+                    content: Text('An unknown error occurred.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text('OK'),
+                      ),
+                    ],
+                  ),
+            );
+          }
         },
         builder:
             (context, state) => Scaffold(

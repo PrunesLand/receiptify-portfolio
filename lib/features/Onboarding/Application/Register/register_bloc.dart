@@ -42,6 +42,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             emit(state.copyWith(isLoading: false, registrationFailed: true));
           }
         },
+        closeErrorPopup: () {
+          emit(state.copyWith(registrationFailed: false));
+        },
       );
     });
   }

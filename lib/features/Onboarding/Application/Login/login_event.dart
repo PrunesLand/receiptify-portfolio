@@ -7,4 +7,5 @@ part 'login_event.freezed.dart';
 class LoginEvent with _$LoginEvent {
   const factory LoginEvent.isLoading() = _IsLoading;
   const factory LoginEvent.loginUser(LoginUserModel user) = _LoginUser;
+  const factory LoginEvent.closeErrorPopup() = _CloseErrorPopup;
 }

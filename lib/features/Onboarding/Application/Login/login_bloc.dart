@@ -30,6 +30,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             emit(state.copyWith(isLoading: false, loginFailed: true));
           }
         },
+        closeErrorPopup: () {
+          emit(state.copyWith(loginFailed: false));
+        },
       );
     });
   }
