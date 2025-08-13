@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -18,150 +17,178 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   String _email = '';
   String _password = '';
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: BlocConsumer<LoginBloc, LoginState>(
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
+
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => GoRouter.of(context).pop(),
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ),
+      body: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state.finishLogin) {
             GoRouter.of(context).replace('/home');
           }
           if (state.loginFailed) {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text('Login Failed'),
-                  content: Text('Invalid email or password. Please try again.'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text('OK'),
-                    ),
-                  ],
-                );
-              },
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text('Login Failed: Invalid email or password.'),
+                backgroundColor: colorScheme.error,
+              ),
             );
           }
         },
-        builder:
-            (context, state) => Scaffold(
-              appBar: AppBar(
-                leading: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.arrow_back),
-                ),
-              ),
-              body:
-                  state.isLoading
-                      ? CircularProgressIndicator()
-                      : Column(
+        builder: (context, state) {
+          return SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Icon(
+                      Icons.lock_open_rounded,
+                      size: 80,
+                      color: colorScheme.primary,
+                    ),
+                    const SizedBox(height: 24),
+
+                    Text(
+                      'Welcome Back!',
+                      textAlign: TextAlign.center,
+                      style: textTheme.headlineMedium,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Login to your account to continue',
+                      textAlign: TextAlign.center,
+                      style: textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 48),
+
+                    Form(
+                      key: _formKey,
+                      child: Column(
                         children: [
-                          Flexible(
-                            flex: 2,
-                            child: Center(child: Text('Login to your account')),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: 'Email',
+                              prefixIcon: Icon(Icons.email_outlined),
+                            ),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your email';
+                              }
+                              final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                              if (!emailRegex.hasMatch(value)) {
+                                return 'Please enter a valid email';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) => _email = value ?? '',
                           ),
-                          Flexible(
-                            flex: 4,
-                            child: Form(
-                              key: _formKey,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    width: 250,
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                        labelText: 'Email',
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            8.0,
-                                          ),
-                                        ),
-                                      ),
-                                      keyboardType: TextInputType.emailAddress,
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'Please enter your email';
-                                        }
-                                        final emailRegex = RegExp(
-                                          r'^[^@]+@[^@]+\.[^@]+',
-                                        );
-                                        if (!emailRegex.hasMatch(value)) {
-                                          return 'Please enter a valid email';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) => _email = value ?? '',
-                                    ),
-                                  ),
-                                  SizedBox(height: 24.0),
-                                  SizedBox(
-                                    width: 250,
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                        labelText: 'Password',
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            8.0,
-                                          ),
-                                        ),
-                                      ),
-                                      keyboardType:
-                                          TextInputType.visiblePassword,
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'Please enter your password';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved:
-                                          (value) => _password = value ?? '',
-                                    ),
-                                  ),
-                                  SizedBox(height: 40),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          8.0,
-                                        ),
-                                      ),
-                                      textStyle: const TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      fixedSize: Size.fromWidth(200),
-                                    ),
-                                    onPressed: () async {
-                                      if (_formKey.currentState?.validate() ??
-                                          false) {
-                                        _formKey.currentState?.save();
-                                        FocusScope.of(context).unfocus();
-                                        getIt<LoginBloc>().add(
-                                          LoginEvent.loginUser(
-                                            LoginUserModel(
-                                              email: _email,
-                                              password: _password,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                    },
-                                    child: Text("Login"),
-                                  ),
-                                ],
+                          const SizedBox(height: 16.0),
+
+                          TextFormField(
+                            obscureText: !_isPasswordVisible,
+                            decoration: InputDecoration(
+                              hintText: 'Password',
+                              prefixIcon: const Icon(Icons.lock_outline),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordVisible
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                },
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your password';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) => _password = value ?? '',
                           ),
                         ],
                       ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    const SizedBox(height: 24),
+
+                    ElevatedButton(
+                      onPressed: state.isLoading ? null : _login,
+                      child:
+                          state.isLoading
+                              ? const SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 3,
+                                ),
+                              )
+                              : const Text("Login"),
+                    ),
+                    const SizedBox(height: 48),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account? ",
+                          style: textTheme.bodyMedium,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            GoRouter.of(context).push('/register');
+                          },
+                          child: Text(
+                            'Sign Up',
+                            style: textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: colorScheme.primary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
+          );
+        },
       ),
     );
+  }
+
+  void _login() {
+    if (_formKey.currentState?.validate() ?? false) {
+      _formKey.currentState?.save();
+      FocusScope.of(context).unfocus();
+      getIt<LoginBloc>().add(
+        LoginEvent.loginUser(
+          LoginUserModel(email: _email, password: _password),
+        ),
+      );
+    }
   }
 }

@@ -1,62 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../core/theme_data.dart';
 
 class HeroScreen extends StatelessWidget {
   const HeroScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Scaffold(
-        backgroundColor: Colors.blueGrey,
-        body: Column(
-          children: [
-            Flexible(flex: 3, child: Center(child: Text('Receiptify Logo'))),
-            Flexible(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        textStyle: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        fixedSize: Size.fromWidth(200),
-                      ),
-                      onPressed: () {
-                        GoRouter.of(context).push('/register');
-                      },
-                      child: Text("Register Account"),
-                    ),
-                    SizedBox(height: 16.0),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        textStyle: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        fixedSize: Size.fromWidth(200),
-                      ),
-                      onPressed: () {
-                        GoRouter.of(context).push('/login');
-                      },
-                      child: Text("Login"),
-                    ),
-                  ],
-                ),
-              ),
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [colorScheme.primary, colorScheme.secondary],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 32.0,
             ),
-          ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Spacer(),
+                Icon(
+                  Icons.receipt_long,
+                  size: 80,
+                  color: colorScheme.onPrimary,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  'Receiptify',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.sourceCodePro(
+                    fontSize: 48.0,
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onPrimary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Track travel expenses, simplified.',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: colorScheme.onPrimary.withOpacity(0.85),
+                  ),
+                ),
+                const Spacer(flex: 2),
+
+                ElevatedButton(
+                  onPressed: () => GoRouter.of(context).push('/register'),
+                  child: const Text("Create an Account"),
+                ),
+
+                const SizedBox(height: 12.0),
+
+                OutlinedButton(
+                  style: MyThemes.onPrimaryOutlinedButton.copyWith(
+                    padding: MaterialStateProperty.all(
+                      const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                  ),
+                  onPressed: () => GoRouter.of(context).push('/login'),
+                  child: const Text("Login"),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
