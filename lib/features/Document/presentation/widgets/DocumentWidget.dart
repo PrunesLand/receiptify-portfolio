@@ -17,17 +17,20 @@ class DocumentWidget extends StatefulWidget {
 class _DocumentWidgetState extends State<DocumentWidget> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
     return BlocBuilder<DocumentBloc, DocumentState>(
       builder: (context, state) {
         return Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surfaceVariant,
+            color: colorScheme.surfaceVariant,
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // 1. Removed the Flexible widget from here.
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 8.0,
@@ -38,8 +41,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                     ChoiceChip(
                       label: Text('Highest'),
                       selected: state.chipEnum == DocumentChipEnum.highest,
-                      selectedColor:
-                          Theme.of(context).colorScheme.primaryContainer,
+                      selectedColor: colorScheme.primaryContainer,
                       onSelected: (selected) {
                         if (selected) {
                           getIt<DocumentBloc>().add(
@@ -52,8 +54,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                     ChoiceChip(
                       label: Text('Lowest'),
                       selected: state.chipEnum == DocumentChipEnum.lowest,
-                      selectedColor:
-                          Theme.of(context).colorScheme.primaryContainer,
+                      selectedColor: colorScheme.primaryContainer,
                       onSelected: (selected) {
                         if (selected) {
                           getIt<DocumentBloc>().add(
@@ -66,8 +67,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                     ChoiceChip(
                       label: Text('Latest'),
                       selected: state.chipEnum == DocumentChipEnum.latest,
-                      selectedColor:
-                          Theme.of(context).colorScheme.primaryContainer,
+                      selectedColor: colorScheme.primaryContainer,
                       onSelected: (selected) {
                         if (selected) {
                           getIt<DocumentBloc>().add(
@@ -79,14 +79,45 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                   ],
                 ),
               ),
-              // 2. Changed Flexible to Expanded.
               if (state.OcrLoading && state.list.isEmpty)
                 TileWidget(isLoading: true)
+              // --- EDITED SECTION ---
+              // This is the improved empty state widget.
+              else if (state.list.isEmpty)
+                Expanded(
+                  // 1. Expanded makes this section fill the available vertical space.
+                  child: Center(
+                    // 2. Center then perfectly centers its child within that space.
+                    child: Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Column(
+                        // 3. A Column is used to stack an icon and text vertically.
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.receipt_long_outlined,
+                            size: 64,
+                            color: colorScheme.onSurface.withOpacity(0.4),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'No receipts yet!\nTap the "+" button to add your first one.',
+                            textAlign: TextAlign.center,
+                            style: textTheme.titleMedium?.copyWith(
+                              color: colorScheme.onSurface.withOpacity(0.6),
+                              height: 1.5, // Improves line spacing
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              // --- END OF EDITED SECTION ---
               else
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.only(bottom: 100.0),
-                    // ✅ This is the correct property to stop the overscroll effect.
                     physics: const ClampingScrollPhysics(),
                     itemCount:
                         state.OcrLoading
@@ -103,7 +134,6 @@ class _DocumentWidgetState extends State<DocumentWidget> {
 
                       return GestureDetector(
                         onTap: () {
-                          // if (!(index == 0 && state.OcrLoading)) { // This condition is now handled by the itemIndex logic
                           showModalBottomSheet<void>(
                             context: context,
                             builder:
@@ -114,12 +144,10 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                   receiptDate: item.receiptDate?.toString(),
                                 ),
                           );
-                          // }
                         },
                         onLongPress: () {
-                          // if (!(index == 0 && state.OcrLoading)) { // This condition is now handled by the itemIndex logic
                           HapticFeedback.heavyImpact();
-                          showDialog(
+                          showDialog<void>(
                             context: context,
                             builder: (context) {
                               return DocumentDeleteDialog(
@@ -132,7 +160,6 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                               );
                             },
                           );
-                          // }
                         },
                         child: TileWidget(
                           cost: item.cost,

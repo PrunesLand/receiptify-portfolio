@@ -67,7 +67,7 @@ void main() async {
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
 final GoRouter router = GoRouter(
-  initialLocation: '/onboarding',
+  initialLocation: '/home',
   routes: <RouteBase>[
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
