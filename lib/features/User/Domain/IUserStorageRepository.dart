@@ -20,4 +20,5 @@ abstract class IUserStorageRepository {
   Future<void> updateSubPocket(int index, SubPocket updatedSubPocketData);
   Future<void> deleteSubPocket(int index);
   Future<List<ReceiptModel?>> getAllDocumentsFromMainPockets();
+  Future<void> incrementImageRequest();
 }

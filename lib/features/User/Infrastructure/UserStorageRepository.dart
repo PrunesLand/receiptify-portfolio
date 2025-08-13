@@ -186,4 +186,7 @@ class UserStorageRepository implements IUserStorageRepository {
       return [];
     }
   }
+
+  @override
+  Future<void> incrementImageRequest() async {}
 }

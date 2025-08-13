@@ -33,6 +33,9 @@ class SubPocket {
 
   @Name("expenses")
   List<Document> expenses = [];
+
+  @Name('totalImageRequests')
+  int totalImageRequests = 0;
 }
 
 @embedded

@@ -55,6 +55,7 @@ dependencies:
   logger: ^2.6.1
   firebase_auth: ^5.7.0
   google_fonts: ^6.3.0
+  syncfusion_flutter_charts: ^30.2.4
 
 dev_dependencies:
   flutter_test:

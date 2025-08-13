@@ -1,7 +1,8 @@
 import 'package:receipt_app/features/Document/domain/Enums/Enums.dart';
 import 'package:receipt_app/features/Document/domain/models/Receipt/index.dart';
+import 'package:receipt_app/features/Statistics/index.dart';
 
-Map<ExpenseEnum, int> getCategoryCounts(List<ReceiptModel?> expenses) {
+List<CategoryCount> getCategoryCounts(List<ReceiptModel?> expenses) {
   Map<ExpenseEnum, int> categoryCounts = {};
   for (var category in ExpenseEnum.values) {
     categoryCounts[category] = 0;
@@ -12,19 +13,24 @@ Map<ExpenseEnum, int> getCategoryCounts(List<ReceiptModel?> expenses) {
           (categoryCounts[expense.category] ?? 0) + 1;
     }
   }
-  return categoryCounts;
+  return categoryCounts.entries
+      .map((entry) => CategoryCount(category: entry.key, count: entry.value))
+      .toList();
 }
 
 MapEntry<ExpenseEnum, int> getMostFrequentCategory(
-  Map<ExpenseEnum, int> categoryCounts,
+  List<CategoryCount> categoryCounts,
 ) {
+  if (categoryCounts.isEmpty) {
+    return MapEntry(ExpenseEnum.values.first, 0);
+  }
   ExpenseEnum mostFrequent = ExpenseEnum.values.first;
   int maxCount = 0;
-  categoryCounts.forEach((category, count) {
-    if (count > maxCount) {
-      maxCount = count;
-      mostFrequent = category;
+  for (var categoryCount in categoryCounts) {
+    if (categoryCount.count > maxCount) {
+      maxCount = categoryCount.count;
+      mostFrequent = categoryCount.category;
     }
-  });
+  }
   return MapEntry(mostFrequent, maxCount);
 }

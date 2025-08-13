@@ -25,7 +25,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
       builder: (context, state) {
         return Container(
           decoration: BoxDecoration(
-            color: colorScheme.surfaceVariant,
+            color: colorScheme.surfaceContainerHighest,
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Column(

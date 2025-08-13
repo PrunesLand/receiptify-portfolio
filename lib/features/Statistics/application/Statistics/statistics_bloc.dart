@@ -12,6 +12,7 @@ class StatisticsBloc extends Bloc<StatisticsEvent, StatisticsState> {
     on<StatisticsEvent>((event, emit) async {
       await event.when(
         loadStats: () async {
+          emit(state.copyWith(isLoading: true));
           final expenses =
               await _userStorageRepository.getAllDocumentsFromMainPockets();
 
@@ -23,7 +24,7 @@ class StatisticsBloc extends Bloc<StatisticsEvent, StatisticsState> {
 
           emit(
             state.copyWith(
-              isLoading: true,
+              isLoading: false,
               categoryCounts: categoryCounts,
               mostFrequentCategory: mostFrequentCategory.key,
               mostFrequentCategoryQuantity: mostFrequentCategory.value,
