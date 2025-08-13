@@ -45,7 +45,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 GoRouter.of(context).replace('/onboarding');
               },
               leading: Icon(Icons.logout, color: Colors.red),
-              tileColor: Colors.grey[200], // Or any other color you prefer
             ),
           ],
         ),
