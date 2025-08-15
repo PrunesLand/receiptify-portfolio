@@ -21,6 +21,12 @@ class User {
   User({this.id = 1, this.title}); // Defaulting to ID 1
 
   static const int singleUserId = 1;
+
+  @Name("GeminiRequestAsGuest")
+  int geminiRequestAsGuest = 0;
+
+  @Name("GeminiRequestAsUser")
+  int geminiRequestAsUser = 0;
 }
 
 @embedded

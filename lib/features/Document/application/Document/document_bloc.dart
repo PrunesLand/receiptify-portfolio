@@ -1,8 +1,9 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:firebase_ai/firebase_ai.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:receipt_app/core/FireBaseAuth.dart';
 import 'package:receipt_app/features/Document/index.dart';
 import 'package:receipt_app/features/User/index.dart';
 import 'package:uuid/uuid.dart';
@@ -11,8 +12,10 @@ import '../../domain/models/Receipt/ReceiptModel.dart';
 
 class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
   final IUserStorageRepository _userStorageRepository;
+  final FirebaseAuthSingleton _firebaseAuthSingleton;
 
-  DocumentBloc(this._userStorageRepository) : super(const DocumentState()) {
+  DocumentBloc(this._userStorageRepository, this._firebaseAuthSingleton)
+    : super(const DocumentState()) {
     on<DocumentEvent>((event, emit) async {
       await event.when(
         loading: () async {
@@ -91,7 +94,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               Return total expense. Answer in Decimals. 
               Select category fits best: {food, entertainment, travel, others}. if unsure, pick others.
               Get receipt date. if none, return today date. format: dd/mm/yy
-              return string separated by comma.
+              return in the format of: {price},{category},{receipt date}
               """);
 
             final imagePart = InlineDataPart('image/jpeg', originalImageFile);
@@ -174,6 +177,21 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               dateOfReceipt: addedImage.receiptDate,
               category: addedImage.category,
             );
+            if (!kDebugMode) {
+              if (await _firebaseAuthSingleton.currentUser == null) {
+                // decrement guest counter
+                await _userStorageRepository.decrementGeminiRequests(true);
+                final newCounter = await _userStorageRepository
+                    .getGeminiRequests(true);
+                emit(state.copyWith(remainingRequests: newCounter));
+              } else {
+                // decrement user counter
+                await _userStorageRepository.decrementGeminiRequests(false);
+                final newCounter = await _userStorageRepository
+                    .getGeminiRequests(false);
+                emit(state.copyWith(remainingRequests: newCounter));
+              }
+            }
           } catch (e) {
             print('Error processing image in DocumentBloc: ${e.toString()}');
 
@@ -193,6 +211,34 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             final loadedList =
                 await _userStorageRepository.getAllDocumentsFromMainPockets();
 
+            int totalUserRequests;
+            int remainingUserRequests;
+            if (await _userStorageRepository.isNewUser()) {
+              if (await _firebaseAuthSingleton.currentUser == null) {
+                // User has just downloaded the app and didn't sign in
+                await _userStorageRepository.setGeminiRequests(5, true);
+                totalUserRequests = 5;
+                remainingUserRequests = 5;
+              } else {
+                // User has just downloaded and signed in at the start
+                await _userStorageRepository.setGeminiRequests(20, false);
+                totalUserRequests = 20;
+                remainingUserRequests = 20;
+              }
+            } else {
+              if (await _firebaseAuthSingleton.currentUser != null) {
+                // User has signed in before and has an account
+                remainingUserRequests = await _userStorageRepository
+                    .getGeminiRequests(false);
+                totalUserRequests = 20;
+              } else {
+                // User has signed in before and does not have an account
+                remainingUserRequests = await _userStorageRepository
+                    .getGeminiRequests(true);
+                totalUserRequests = 5;
+              }
+            }
+
             double total = 0.0;
             for (final item in loadedList) {
               total += double.tryParse(item?.cost ?? '0') ?? 0.0;
@@ -203,6 +249,8 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
                 list: loadedList,
                 totalExpenseMain: total.toStringAsFixed(2),
                 OcrLoading: false,
+                remainingRequests: remainingUserRequests,
+                totalRequests: totalUserRequests,
               ),
             );
           } catch (e) {

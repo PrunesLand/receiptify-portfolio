@@ -14,5 +14,7 @@ class DocumentState with _$DocumentState {
     @Default(true) bool OcrLoading,
     @Default('0') String totalExpenseMain,
     @Default(DocumentChipEnum.latest) DocumentChipEnum chipEnum,
+    @Default(0) int remainingRequests,
+    @Default(0) int totalRequests,
   }) = _DocumentState;
 }

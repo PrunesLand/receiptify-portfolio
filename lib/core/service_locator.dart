@@ -90,7 +90,10 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton(() => TokenStorageService());
 
   getIt.registerLazySingleton(
-    () => DocumentBloc(getIt<UserStorageRepository>()),
+    () => DocumentBloc(
+      getIt<UserStorageRepository>(),
+      getIt<FirebaseAuthSingleton>(),
+    ),
   );
 
   getIt.registerLazySingleton(

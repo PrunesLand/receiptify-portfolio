@@ -188,5 +188,60 @@ class UserStorageRepository implements IUserStorageRepository {
   }
 
   @override
-  Future<void> incrementImageRequest() async {}
+  Future<void> setGeminiRequests(int requestCount, bool isGuest) async {
+    final user = await isar.users.get(_singleUserId);
+    if (user == null) {
+      throw Exception("Single user not found.");
+    }
+    if (!isGuest) {
+      user.geminiRequestAsUser = requestCount;
+    } else {
+      user.geminiRequestAsGuest = requestCount;
+    }
+    await isar.writeTxn(() async {
+      await isar.users.put(user);
+    });
+  }
+
+  @override
+  Future<void> decrementGeminiRequests(bool isGuest) async {
+    final user = await isar.users.get(_singleUserId);
+    if (user == null) {
+      throw Exception("Single user not found.");
+    }
+    if (!isGuest) {
+      user.geminiRequestAsUser--;
+    } else {
+      user.geminiRequestAsGuest--;
+    }
+    await isar.writeTxn(() async {
+      await isar.users.put(user);
+    });
+  }
+
+  @override
+  Future<int> getGeminiRequests(bool isGuest) async {
+    final user = await isar.users.get(_singleUserId);
+    if (user == null) {
+      throw Exception("Single user not found.");
+    }
+    if (!isGuest) {
+      return user.geminiRequestAsUser;
+    } else {
+      return user.geminiRequestAsGuest;
+    }
+  }
+
+  @override
+  Future<bool> isNewUser() async {
+    final user = await isar.users.get(_singleUserId);
+    if (user == null) {
+      throw Exception("Single user not found.");
+    }
+    if (user.mainPocket.expenses.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

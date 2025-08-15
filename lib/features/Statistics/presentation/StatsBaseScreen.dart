@@ -27,113 +27,125 @@ class _StatsBaseScreenState extends State<StatsBaseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: BlocBuilder<DocumentBloc, DocumentState>(
-        builder:
-            (context, state) => Scaffold(
-              body: Column(
-                children: [
-                  SizedBox(
-                    height: kToolbarHeight + 20,
-                  ), // Add space for AppBar and some padding
-                  Flexible(
-                    flex: 4, // Card takes 40% of the available space
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Card(
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      widget.args.pocket.title,
-                                      style: TextStyle(fontSize: 40),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    SizedBox(height: 20),
-                                    Text('Your total expense'),
-                                    Text(
-                                      "\$${state.totalExpenseMain}",
-                                      style: TextStyle(fontSize: 40),
-                                    ),
-                                  ],
+    return PopScope(
+      canPop: false,
+      child: SafeArea(
+        top: false,
+        child: BlocBuilder<DocumentBloc, DocumentState>(
+          builder:
+              (context, state) => Scaffold(
+                body: Column(
+                  children: [
+                    SizedBox(height: kToolbarHeight + 20),
+                    Flexible(
+                      flex: 4,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Card(
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        widget.args.pocket.title,
+                                        style: TextStyle(fontSize: 40),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(height: 20),
+                                      Text('Your total expense'),
+                                      Text(
+                                        "\$${state.totalExpenseMain}",
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 6, // List takes 60% of the available space
-                    child: DocumentWidget(),
-                  ),
-                ],
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
-              floatingActionButton: Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 16.0,
-                ), // Adjust the bottom padding as needed
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FloatingActionButton(
-                      onPressed: () async {
-                        final result = await GoRouter.of(
-                          context,
-                        ).push<ReceiptModel?>('/newItemForm');
-
-                        if (result != null) {
-                          getIt<DocumentBloc>().add(
-                            DocumentEvent.addNewReceipt(result),
-                          );
-                        }
-                      },
-                      child: Icon(Icons.add_box_rounded),
-                      heroTag:
-                          null, // Add heroTag to avoid conflicts if you have multiple FABs
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ), // Give some spacing between the buttons
-                    FloatingActionButton(
-                      onPressed: () async {
-                        final image = await pickImageFromGallery();
-
-                        if (image != null) {
-                          showDialog(
-                            context: context,
-                            builder:
-                                (context) => FileSelectModal(
-                                  file: image,
-                                  onFileSelected: () {
-                                    Navigator.pop(context);
-                                    getIt<DocumentBloc>().add(
-                                      DocumentEvent.processImage(file: image),
-                                    );
-                                  },
-                                ),
-                          );
-                        } else {
-                          showErrorSnackBar();
-                        }
-                      },
-                      child: Icon(Icons.add_a_photo),
-                      heroTag:
-                          null, // Add heroTag to avoid conflicts if you have multiple FABs
-                    ),
+                    Flexible(flex: 6, child: DocumentWidget()),
                   ],
                 ),
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerFloat,
+                floatingActionButton: Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      FloatingActionButton(
+                        onPressed: () async {
+                          final result = await GoRouter.of(
+                            context,
+                          ).push<ReceiptModel?>('/newItemForm');
+
+                          if (result != null) {
+                            getIt<DocumentBloc>().add(
+                              DocumentEvent.addNewReceipt(result),
+                            );
+                          }
+                        },
+                        child: Icon(Icons.add_box_rounded),
+                        heroTag:
+                            null, // Add heroTag to avoid conflicts if you have multiple FABs
+                      ),
+                      SizedBox(width: 10),
+                      FloatingActionButton.extended(
+                        // Use FloatingActionButton.extended for text and icon
+                        onPressed:
+                            state.OcrLoading || state.remainingRequests == 0
+                                ? null // Disable if OCR is loading or no requests remaining
+                                : () async {
+                                  final image = await pickImageFromGallery();
+
+                                  if (image != null) {
+                                    showDialog(
+                                      context: context,
+                                      builder:
+                                          (context) => FileSelectModal(
+                                            file: image,
+                                            onFileSelected: () {
+                                              Navigator.pop(context);
+                                              getIt<DocumentBloc>().add(
+                                                DocumentEvent.processImage(
+                                                  file: image,
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                    );
+                                  } else {
+                                    showErrorSnackBar();
+                                  }
+                                },
+                        label: Text(
+                          "${state.remainingRequests}/${state.totalRequests}",
+                        ), // Display remaining requests
+                        icon:
+                            state.OcrLoading
+                                ? CircularProgressIndicator(
+                                  color: Colors.white,
+                                ) // Show loading indicator
+                                : Icon(Icons.add_a_photo),
+                        backgroundColor:
+                            state.OcrLoading || state.remainingRequests == 0
+                                ? Colors
+                                    .grey // Grey out when disabled or loading
+                                : Theme.of(context).colorScheme.secondary,
+                        heroTag: null,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
+        ),
       ),
     );
   }

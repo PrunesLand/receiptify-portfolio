@@ -23,6 +23,8 @@ mixin _$DocumentState {
   bool get OcrLoading => throw _privateConstructorUsedError;
   String get totalExpenseMain => throw _privateConstructorUsedError;
   DocumentChipEnum get chipEnum => throw _privateConstructorUsedError;
+  int get remainingRequests => throw _privateConstructorUsedError;
+  int get totalRequests => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DocumentStateCopyWith<DocumentState> get copyWith =>
@@ -42,7 +44,9 @@ abstract class $DocumentStateCopyWith<$Res> {
       bool AddDocModalOpen,
       bool OcrLoading,
       String totalExpenseMain,
-      DocumentChipEnum chipEnum});
+      DocumentChipEnum chipEnum,
+      int remainingRequests,
+      int totalRequests});
 }
 
 /// @nodoc
@@ -65,6 +69,8 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
     Object? OcrLoading = null,
     Object? totalExpenseMain = null,
     Object? chipEnum = null,
+    Object? remainingRequests = null,
+    Object? totalRequests = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -95,6 +101,14 @@ class _$DocumentStateCopyWithImpl<$Res, $Val extends DocumentState>
           ? _value.chipEnum
           : chipEnum // ignore: cast_nullable_to_non_nullable
               as DocumentChipEnum,
+      remainingRequests: null == remainingRequests
+          ? _value.remainingRequests
+          : remainingRequests // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalRequests: null == totalRequests
+          ? _value.totalRequests
+          : totalRequests // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -114,7 +128,9 @@ abstract class _$$DocumentStateImplCopyWith<$Res>
       bool AddDocModalOpen,
       bool OcrLoading,
       String totalExpenseMain,
-      DocumentChipEnum chipEnum});
+      DocumentChipEnum chipEnum,
+      int remainingRequests,
+      int totalRequests});
 }
 
 /// @nodoc
@@ -135,6 +151,8 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
     Object? OcrLoading = null,
     Object? totalExpenseMain = null,
     Object? chipEnum = null,
+    Object? remainingRequests = null,
+    Object? totalRequests = null,
   }) {
     return _then(_$DocumentStateImpl(
       isLoading: null == isLoading
@@ -165,6 +183,14 @@ class __$$DocumentStateImplCopyWithImpl<$Res>
           ? _value.chipEnum
           : chipEnum // ignore: cast_nullable_to_non_nullable
               as DocumentChipEnum,
+      remainingRequests: null == remainingRequests
+          ? _value.remainingRequests
+          : remainingRequests // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalRequests: null == totalRequests
+          ? _value.totalRequests
+          : totalRequests // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -179,7 +205,9 @@ class _$DocumentStateImpl implements _DocumentState {
       this.AddDocModalOpen = false,
       this.OcrLoading = true,
       this.totalExpenseMain = '0',
-      this.chipEnum = DocumentChipEnum.latest})
+      this.chipEnum = DocumentChipEnum.latest,
+      this.remainingRequests = 0,
+      this.totalRequests = 0})
       : _list = list;
 
   @override
@@ -209,10 +237,16 @@ class _$DocumentStateImpl implements _DocumentState {
   @override
   @JsonKey()
   final DocumentChipEnum chipEnum;
+  @override
+  @JsonKey()
+  final int remainingRequests;
+  @override
+  @JsonKey()
+  final int totalRequests;
 
   @override
   String toString() {
-    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen, OcrLoading: $OcrLoading, totalExpenseMain: $totalExpenseMain, chipEnum: $chipEnum)';
+    return 'DocumentState(isLoading: $isLoading, list: $list, textData: $textData, AddDocModalOpen: $AddDocModalOpen, OcrLoading: $OcrLoading, totalExpenseMain: $totalExpenseMain, chipEnum: $chipEnum, remainingRequests: $remainingRequests, totalRequests: $totalRequests)';
   }
 
   @override
@@ -232,7 +266,11 @@ class _$DocumentStateImpl implements _DocumentState {
             (identical(other.totalExpenseMain, totalExpenseMain) ||
                 other.totalExpenseMain == totalExpenseMain) &&
             (identical(other.chipEnum, chipEnum) ||
-                other.chipEnum == chipEnum));
+                other.chipEnum == chipEnum) &&
+            (identical(other.remainingRequests, remainingRequests) ||
+                other.remainingRequests == remainingRequests) &&
+            (identical(other.totalRequests, totalRequests) ||
+                other.totalRequests == totalRequests));
   }
 
   @override
@@ -244,7 +282,9 @@ class _$DocumentStateImpl implements _DocumentState {
       AddDocModalOpen,
       OcrLoading,
       totalExpenseMain,
-      chipEnum);
+      chipEnum,
+      remainingRequests,
+      totalRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -261,7 +301,9 @@ abstract class _DocumentState implements DocumentState {
       final bool AddDocModalOpen,
       final bool OcrLoading,
       final String totalExpenseMain,
-      final DocumentChipEnum chipEnum}) = _$DocumentStateImpl;
+      final DocumentChipEnum chipEnum,
+      final int remainingRequests,
+      final int totalRequests}) = _$DocumentStateImpl;
 
   @override
   bool get isLoading;
@@ -277,6 +319,10 @@ abstract class _DocumentState implements DocumentState {
   String get totalExpenseMain;
   @override
   DocumentChipEnum get chipEnum;
+  @override
+  int get remainingRequests;
+  @override
+  int get totalRequests;
   @override
   @JsonKey(ignore: true)
   _$$DocumentStateImplCopyWith<_$DocumentStateImpl> get copyWith =>
