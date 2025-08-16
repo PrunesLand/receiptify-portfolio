@@ -39,6 +39,7 @@ jobs:
       - name: Set up Ruby and Bundler
         uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '2.7'
           bundler-cache: true
           working-directory: ./android
 
@@ -81,6 +82,7 @@ jobs:
       - name: Set up Ruby and Bundler
         uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '2.7'
           bundler-cache: true
           working-directory: ./android
 
