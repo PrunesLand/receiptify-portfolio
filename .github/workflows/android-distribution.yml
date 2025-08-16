@@ -1,0 +1,92 @@
+name: Android Distribution
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  distribute_debug:
+    if: github.event_name == 'push'
+    name: Distribute Debug Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.0'
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Build debug APK
+        run: flutter build apk --debug
+
+      - name: Set up Ruby and Bundler
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: ./android
+
+      - name: Run Fastlane (debug)
+        working-directory: ./android
+        env:
+          FIREBASE_APP_ID_ANDROID: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: bundle exec fastlane distribute_debug
+
+  distribute_release:
+    if: github.event_name == 'workflow_dispatch'
+    name: Distribute Release Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.0'
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      - name: Set up Ruby and Bundler
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: ./android
+
+      - name: Run Fastlane (release)
+        working-directory: ./android
+        env:
+          FIREBASE_APP_ID_ANDROID: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: bundle exec fastlane distribute_release
