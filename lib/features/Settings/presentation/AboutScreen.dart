@@ -25,21 +25,16 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   @override
-  Widget build(BuildContext.context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('About'),
-      ),
+      appBar: AppBar(title: const Text('About')),
       body: ListView(
         children: [
           const ListTile(
             title: Text('App Name'),
             subtitle: Text('Receipt App'),
           ),
-          ListTile(
-            title: const Text('Version'),
-            subtitle: Text(_version),
-          ),
+          ListTile(title: const Text('Version'), subtitle: Text(_version)),
           const ListTile(
             title: Text('Author'),
             subtitle: Text('The Receipt App Team'),
