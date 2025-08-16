@@ -39,13 +39,21 @@ Submit a new Beta Build to Crashlytics Beta
 
 Deploy a new version to the Google Play
 
-### android distribute
+### android distribute_debug
 
 ```sh
-[bundle exec] fastlane android distribute
+[bundle exec] fastlane android distribute_debug
 ```
 
-My awesome app
+Distribute debug build to Firebase App Distribution
+
+### android distribute_release
+
+```sh
+[bundle exec] fastlane android distribute_release
+```
+
+Distribute release build to Firebase App Distribution
 
 ----
 
