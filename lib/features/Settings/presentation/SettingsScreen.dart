@@ -38,9 +38,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
             ),
-            Spacer(),
             ListTile(
-              title: Text("Log out", style: TextStyle(color: Colors.red)),
+              title: const Text('About'),
+              leading: const Icon(Icons.info_outline),
+              onTap: () {
+                GoRouter.of(context).push('/about');
+              },
+            ),
+            const Spacer(),
+            ListTile(
+              title: const Text("Log out", style: TextStyle(color: Colors.red)),
               onTap: () {
                 GoRouter.of(context).replace('/onboarding');
               },
