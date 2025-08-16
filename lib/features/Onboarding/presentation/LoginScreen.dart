@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state.finishLogin) {
-            GoRouter.of(context).replace('/home');
+            GoRouter.of(context).pushReplacement('/home');
           }
           if (state.loginFailed) {
             ScaffoldMessenger.of(context).showSnackBar(

@@ -73,6 +73,20 @@ class HeroScreen extends StatelessWidget {
                   onPressed: () => GoRouter.of(context).push('/login'),
                   child: const Text("Login"),
                 ),
+                const SizedBox(height: 24.0), // Added spacing
+                // New link to the onboarding screen
+                TextButton(
+                  onPressed:
+                      () => GoRouter.of(context).pushReplacement('/home'),
+                  child: Text(
+                    'Enter as guest',
+                    style: TextStyle(
+                      color: colorScheme.onPrimary,
+                      decoration: TextDecoration.underline,
+                      decorationColor: colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

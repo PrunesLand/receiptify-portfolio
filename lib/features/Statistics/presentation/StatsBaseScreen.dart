@@ -94,7 +94,7 @@ class _StatsBaseScreenState extends State<StatsBaseScreen> {
                         },
                         child: Icon(Icons.add_box_rounded),
                         heroTag:
-                            null, // Add heroTag to avoid conflicts if you have multiple FABs
+                            'add_new_receipt', // Add heroTag to avoid conflicts if you have multiple FABs
                       ),
                       SizedBox(width: 10),
                       FloatingActionButton.extended(
@@ -139,7 +139,7 @@ class _StatsBaseScreenState extends State<StatsBaseScreen> {
                                 ? Colors
                                     .grey // Grey out when disabled or loading
                                 : Theme.of(context).colorScheme.secondary,
-                        heroTag: null,
+                        heroTag: 'scan_receipt_ocr',
                       ),
                     ],
                   ),

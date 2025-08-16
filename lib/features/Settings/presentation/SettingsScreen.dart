@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -48,8 +49,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const Spacer(),
             ListTile(
               title: const Text("Log out", style: TextStyle(color: Colors.red)),
-              onTap: () {
-                GoRouter.of(context).replace('/onboarding');
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+
+                if (mounted) {
+                  GoRouter.of(context).pushReplacement('/onboarding');
+                }
               },
               leading: Icon(Icons.logout, color: Colors.red),
             ),

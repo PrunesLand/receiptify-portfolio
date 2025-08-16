@@ -29,7 +29,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             (previous, current) =>
                 current.finishRegister || current.registrationFailed,
         listener: (context, state) {
-          if (state.finishRegister) GoRouter.of(context).replace('/login');
+          if (state.finishRegister)
+            GoRouter.of(context).pushReplacement('/login');
           if (state.registrationFailed) {
             showDialog(
               context: context,
