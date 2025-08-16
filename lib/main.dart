@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,33 +27,22 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
     print('Main: Firebase.initializeApp completed.');
-
     signalFirebaseReady();
   } catch (e) {
     print('Main: Firebase initialization failed: $e');
     signalFirebaseFailed(e);
   }
-  // try {
-  //   await FirebaseAppCheck.instance.activate(
-  //     androidProvider: AndroidProvider.debug,
-  //   );
-  // } catch (e) {
-  //   print('Error activating Firebase App Check: $e');
-  //   // Handle activation error - your app might not work with backend services
-  // }
   try {
     await setupServiceLocator(); // CRUCIAL
     print("Main: Service locator setup completed successfully.");
   } catch (e, s) {
     print("Main: Service locator setup FAILED: $e");
     print("Main: Stack Trace: $s");
-    // Optionally: show an error screen instead of runApp if setup fails
     return;
   }
 
@@ -66,8 +56,30 @@ void main() async {
 
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
+// Define the router outside of the main function or inside a class
+// to avoid re-creating it on every build.
 final GoRouter router = GoRouter(
   initialLocation: '/onboarding',
+  // Add the redirect logic here
+  redirect: (BuildContext context, GoRouterState state) {
+    final bool loggedIn = FirebaseAuth.instance.currentUser != null;
+    final String location = state.uri.toString();
+
+    // Define routes that are accessible without being logged in
+    final bool isPublicRoute =
+        location == '/onboarding' ||
+        location == '/login' ||
+        location == '/register';
+
+    // If the user is logged in and tries to access a public-only route
+    // (like login or register), redirect them to the home screen.
+    if (loggedIn && isPublicRoute) {
+      return '/home';
+    }
+
+    // No redirection needed
+    return null;
+  },
   routes: <RouteBase>[
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -115,21 +127,18 @@ final GoRouter router = GoRouter(
         ),
       ],
     ),
-
     GoRoute(
       path: '/settings',
       builder: (BuildContext context, GoRouterState state) {
         return SettingsScreen();
       },
     ),
-
     GoRoute(
       path: '/about',
       builder: (BuildContext context, GoRouterState state) {
         return const AboutScreen();
       },
     ),
-
     GoRoute(
       path: '/analytics',
       builder: (BuildContext context, GoRouterState state) {
@@ -139,7 +148,6 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-
     GoRoute(
       path: '/statistics',
       builder: (BuildContext, GoRouterState state) {
