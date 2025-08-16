@@ -90,6 +90,7 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
             );
 
             final prompt = TextPart("""
+              receipt/invoice can be screenshort or real.
               If its not a receipt/invoice, return 'false' and immediately stop.
               Return total expense. Answer in Decimals. 
               Select category fits best: {food, entertainment, travel, others}. if unsure, pick others.

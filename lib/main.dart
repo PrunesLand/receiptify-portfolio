@@ -124,6 +124,13 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
+      path: '/about',
+      builder: (BuildContext context, GoRouterState state) {
+        return const AboutScreen();
+      },
+    ),
+
+    GoRoute(
       path: '/analytics',
       builder: (BuildContext context, GoRouterState state) {
         return BlocProvider.value(
