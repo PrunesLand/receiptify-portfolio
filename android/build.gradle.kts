@@ -26,6 +26,7 @@ subprojects {
         if (project.hasProperty("android")) {
             val androidExtension = project.extensions.findByName("android")
             if (androidExtension is com.android.build.gradle.BaseExtension) {
+                androidExtension.compileSdkVersion(35)
                 if (androidExtension.namespace == null) {
                     androidExtension.namespace = project.group.toString()
                 }
