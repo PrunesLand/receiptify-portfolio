@@ -27,6 +27,15 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Increment build number
+        id: version
+        run: |
+          current_version=$(grep 'version: ' pubspec.yaml | sed 's/version: //')
+          base_version=$(echo $current_version | cut -d '+' -f 1)
+          new_version="$base_version+${{ github.run_number }}"
+          sed -i "s/version: .*/version: $new_version/" pubspec.yaml
+          echo "new_version=$new_version" >> $GITHUB_OUTPUT
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -49,6 +58,13 @@ jobs:
           FIREBASE_APP_ID_ANDROID: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: bundle exec fastlane distribute_debug
+
+      - name: Commit version bump
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ci: Version bump to ${{ steps.version.outputs.new_version }}"
+          branch: main
+          file_pattern: pubspec.yaml
 
   distribute_release:
     if: github.event_name == 'workflow_dispatch'
