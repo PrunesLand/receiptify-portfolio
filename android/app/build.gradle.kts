@@ -53,16 +53,18 @@ android {
         versionName = flutter.versionName
     }
 
-    // Corrected signingConfigs block for Kotlin Script
     signingConfigs {
         create("release") {
-            val propertiesFile = project.rootProject.file("android/key.properties")
+            // Look for the properties file in the parent directory (android/)
+            val propertiesFile = project.file("../key.properties")
             if (propertiesFile.exists()) {
                 val properties = Properties()
                 properties.load(FileInputStream(propertiesFile))
+
                 keyAlias = properties.getProperty("keyAlias")
                 keyPassword = properties.getProperty("keyPassword")
-                storeFile = file(properties.getProperty("storeFile"))
+                // Resolve the keystore path relative to the properties file's location
+                storeFile = file(propertiesFile.parentFile.resolve(properties.getProperty("storeFile")))
                 storePassword = properties.getProperty("storePassword")
             }
         }
