@@ -32,7 +32,7 @@ import java.util.Properties
 
 
 android {
-    namespace = "com.example.receipt_app"
+    namespace = "com.receiptify"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -46,7 +46,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.receipt_app"
+        applicationId = "com.receiptify"
         minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

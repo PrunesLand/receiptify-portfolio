@@ -1,4 +1,4 @@
-package com.example.receipt_app
+package com.receiptify
 
 import io.flutter.embedding.android.FlutterActivity
 
