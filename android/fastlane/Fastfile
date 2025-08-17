@@ -40,7 +40,6 @@ platform :android do
   lane :distribute_debug do
       firebase_app_distribution(
           app: ENV["FIREBASE_APP_ID_ANDROID"],
-          testers: "pranarg.business@gmail.com",
           apk_path: "../build/app/outputs/flutter-apk/app-debug.apk",
           firebase_cli_token: ENV["FIREBASE_TOKEN"]
       )
