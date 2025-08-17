@@ -1,8 +1,10 @@
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:receipt_app/core/theme_data.dart';
 import 'package:receipt_app/features/Document/index.dart';
@@ -26,23 +28,32 @@ import 'features/Statistics/application/Statistics/statistics_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  final logger = Logger();
+
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    print('Main: Firebase.initializeApp completed.');
+    logger.i('Main: Firebase.initializeApp completed.');
     signalFirebaseReady();
   } catch (e) {
-    print('Main: Firebase initialization failed: $e');
+    logger.e('Main: Firebase initialization failed: $e');
     signalFirebaseFailed(e);
   }
   try {
-    await setupServiceLocator(); // CRUCIAL
-    print("Main: Service locator setup completed successfully.");
+    await FirebaseAppCheck.instance.activate(
+      androidProvider: AndroidProvider.debug,
+    );
+  } catch (e) {
+    logger.e('Firebase App Check activation failed: $e');
+  }
+  try {
+    await setupServiceLocator();
+    logger.i("Main: Service locator setup completed successfully.");
   } catch (e, s) {
-    print("Main: Service locator setup FAILED: $e");
-    print("Main: Stack Trace: $s");
+    logger.e("Main: Service locator setup FAILED: $e");
+    logger.e("Main: Stack Trace: $s");
     return;
   }
 
@@ -60,7 +71,6 @@ final messengerKey = GlobalKey<ScaffoldMessengerState>();
 // to avoid re-creating it on every build.
 final GoRouter router = GoRouter(
   initialLocation: '/onboarding',
-  // Add the redirect logic here
   redirect: (BuildContext context, GoRouterState state) {
     final bool loggedIn = FirebaseAuth.instance.currentUser != null;
     final String location = state.uri.toString();
