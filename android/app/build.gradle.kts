@@ -8,25 +8,27 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-dependencies {
+// Import Properties and FileInputStream
+import java.util.Properties
+        import java.io.FileInputStream
 
-    // Import the Firebase BoM
+        dependencies {
 
-    implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
+            // Import the Firebase BoM
 
-
-    // TODO: Add the dependencies for Firebase products you want to use
-
-    // When using the BoM, don't specify versions in Firebase dependencies
-
-    implementation("com.google.firebase:firebase-analytics")
+            implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
 
 
-    // Add the dependencies for any other desired Firebase products
+            // When using the BoM, don't specify versions in Firebase dependencies
 
-    // https://firebase.google.com/docs/android/setup#available-libraries
+            implementation("com.google.firebase:firebase-analytics")
 
-}
+
+            // Add the dependencies for any other desired Firebase products
+
+            // https://firebase.google.com/docs/android/setup#available-libraries
+
+        }
 
 
 android {
@@ -44,21 +46,32 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.receipt_app"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    // Corrected signingConfigs block for Kotlin Script
+    signingConfigs {
+        create("release") {
+            val propertiesFile = project.rootProject.file("android/key.properties")
+            if (propertiesFile.exists()) {
+                val properties = Properties()
+                properties.load(FileInputStream(propertiesFile))
+                keyAlias = properties.getProperty("keyAlias")
+                keyPassword = properties.getProperty("keyPassword")
+                storeFile = file(properties.getProperty("storeFile"))
+                storePassword = properties.getProperty("storePassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Point to the release signing config
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }
