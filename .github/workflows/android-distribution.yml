@@ -76,6 +76,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Decode Keystore and Create Properties
+        run: |
+          echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" > android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=upload" >> android/key.properties
+          echo "storeFile=app/upload-keystore.jks" >> android/key.properties
+
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -95,6 +103,7 @@ jobs:
       - name: Run build_runner
         run: dart run build_runner build --delete-conflicting-outputs
 
+      # This build step will now find the signing files
       - name: Build release APK
         run: flutter build apk --release
 
