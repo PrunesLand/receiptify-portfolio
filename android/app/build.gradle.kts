@@ -83,12 +83,12 @@ android {
         create("dev") {
             dimension = "app"
             applicationIdSuffix = ".dev"
-            resValue("string", "app_name", "Receiptify Dev")
+            resValue("string", "app_name", "receiptify_dev")
             versionNameSuffix = "-dev"
         }
         create("prod") {
             dimension = "app"
-            resValue("string", "app_name", "Receiptify")
+            resValue("string", "app_name", "receiptify_prod")
             versionNameSuffix = "-prod"
         }
     }
