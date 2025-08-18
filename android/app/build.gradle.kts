@@ -25,7 +25,7 @@ import java.util.Properties
 
 
             // Add the dependencies for any other desired Firebase products
-
+            implementation("com.google.firebase:firebase-appcheck-playintegrity")
             // https://firebase.google.com/docs/android/setup#available-libraries
 
         }
