@@ -1,6 +1,7 @@
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -43,7 +44,8 @@ void main() async {
   }
   try {
     await FirebaseAppCheck.instance.activate(
-      androidProvider: AndroidProvider.debug,
+      androidProvider:
+          kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
     );
   } catch (e) {
     logger.e('Firebase App Check activation failed: $e');

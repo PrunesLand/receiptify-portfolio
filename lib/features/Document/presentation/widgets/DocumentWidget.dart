@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:receipt_app/main.dart';
 
+import '../../../../app.dart';
 import '../../../../core/service_locator.dart';
 import '../../index.dart';
 import 'index.dart';

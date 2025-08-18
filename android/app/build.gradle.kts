@@ -82,7 +82,6 @@ android {
     productFlavors {
         create("dev") {
             dimension = "app"
-            applicationIdSuffix = ".dev"
             resValue("string", "app_name", "receiptify_dev")
             versionNameSuffix = "-dev"
         }
