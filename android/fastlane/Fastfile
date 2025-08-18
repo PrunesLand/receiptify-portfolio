@@ -40,7 +40,7 @@ platform :android do
   lane :distribute_debug do
       firebase_app_distribution(
           app: ENV["FIREBASE_APP_ID_ANDROID"],
-          apk_path: "../build/app/outputs/flutter-apk/app-debug.apk",
+          apk_path: "../build/app/outputs/flutter-apk/app-dev-debug.apk",
           firebase_cli_token: ENV["FIREBASE_TOKEN"]
       )
   end
@@ -49,7 +49,7 @@ platform :android do
   lane :distribute_release do
       firebase_app_distribution(
           app: ENV["FIREBASE_APP_ID_ANDROID"],
-          apk_path: "../build/app/outputs/flutter-apk/app-release.apk",
+          apk_path: "../build/app/outputs/flutter-apk/app-prod-release.apk",
           firebase_cli_token: ENV["FIREBASE_TOKEN"]
       )
   end

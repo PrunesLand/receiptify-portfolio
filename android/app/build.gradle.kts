@@ -76,6 +76,21 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+
+    flavorDimensions += "app"
+
+    productFlavors {
+        create("dev") {
+            dimension = "app"
+            resValue("string", "app_name", "receiptify_dev")
+            versionNameSuffix = "-dev"
+        }
+        create("prod") {
+            dimension = "app"
+            resValue("string", "app_name", "receiptify_prod")
+            versionNameSuffix = "-prod"
+        }
+    }
 }
 
 flutter {
