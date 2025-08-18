@@ -33,29 +33,43 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   try {
+    // STEP 1: Initialize Firebase Core.
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
     logger.i('Main: Firebase.initializeApp completed.');
     signalFirebaseReady();
-  } catch (e) {
-    logger.e('Main: Firebase initialization failed: $e');
-    signalFirebaseFailed(e);
-  }
-  try {
+
+    // STEP 2: Activate App Check. This MUST come after initializeApp.
     await FirebaseAppCheck.instance.activate(
       androidProvider:
           kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
+      // It's good practice to include the Apple provider for future-proofing
+      appleProvider: kDebugMode ? AppleProvider.debug : AppleProvider.appAttest,
     );
-  } catch (e) {
-    logger.e('Firebase App Check activation failed: $e');
-  }
-  try {
+
+    final String? token = await FirebaseAppCheck.instance.getToken();
+
+    if (token != null) {
+      logger.i('SUCCESS! Got App Check token: $token');
+    } else {
+      logger.e('ERROR: Activation completed but token is null.');
+    }
+
+    logger.i('Main: Firebase App Check activated successfully.');
+
+    // STEP 3: Set up your service locator.
+    // This should only run after Firebase is fully ready.
     await setupServiceLocator();
     logger.i("Main: Service locator setup completed successfully.");
+
+    // If you have any other signals or setup, they go here.
   } catch (e, s) {
-    logger.e("Main: Service locator setup FAILED: $e");
+    // If any part of the initialization fails, log it and stop.
+    logger.e("Main: A critical error occurred during app initialization: $e");
     logger.e("Main: Stack Trace: $s");
+    signalFirebaseFailed(e);
+    // You might want to show an error UI instead of just returning.
     return;
   }
 

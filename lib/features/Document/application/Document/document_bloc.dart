@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_ai/firebase_ai.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:receipt_app/core/FireBaseAuth.dart';
@@ -84,7 +85,9 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
               responseMimeType: 'text/plain',
             );
             final GenerativeModel model;
-            model = FirebaseAI.googleAI().generativeModel(
+            model = FirebaseAI.googleAI(
+              appCheck: FirebaseAppCheck.instance,
+            ).generativeModel(
               model: 'gemini-2.5-flash-lite',
               generationConfig: generationConfig,
             );
