@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:receipt_app/core/service_locator.dart';
 
+import '../../../core/FireBaseAuth.dart';
 import '../../../core/theme_provider.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -13,6 +15,85 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  Future<void> _showReauthenticationDialog(BuildContext context) async {
+    final passwordController = TextEditingController();
+
+    final password = await showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Re-authenticate'),
+          content: TextField(
+            controller: passwordController,
+            obscureText: true,
+            decoration: const InputDecoration(
+              labelText: 'Password',
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Confirm'),
+              onPressed: () {
+                Navigator.of(context).pop(passwordController.text);
+              },
+            ),
+          ],
+        );
+      },
+    );
+
+    if (password == null) {
+      return;
+    }
+
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Confirm Deletion'),
+        content: const Text(
+            'Are you sure you want to delete your account? This action is irreversible.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm != true) {
+      return;
+    }
+
+    try {
+      await getIt<FirebaseAuthSingleton>().reauthenticateAndDelete(password);
+
+      if (mounted) {
+        GoRouter.of(context).pushReplacement('/onboarding');
+      }
+    } on FirebaseAuthException catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.message ?? 'An error occurred'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -48,6 +129,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             const Spacer(),
             ListTile(
+              title: const Text('Delete Account',
+                  style: TextStyle(color: Colors.red)),
+              leading: const Icon(Icons.delete_forever, color: Colors.red),
+              onTap: () {
+                _showReauthenticationDialog(context);
+              },
+            ),
+            ListTile(
               title: const Text("Log out", style: TextStyle(color: Colors.red)),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
@@ -56,7 +145,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   GoRouter.of(context).pushReplacement('/onboarding');
                 }
               },
-              leading: Icon(Icons.logout, color: Colors.red),
+              leading: const Icon(Icons.logout, color: Colors.red),
             ),
           ],
         ),

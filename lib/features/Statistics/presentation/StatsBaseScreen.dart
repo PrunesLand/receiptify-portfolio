@@ -19,6 +19,8 @@ class StatsBaseScreen extends StatefulWidget {
 }
 
 class _StatsBaseScreenState extends State<StatsBaseScreen> {
+  final String uniqueId = UniqueKey().toString();
+
   @override
   void initState() {
     super.initState();
@@ -93,53 +95,45 @@ class _StatsBaseScreenState extends State<StatsBaseScreen> {
                           }
                         },
                         child: Icon(Icons.add_box_rounded),
-                        heroTag:
-                            'add_new_receipt', // Add heroTag to avoid conflicts if you have multiple FABs
+                        heroTag: 'add_new_receipt_$uniqueId',
                       ),
                       SizedBox(width: 10),
                       FloatingActionButton.extended(
-                        // Use FloatingActionButton.extended for text and icon
                         onPressed:
                             state.OcrLoading || state.remainingRequests == 0
-                                ? null // Disable if OCR is loading or no requests remaining
+                                ? null
                                 : () async {
-                                  final image = await pickImageFromGallery();
-
-                                  if (image != null) {
-                                    showDialog(
-                                      context: context,
-                                      builder:
-                                          (context) => FileSelectModal(
-                                            file: image,
-                                            onFileSelected: () {
-                                              Navigator.pop(context);
-                                              getIt<DocumentBloc>().add(
-                                                DocumentEvent.processImage(
-                                                  file: image,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                    );
-                                  } else {
-                                    showErrorSnackBar();
-                                  }
-                                },
+                                    final image = await pickImageFromGallery();
+                                    if (image != null) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => FileSelectModal(
+                                          file: image,
+                                          onFileSelected: () {
+                                            Navigator.pop(context);
+                                            getIt<DocumentBloc>().add(
+                                              DocumentEvent.processImage(
+                                                file: image,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    } else {
+                                      showErrorSnackBar();
+                                    }
+                                  },
                         label: Text(
                           "${state.remainingRequests}/${state.totalRequests}",
-                        ), // Display remaining requests
-                        icon:
-                            state.OcrLoading
-                                ? CircularProgressIndicator(
-                                  color: Colors.white,
-                                ) // Show loading indicator
-                                : Icon(Icons.add_a_photo),
+                        ),
+                        icon: state.OcrLoading
+                            ? CircularProgressIndicator(color: Colors.white)
+                            : Icon(Icons.add_a_photo),
                         backgroundColor:
                             state.OcrLoading || state.remainingRequests == 0
-                                ? Colors
-                                    .grey // Grey out when disabled or loading
+                                ? Colors.grey
                                 : Theme.of(context).colorScheme.secondary,
-                        heroTag: 'scan_receipt_ocr',
+                        heroTag: 'scan_receipt_ocr_$uniqueId',
                       ),
                     ],
                   ),
