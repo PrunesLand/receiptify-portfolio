@@ -117,6 +117,5 @@ jobs:
       - name: Run Fastlane (release)
         working-directory: ./android
         env:
-          FIREBASE_APP_ID_ANDROID: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GOOGLE_PLAY_JSON_KEY: ${{ secrets.GOOGLE_PLAY_JSON_KEY }}
         run: bundle exec fastlane distribute_release
