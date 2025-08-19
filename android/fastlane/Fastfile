@@ -45,12 +45,11 @@ platform :android do
       )
   end
 
-  desc "Distribute release build to Firebase App Distribution"
+  desc "Distribute release build to Google Play"
   lane :distribute_release do
-      firebase_app_distribution(
-          app: ENV["FIREBASE_APP_ID_ANDROID"],
-          apk_path: "../build/app/outputs/flutter-apk/app-prod-release.apk",
-          firebase_cli_token: ENV["FIREBASE_TOKEN"]
-      )
+    upload_to_play_store(
+      apk: "../build/app/outputs/flutter-apk/app-prod-release.apk",
+      json_key_data: ENV["GOOGLE_PLAY_JSON_KEY"]
+    )
   end
 end
