@@ -58,7 +58,7 @@ class HeroScreen extends StatelessWidget {
                 const Spacer(flex: 2),
 
                 ElevatedButton(
-                  onPressed: () => GoRouter.of(context).push('/register'),
+                  onPressed: () => GoRouter.of(context).replace('/register'),
                   child: const Text("Create an Account"),
                 ),
 
