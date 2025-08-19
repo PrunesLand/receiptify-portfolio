@@ -48,7 +48,7 @@ platform :android do
   desc "Distribute release build to Google Play"
   lane :distribute_release do
     upload_to_play_store(
-      apk: "../build/app/outputs/flutter-apk/app-prod-release.apk",
+      aab: "../build/app/outputs/bundle/prodRelease/app-prod-release.aab",
       json_key_data: ENV["GOOGLE_PLAY_JSON_KEY"]
     )
   end
