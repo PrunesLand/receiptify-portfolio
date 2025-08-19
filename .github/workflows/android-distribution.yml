@@ -104,8 +104,8 @@ jobs:
         run: dart run build_runner build --delete-conflicting-outputs
 
       # This build step will now find the signing files
-      - name: Build release APK
-        run: flutter build apk --flavor prod -t lib/main_prod.dart --release
+      - name: Build release AAB
+        run: flutter build appbundle --flavor prod -t lib/main_prod.dart --release
 
       - name: Set up Ruby and Bundler
         uses: ruby/setup-ruby@v1
