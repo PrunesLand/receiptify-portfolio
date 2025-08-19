@@ -40,4 +40,16 @@ class FirebaseAuthSingleton {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+
+  Future<void> reauthenticateAndDelete(String password) async {
+    try {
+      final user = _firebaseAuth.currentUser;
+      final cred =
+          EmailAuthProvider.credential(email: user!.email!, password: password);
+      await user.reauthenticateWithCredential(cred);
+      await user.delete();
+    } on FirebaseAuthException {
+      rethrow;
+    }
+  }
 }
