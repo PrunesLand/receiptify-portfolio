@@ -15,6 +15,12 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  void _navigateAfterAuthAction() {
+    if (mounted) {
+      GoRouter.of(context).go('/onboarding');
+    }
+  }
+
   Future<void> _showReauthenticationDialog(BuildContext context) async {
     final passwordController = TextEditingController();
 
@@ -23,70 +29,60 @@ class _SettingsScreenState extends State<SettingsScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Re-authenticate'),
+          title: const Text('Re-authenticate to Delete'),
           content: TextField(
             controller: passwordController,
             obscureText: true,
-            decoration: const InputDecoration(
-              labelText: 'Password',
-            ),
+            decoration: const InputDecoration(labelText: 'Password'),
           ),
           actions: <Widget>[
             TextButton(
               child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: () => Navigator.of(context).pop(),
             ),
             TextButton(
               child: const Text('Confirm'),
-              onPressed: () {
-                Navigator.of(context).pop(passwordController.text);
-              },
+              onPressed:
+                  () => Navigator.of(context).pop(passwordController.text),
             ),
           ],
         );
       },
     );
 
-    if (password == null) {
-      return;
-    }
+    if (password == null || password.isEmpty) return;
 
     final confirm = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Confirm Deletion'),
-        content: const Text(
-            'Are you sure you want to delete your account? This action is irreversible.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+      builder:
+          (context) => AlertDialog(
+            title: const Text('Confirm Deletion'),
+            content: const Text(
+              'Are you sure you want to delete your account? This action is irreversible.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Delete'),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete'),
-          ),
-        ],
-      ),
     );
 
-    if (confirm != true) {
-      return;
-    }
+    if (confirm != true) return;
 
     try {
       await getIt<FirebaseAuthSingleton>().reauthenticateAndDelete(password);
-
-      if (mounted) {
-        GoRouter.of(context).pushReplacement('/onboarding');
-      }
+      _navigateAfterAuthAction();
     } on FirebaseAuthException catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(e.message ?? 'An error occurred'),
+            content: Text(e.message ?? 'An error occurred during deletion.'),
             backgroundColor: Colors.red,
           ),
         );
@@ -101,7 +97,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return SafeArea(
       top: false,
       child: Scaffold(
-        appBar: AppBar(title: Text('Settings')),
+        appBar: AppBar(title: const Text('Settings')),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -110,7 +106,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Dark Mode', style: TextStyle(fontSize: 18)),
+                  const Text('Dark Mode', style: TextStyle(fontSize: 18)),
                   Switch(
                     value: themeProvider.isDarkMode,
                     onChanged: (value) {
@@ -129,8 +125,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             const Spacer(),
             ListTile(
-              title: const Text('Delete Account',
-                  style: TextStyle(color: Colors.red)),
+              title: const Text(
+                'Delete Account',
+                style: TextStyle(color: Colors.red),
+              ),
               leading: const Icon(Icons.delete_forever, color: Colors.red),
               onTap: () {
                 _showReauthenticationDialog(context);
@@ -140,10 +138,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title: const Text("Log out", style: TextStyle(color: Colors.red)),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
-
-                if (mounted) {
-                  GoRouter.of(context).pushReplacement('/onboarding');
-                }
+                _navigateAfterAuthAction();
               },
               leading: const Icon(Icons.logout, color: Colors.red),
             ),
