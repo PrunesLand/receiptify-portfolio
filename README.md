@@ -13,7 +13,7 @@ Receiptify is a powerful, feature-rich Flutter application designed to streamlin
 
 ## Demo
 
-![Demo GIF](path/to/your/demo.gif)
+![Demo GIF](receiptify-demo.gif)
 
 ## Tech Stack
 
