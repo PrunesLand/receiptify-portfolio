@@ -1,4 +1,4 @@
-# Receiptify
+# Receiptify (Project Preview from a Private Repository)
 
 Receiptify is a powerful, feature-rich Flutter application designed to streamline expense tracking and management. It empowers users to effortlessly digitize their receipts, extract crucial information using cutting-edge AI, and gain valuable insights into their spending habits. This project showcases a complete end-to-end mobile application development lifecycle, from initial design and development to CI/CD and deployment.
 
